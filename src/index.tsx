@@ -1,15 +1,15 @@
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
+import Chat from "./chat";
+import ChatList from "./chatlist";
+import DesktopChatlist from "./desktop-chatlist";
+import DynamicChat from "./dynamic-chat";
+import Loading from "./loading";
 
-export interface Props extends HTMLAttributes<HTMLDivElement> {
-  /** custom content, defaults to 'the snozzberries taste like snozzberries' */
-  children?: ReactChild;
+
+
+export default {
+  Chat,
+  ChatList,
+  Loading,
+  DesktopChatlist,
+  DynamicChat
 }
-
-// Please do not use types off of a default export module or else Storybook Docs will suffer.
-// see: https://github.com/storybookjs/storybook/issues/9556
-/**
- * A custom Thing component. Neat!
- */
-export const Thing: FC<Props> = ({ children }) => {
-  return <div>{children || `the snozzberries taste like snozzberries`}</div>;
-};
