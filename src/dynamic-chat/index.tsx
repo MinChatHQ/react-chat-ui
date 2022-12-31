@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile';
-import Chat from '../chat';
+import Chat from '../message-list';
 import ChatList from '../chatlist';
 import DesktopChatlist, { DesktopChatlistProps } from '../desktop-chatlist'
 

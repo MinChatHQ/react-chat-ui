@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Chat, { ChatProps } from '../chat'
+import Chat, { ChatProps } from '../message-list'
 import ChatList, { ChatlistProps } from '../chatlist'
 import Loading from '../loading'
 

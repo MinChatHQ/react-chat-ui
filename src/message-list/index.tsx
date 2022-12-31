@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Input from './input'
 import MyMessage from './my-message'
-import OtherMessage from './other-message'
+import OtherMessage from '../message/other-message'
 import styled from 'styled-components'
 import Header from './header'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
@@ -102,7 +102,7 @@ const NoMessagesTextContainer = styled.div`
 
 `
 
-export default function Chat({
+export default function MessageList({
     showBack = true,
     messages,
     currentUserId,

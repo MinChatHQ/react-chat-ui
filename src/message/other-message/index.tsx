@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import User from '../../User'
 import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../my-message'
 import placeholderProfilePNG from './profile.webp'
 
 type Props = {
     children: string,
-    user: {
-        name?: string,
-        avatar?: string
-    }
+    user?: User,
     themeColor: string
 }
 
@@ -76,7 +74,7 @@ export default function OtherMessage({ children, user, themeColor }: Props) {
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
     useEffect(() => {
-        if (user.avatar && user.avatar.trim().length > 0) {
+        if (user?.avatar && user.avatar.trim().length > 0) {
             setAvatar(user.avatar)
         }
     }, [user])
@@ -98,7 +96,7 @@ export default function OtherMessage({ children, user, themeColor }: Props) {
 
             <TextWrapper>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <Name>{user.name}</Name>
+                    <Name>{user?.name}</Name>
 
 
                     <TimestampContainer>

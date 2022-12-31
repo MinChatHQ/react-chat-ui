@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import useCheckIsMobile from '../../hooks/useCheckIsMobile'
+import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
-type Props = {
+export type Props = {
     onSendMessage: (text: string) => void
     themeColor: string
-    mobileView: boolean
+    mobileView?: boolean
 
 }
 
@@ -117,7 +117,7 @@ box-sizing: border-box;
 `
 
 
-export default function Input({
+export default function MessageInput({
     onSendMessage,
     themeColor,
     mobileView
