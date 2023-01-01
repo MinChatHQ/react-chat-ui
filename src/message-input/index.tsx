@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
 export type Props = {
-    onSendMessage: (text: string) => void
-    themeColor: string
+    onSendMessage?: (text: string) => void
+    themeColor?: string
     mobileView?: boolean
 
 }
 
-const Container = styled.form<{ mobile: boolean }>`
+const Container = styled.form<{ mobile?: boolean }>`
 height:56px;
 background-color:#f3f4f6;
 ${({ mobile }) => mobile ? `
@@ -47,7 +47,7 @@ position: relative;
 box-sizing: border-box;
 `
 
-const InputBackground = styled.div<{ bgColor: string }>`
+const InputBackground = styled.div<{ bgColor?: string }>`
 opacity: 0.4;
 height: 100%;
 width: 100%;
@@ -130,7 +130,7 @@ export default function MessageInput({
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
-            onSendMessage(text.trim())
+            onSendMessage &&  onSendMessage(text.trim())
             setText("")
 
         }

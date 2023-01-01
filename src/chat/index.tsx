@@ -1,25 +1,32 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Message from '../message'
+import Input from './input'
+import MyMessage from './my-message'
+import OtherMessage from '../message/other-message'
 import styled from 'styled-components'
+import Header from './header'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 import Loading from '../loading'
 import useDetectScrollPosition from '../hooks/useDetectScrollPosition'
-import MessageType from '../MessageType'
+import { Message } from '../conversation-list'
 
 export type ChatProps = {
-    themeColor?: string
-    messages?: MessageType[]
-    currentUserId?: string
+    themeColor: string
+    messages?: Message[]
+    currentUserId: string
+    onSendMessage: (text: string) => void
+    onBack?: () => void
+    header: string
+    showBack?: boolean
     loading?: boolean
     // this is true when the message a message is still being sent so show some form of loader on the last message
     sendMessageLoading?: boolean
-    onScrollToTop?: () => void
+    paginate: () => void
     mobileView?: boolean
 }
 
 
 
-const Container = styled.div`
+const Container = styled.div<{ mobile: boolean }>`
 height: 100%;
 /* display: flex;
 flex-direction: column; */
@@ -27,9 +34,13 @@ position: relative;
 max-height: 100vh;
 overflow-y: hidden;
 /* background-color: #ffffff; */
-padding-left: 0px;
-border-radius: 16px;
 padding-right: 12px; 
+
+padding-left: 0px;
+${({ mobile }) => mobile ? `
+padding-right: 0px;
+` : ""}
+border-radius: 16px;
 `
 
 const InnerContainer = styled.div`
@@ -91,13 +102,17 @@ const NoMessagesTextContainer = styled.div`
 
 `
 
-export default function MessageList({
+export default function Chat({
+    showBack = true,
     messages,
     currentUserId,
+    onSendMessage,
+    onBack,
+    header,
     loading = false,
     sendMessageLoading = false,
-    onScrollToTop,
-    themeColor ='#6ea9d7',
+    paginate,
+    themeColor,
     mobileView
 }: ChatProps) {
 
@@ -171,7 +186,7 @@ export default function MessageList({
 
     return (
         <Container
-            >
+            mobile={mobileView || isMobile}>
 
             <ScrollBackgroundContainer mobile={mobileView || isMobile}>
                 <ScrollBackground />
@@ -184,12 +199,18 @@ export default function MessageList({
                     <Loading themeColor={themeColor} />
                     :
                     <>
+                        <Header
+                            mobileView={mobileView || isMobile}
+                            showBack={showBack}
+                            onBack={onBack} >{header}</Header>
+
+
 
                         <ScrollContainer
                             onScroll={() => {
                                 //detect when scrolled to top
                                 if (detectTop()) {
-                                    onScrollToTop && onScrollToTop()
+                                    paginate && paginate()
                                 }
                             }}
                             ref={scrollContainerRef}>
@@ -204,25 +225,23 @@ export default function MessageList({
                             </NoMessagesTextContainer>
                             }
                             {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text }, index) => {
-                                if (user.id == (currentUserId && currentUserId.toLowerCase())) {
+                                if (user.id == currentUserId.toLowerCase()) {
 
                                     // my message
-                                    return <Message key={index}
-                                        position="right"
+                                    return <MyMessage key={index}
                                         themeColor={themeColor}
                                         // the last message should show loading if sendMessage loading is true
                                         loading={(index === messages.length - 1) && sendMessageLoading}
-                                    >{text}</Message>
+                                    >{text}</MyMessage>
 
                                 } else {
 
                                     // other message
-                                    return <Message
-                                        position='left'
+                                    return <OtherMessage
                                         themeColor={themeColor}
                                         key={index}
                                         user={user}
-                                    >{text}</Message>
+                                    >{text}</OtherMessage>
                                 }
                             })}
 
@@ -231,6 +250,13 @@ export default function MessageList({
                                 <Buffer ref={bottomBufferRef} />
                             </div>
                         </ScrollContainer>
+
+
+                        <Input
+                            mobileView={mobileView || isMobile}
+                            themeColor={themeColor}
+                            onSendMessage={onSendMessage} />
+
                     </>
 
                 }

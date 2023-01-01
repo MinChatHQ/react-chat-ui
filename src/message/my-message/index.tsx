@@ -5,7 +5,7 @@ import Loading from './loading'
 type Props = {
     children: string,
     loading?: boolean
-    themeColor: string
+    themeColor?: string
 
 }
 
@@ -101,7 +101,7 @@ const LoadingContainer = styled.div`
 
 export default function MyMessage({
     children,
-    themeColor,
+    themeColor ='#6ea9d7',
     loading }: Props) {
     return (
         <Wrapper

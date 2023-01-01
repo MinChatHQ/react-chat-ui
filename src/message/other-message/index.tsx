@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import User from '../../User'
+import User from '../../UserType'
 import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../my-message'
 import placeholderProfilePNG from './profile.webp'
 
 type Props = {
     children: string,
     user?: User,
-    themeColor: string
+    themeColor?: string
 }
 
 const MessageContainer = styled(MyMessageContainer)`
@@ -69,7 +69,7 @@ const OtherMessageBackground = styled(Background)`
 
 
 
-export default function OtherMessage({ children, user, themeColor }: Props) {
+export default function OtherMessage({ children, user, themeColor = '#6ea9d7' }: Props) {
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
@@ -82,8 +82,8 @@ export default function OtherMessage({ children, user, themeColor }: Props) {
 
     return (
         <Wrapper
-    className='fade-animation'
-    >
+            className='fade-animation'
+        >
 
             <DPContainer>
                 <DisplayPicture

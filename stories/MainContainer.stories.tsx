@@ -1,23 +1,22 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import DynamicChat from '../src/dynamic-chat';
-import { DesktopChatlistProps } from '../src/desktop-chatlist';
+import MainContainer, { Props } from '../src/main-container';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
 
 
 const meta: Meta = {
-    title: 'Dynamic Chat',
-    component: DynamicChat,
+    title: 'MainContainer',
+    component: MainContainer,
     argTypes: {
-        selectedChat: {
+        selectedConversation: {
             onSendMessage: {
                 action: "sendMessage"
             }
         },
         inbox: {
-            onChatClick: {
-                action: "select Chat"
+            onConversationClick: {
+                action: "select COnversation"
             }
         }
     },
@@ -30,21 +29,19 @@ export default meta
 
 
 
-const Template: Story<DesktopChatlistProps> = args => {
-    return <div style={{height: '100vh'}}> <DynamicChat
-        onBack={() => { }}
+const Template: Story<Props> = args => {
+    return <div style={{ height: '100vh' }}> <MainContainer
         {...args}
         inbox={{
-            paginate: () => { },
+            onScrollToBottom: () => { },
             themeColor: "#6ea9d7",
-            chats: chats,
+            conversations: chats,
             loading: false,
-            onChatClick: () => console.log("onChat click"),
-            selectedIndex: 1
+            onConversationClick: () => console.log("onChat click"),
+            selectedConversationId: "1"
         }}
-        selectedChat={
+        selectedConversation={
             {
-                paginate: () => { },
                 themeColor: "#6ea9d7",
                 messages,
                 header: "Sandra Bullock",
@@ -55,28 +52,28 @@ const Template: Story<DesktopChatlistProps> = args => {
             }
         }
     />
+
+    
     </div>
 }
 
-const MobileTemplate: Story<DesktopChatlistProps> = args => {
+const MobileTemplate: Story<Props> = args => {
     return <div style={{}}>
         <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
-            <DynamicChat
-                onBack={() => { }}
+            <MainContainer
 
                 mobileView
                 {...args}
                 inbox={{
-                    paginate: () => { },
+                    onScrollToBottom: () => { },
                     themeColor: "#6ea9d7",
-                    chats: chats,
+                    conversations: chats,
                     loading: false,
-                    onChatClick: () => console.log("onChat click"),
-                    selectedIndex: 1
+                    onConversationClick: () => console.log("onChat click"),
+                    selectedConversationId: "1"
                 }}
-                selectedChat={
+                selectedConversation={
                     {
-                        paginate: () => { },
 
                         themeColor: "#6ea9d7",
                         messages,
@@ -94,23 +91,18 @@ const MobileTemplate: Story<DesktopChatlistProps> = args => {
 }
 
 
-const LoadingTemplate: Story<DesktopChatlistProps> = args => {
-    return <div style={{ height: "100vh" }}> <DynamicChat
-        onBack={() => { }}
+const LoadingTemplate: Story<Props> = args => {
+    return <div style={{ height: "100vh" }}> <MainContainer
         {...args}
-        loading={true}
         inbox={{
-            paginate: () => { },
-
             themeColor: "#6ea9d7",
-            chats: chats,
-            loading: false,
-            onChatClick: () => console.log("onChat click"),
-            selectedIndex: 1
+            conversations: chats,
+            loading: true,
+            onConversationClick: () => console.log("onChat click"),
+            selectedConversationId: "1"
         }}
-        selectedChat={
+        selectedConversation={
             {
-                paginate: () => { },
 
                 themeColor: "#6ea9d7",
                 messages,
@@ -126,33 +118,42 @@ const LoadingTemplate: Story<DesktopChatlistProps> = args => {
 }
 
 
-const NoSelectedChatTemplate: Story<DesktopChatlistProps> = args => <DynamicChat
-    onBack={() => { }}
+const NoSelectedChatTemplate: Story<Props> = args => <MainContainer
 
     {...args}
     inbox={{
-        paginate: () => { },
 
         themeColor: "#6ea9d7",
-        chats: chats,
+        conversations: chats,
         loading: false,
-        onChatClick: () => { }
     }}
-    selectedChat={undefined}
+    selectedConversation={undefined}
 />;
 
-const NoChatsTemplate: Story<DesktopChatlistProps> = args => <DynamicChat
-    onBack={() => { }}
+const MobileNoSelectedChatTemplate: Story<Props> = args =>
+    <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
+        <MainContainer
+
+            {...args}
+            inbox={{
+
+                themeColor: "#6ea9d7",
+                conversations: chats,
+                loading: false,
+            }}
+            selectedConversation={undefined}
+            mobileView={true}
+        /></div>
+
+const NoChatsTemplate: Story<Props> = args => <MainContainer
 
     {...args}
     inbox={{
-        paginate: () => { },
         themeColor: "#6ea9d7",
-        chats: [],
+        conversations: [],
         loading: false,
-        onChatClick: () => { }
     }}
-    selectedChat={undefined}
+    selectedConversation={undefined}
 />;
 
 const WithPaddingContainer = styled.div`
@@ -162,21 +163,16 @@ const WithPaddingContainer = styled.div`
     position: relative;
     width: 800px;
 `
-const TemplateWithPadding: Story<DesktopChatlistProps> = args => <WithPaddingContainer>
-    <DynamicChat
-        onBack={() => { }}
+const TemplateWithPadding: Story<Props> = args => <WithPaddingContainer>
+    <MainContainer
         {...args}
         inbox={{
-            paginate: () => { },
 
             themeColor: "#6ea9d7",
-            chats: chats,
+            conversations: chats,
             loading: false,
-            onChatClick: () => { }
         }}
-        selectedChat={{
-            paginate: () => { },
-
+        selectedConversation={{
             themeColor: "#6ea9d7",
             messages: messages,
             header: "Sandra Bullock",
@@ -192,10 +188,12 @@ const TemplateWithPadding: Story<DesktopChatlistProps> = args => <WithPaddingCon
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 export const Mobile = MobileTemplate.bind({});
-export const NoSelectedChat = NoSelectedChatTemplate.bind({});
-export const NoChats = NoChatsTemplate.bind({});
+export const MobileNoSelectedConversation = MobileNoSelectedChatTemplate.bind({});
+export const NoSelectedConversation = NoSelectedChatTemplate.bind({});
+export const NoConversation = NoChatsTemplate.bind({});
 export const WithPadding = TemplateWithPadding.bind({});
-export const LoadingChats = LoadingTemplate.bind({});
+export const LoadingConversation = LoadingTemplate.bind({});
+
 
 
 Default.args = {};

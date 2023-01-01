@@ -1,42 +1,24 @@
 import React, { useRef } from 'react'
-import Header from './header'
-import Item from './item'
 import styled from 'styled-components'
 import Loading from '../loading'
+import ConversationType from '../ConversationType'
+import Conversation from '../conversation'
 
-export type User = {
-  id: string,
-  name?: string,
-  avatar?: string
-}
 
-export type Message = {
-  user: User
-  id?: string
-  text: string
-  created_at?: string
-  seen?: boolean
-}
 
-type ChatlistItem = {
-  title: string,
-  lastMessage?: Message
-  avatar?: string
-  id?: string
-}
-export type ChatlistProps = {
-  onChatClick: (index: number) => void
-  chats?: ChatlistItem[],
+
+export interface Props {
+  onConversationClick?: (conversation: ConversationType) => void
+  conversations?: ConversationType[],
   loading?: boolean
-  showHeader?: boolean
-  selectedChatId?: string
-  paginate: () => void
-  themeColor: string
+  selectedConversationId?: string
+  onScrollToBottom?: () => void
+  themeColor?: string
   mobileView?: boolean
   /**
      * the current user on the chat ui
      */
-  currentUser: User
+  currentUserId?: string
 }
 
 const ScrollContainer = styled.div`
@@ -66,16 +48,7 @@ height: 100%;
 overflow: hidden;
 `
 
-const HeaderPlaceholder = styled.div`
-   background-color: #ffffff;
-     height: 56px;
-      position: absolute;
-      top: 0px;
-left: 0px;
-right: 0px;
-z-index: 10;
-box-sizing: border-box;
-`
+
 
 // const SearchElement = styled.input`
 // width:100%;
@@ -109,50 +82,48 @@ const NoChatsTextContainer = styled.div`
 
 `
 
-export default function ChatList({
-  showHeader = true,
-  chats,
+export default function ConversationList({
+  conversations,
   loading = false,
-  onChatClick,
-  selectedChatId,
-  paginate,
-  themeColor,
-  currentUser
-}: ChatlistProps) {
+  onConversationClick,
+  selectedConversationId,
+  onScrollToBottom,
+  themeColor = '#6ea9d7',
+  currentUserId
+}: Props) {
 
   const scrollContainerRef = useRef<any>()
 
   return (
     <Container
     >
-      {showHeader ? <Header /> : <HeaderPlaceholder />}
 
       <ScrollContainer
         onScroll={() => {
           //detect when scrolled to bottom
           const bottom = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.scrollTop === scrollContainerRef.current.clientHeight;
           if (bottom) {
-            paginate && paginate()
+            onScrollToBottom && onScrollToBottom()
           }
         }}
         ref={scrollContainerRef}>
 
         {loading ? <Loading themeColor={themeColor} /> :
           <>
-            {chats && chats.length <= 0 && <NoChatsTextContainer>
+            {conversations && conversations.length <= 0 && <NoChatsTextContainer>
               <p>No conversation started...</p>
             </NoChatsTextContainer>
             }
 
-            {(chats && chats.map((chat, index) => <Item
+            {(conversations && conversations.map((conversation, index) => <Conversation
               themeColor={themeColor}
-              onClick={() => onChatClick(index)}
+              onClick={() => onConversationClick && onConversationClick(conversation)}
               key={index}
-              name={chat.title}
-              lastMessage={chat.lastMessage}
-              avatar={chat.avatar}
-              selected={selectedChatId === chat.id}
-              currentUser={currentUser}
+              title={conversation.title}
+              lastMessage={conversation.lastMessage}
+              avatar={conversation.avatar}
+              selected={selectedConversationId === conversation.id}
+              currentUserId={currentUserId}
             />
             ))
             }

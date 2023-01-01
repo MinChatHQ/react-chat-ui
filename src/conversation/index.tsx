@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import useCheckIsMobile from '../../hooks/useCheckIsMobile'
+import useCheckIsMobile from '../hooks/useCheckIsMobile'
+import MessageType from '../MessageType'
 import placeholderProfilePNG from './profile.png'
-import { Message, User } from '..'
 
-type Props = {
-    name: string,
-    lastMessage?: Message,
+export type Props = {
+    title: string,
+    lastMessage?: MessageType,
     avatar?: string,
     onClick: () => void,
     selected?: boolean
-    themeColor: string
+    themeColor?: string
     /**
      * the current user on the chat ui
      */
-    currentUser: User
+    currentUserId?: string
 
 }
 const Container = styled.div`
@@ -154,14 +154,14 @@ const DisplayPicture = styled.img`
 `
 
 
-export default function Item({
-    name,
+export default function Conversation({
+    title,
     lastMessage,
     onClick,
     avatar,
     selected = false,
-    themeColor,
-    currentUser
+    themeColor='#6ea9d7',
+    currentUserId
 }: Props) {
     const [usedAvatar, setUsedAvatar] = React.useState<string>(placeholderProfilePNG)
 
@@ -215,13 +215,13 @@ export default function Item({
                     </DisplayPictureContainer>
                 </div>
                 <div style={{ width: "100%" }}>
-                    <Name seen={lastMessage?.seen}>{name}</Name>
+                    <Name seen={lastMessage?.seen}>{title}</Name>
 
                     <MessageContainer
                     >
                         <LastMessageUser
                             seen={lastMessage?.seen}
-                        >{lastMessage?.user.id === currentUser?.id ? "You" : lastMessage?.user.name}:</LastMessageUser>
+                        >{lastMessage?.user.id === currentUserId ? "You" : lastMessage?.user.name}:</LastMessageUser>
 
                         <MessageContent>
                             <MessageComponent

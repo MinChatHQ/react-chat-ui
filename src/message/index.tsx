@@ -1,5 +1,5 @@
 import React from 'react'
-import User from '../User';
+import User from '../UserType';
 import MyMessage from './my-message'
 import OtherMessage from './other-message'
 
@@ -7,7 +7,7 @@ import OtherMessage from './other-message'
 export type Props = {
     children: string,
     loading?: boolean
-    themeColor: string
+    themeColor?: string
     position?: "left" | "right"
     user?: User
 

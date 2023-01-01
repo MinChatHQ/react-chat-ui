@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from "styled-components"
-import useCheckIsMobile from '../../hooks/useCheckIsMobile'
+import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
-type Props = {
+export type Props = {
     onBack?: () => void
-    children: string
-    showBack: boolean
-    mobileView: boolean
+    children?: string
+    showBack?: boolean
+    mobileView?: boolean
 }
 
 
-const Container = styled.div < { mobile: boolean }>`
+const Container = styled.div < { mobile?: boolean }>`
 background-color:#f3f4f6;
 border-top-left-radius: 16px;
 border-top-right-radius: 16px;
@@ -71,7 +71,7 @@ cursor: pointer;
 box-sizing: border-box;
 
 `
-export default function Header({ onBack, children, showBack, mobileView }: Props) {
+export default function MessageHeader({ onBack, children, showBack = true, mobileView }: Props) {
     const mobile = useCheckIsMobile()
     return (
         <Container

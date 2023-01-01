@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import "./index.css"
 
 type Props = {
-    themeColor: string
+    themeColor?: string
 }
 
 
@@ -17,7 +17,8 @@ const Container = styled.div`
     ;
 `
 
-const InternalDiv = styled.div<{ themeColor: string }>`
+
+const InternalDiv = styled.div<{ themeColor?: string }>`
  box-sizing: border-box;
     display: block;
     position: absolute;
@@ -34,7 +35,7 @@ const InternalDiv = styled.div<{ themeColor: string }>`
 
 
 export default function Loading({
-    themeColor
+    themeColor ='#6ea9d7'
 }: Props) {
 
 

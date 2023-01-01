@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-type Props = {
+export type Props = {
 }
 
 const Container = styled.div`
@@ -31,7 +31,7 @@ font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe
 
 `
 
-export default function Header({  }: Props) {
+export default function ConversationHeader({  }: Props) {
     return (
         <Container>
 

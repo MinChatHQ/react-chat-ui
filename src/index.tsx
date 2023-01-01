@@ -1,19 +1,23 @@
-import Chat from "./message-list";
-import ChatList from "./chatlist";
-import DesktopChatlist from "./desktop-chatlist";
-import DynamicChat from "./dynamic-chat";
+import MessageList from "./message-list";
+import ConversationList from "./conversation-list";
+import MainContainer from "./main-container";
 import Loading from "./loading";
 import Message from "./message"
 import MessageInput from "./message-input";
-
-
+import MessageHeader from "./message-header";
+import ConversationHeader from "./conversation-header";
+import ConversationContainer from "./conversation-container";
+import MessageContainer from "./message-container";
 
 export default {
-  Chat,
-  ChatList,
   Loading,
-  DesktopChatlist,
-  DynamicChat,
   Message,
-  MessageInput
+  MessageInput,
+  MessageHeader,
+  MessageList,
+  ConversationList,
+  MainContainer,
+  MessageContainer,
+  ConversationContainer,
+  ConversationHeader
 }

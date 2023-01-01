@@ -1,20 +1,12 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import Chat, { ChatProps } from '../src/chat';
+import MessageContainer, { Props } from '../src/message-container';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
 
 const meta: Meta = {
-  title: 'Chat',
-  component: Chat,
-  argTypes: {
-    onSendMessage: {
-      action: "sendMessage"
-    },
-    onBack: {
-      action: "goBack"
-    }
-  },
+  title: 'MessageContainer',
+  component: MessageContainer,
   parameters: {
     controls: { expanded: true },
   },
@@ -23,7 +15,7 @@ const meta: Meta = {
 export default meta;
 
 
-const Template: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Chat
+const Template: Story<Props> = args => <div style={{ height: "100vh" }}><MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -32,7 +24,7 @@ const Template: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Cha
 />
 </div>;
 
-const LoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Chat
+const LoadingTemplate: Story<Props> = args => <div style={{ height: "100vh" }}><MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -44,7 +36,7 @@ const LoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" 
 />
 </div>;
 
-const SendMessageLoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Chat
+const SendMessageLoadingTemplate: Story<Props> = args => <div style={{ height: "100vh" }}><MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -68,7 +60,7 @@ const SendMessageLoadingTemplate: Story<ChatProps> = args => <div style={{ heigh
 </div>;
 
 
-const FewEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Chat
+const FewEntriesTemplate: Story<Props> = args => <div style={{ height: "100vh" }}><MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -78,7 +70,7 @@ const FewEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100v
 />
 </div>;
 
-const NoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><Chat
+const NoEntriesTemplate: Story<Props> = args => <div style={{ height: "100vh" }}><MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -99,7 +91,7 @@ const WithPaddingContainer = styled.div`
 
 `
 
-const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer> <Chat
+const TemplateWithPadding: Story<Props> = args => <div><WithPaddingContainer> <MessageContainer
   {...args}
   header="Sandra Bullock"
   currentUserId="danny_1"
@@ -112,8 +104,8 @@ const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 export const WithPadding = TemplateWithPadding.bind({});
-export const FewEntries = FewEntriesTemplate.bind({});
-export const NoEntries = NoEntriesTemplate.bind({});
+export const FewMessages = FewEntriesTemplate.bind({});
+export const NoMessages = NoEntriesTemplate.bind({});
 export const MessagesLoading = LoadingTemplate.bind({});
 export const SendMessageLoading = SendMessageLoadingTemplate.bind({});
 
