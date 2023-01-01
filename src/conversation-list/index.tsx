@@ -8,7 +8,7 @@ import Conversation from '../conversation'
 
 
 export interface Props {
-  onConversationClick?: (conversation: ConversationType) => void
+  onConversationClick?: (index: number) => void
   conversations?: ConversationType[],
   loading?: boolean
   selectedConversationId?: string
@@ -117,7 +117,7 @@ export default function ConversationList({
 
             {(conversations && conversations.map((conversation, index) => <Conversation
               themeColor={themeColor}
-              onClick={() => onConversationClick && onConversationClick(conversation)}
+              onClick={() => onConversationClick && onConversationClick(index)}
               key={index}
               title={conversation.title}
               lastMessage={conversation.lastMessage}

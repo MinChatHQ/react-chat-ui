@@ -9,7 +9,7 @@ import ConversationHeader from "./conversation-header";
 import ConversationContainer from "./conversation-container";
 import MessageContainer from "./message-container";
 
-export default {
+export {
   Loading,
   Message,
   MessageInput,
