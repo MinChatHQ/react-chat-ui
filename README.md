@@ -10,6 +10,9 @@ This demo allows you to test out the various features of the react chat componen
 integrated into a real-world application. We encourage you to give it a try and see for yourself the power 
 and flexibility of our chat UI. 
 
+# Documentation
+You can view detailed documentation [here](https://react.minchat.io)
+
 # Install
 
 Component Library
