@@ -214,6 +214,7 @@ export default function Conversation({
                         />
                     </DisplayPictureContainer>
                 </div>
+                
                 <div style={{ width: "100%" }}>
                     <Name seen={lastMessage?.seen}>{title}</Name>
 

@@ -8,6 +8,8 @@ import MessageHeader from "./message-header";
 import ConversationHeader from "./conversation-header";
 import ConversationContainer from "./conversation-container";
 import MessageContainer from "./message-container";
+import TypingIndicator from "./typing-indicator";
+
 
 export {
   Loading,
@@ -19,5 +21,6 @@ export {
   MainContainer,
   MessageContainer,
   ConversationContainer,
-  ConversationHeader
+  ConversationHeader,
+  TypingIndicator
 }

@@ -25,7 +25,6 @@ const ScrollContainer = styled.div`
 position: relative;
   height: 100%;
   width: 100%;
-background-color:#fcfcfc;
 padding-top: 56px;
 box-sizing: border-box;
 overflow-y: auto;

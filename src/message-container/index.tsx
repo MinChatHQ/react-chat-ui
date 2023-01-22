@@ -18,6 +18,8 @@ export type Props = {
   loading?: boolean
   currentUserId?: string
   messages?: MessageType[]
+  showTypingIndicator?: boolean
+  typingIndicatorContent?: string
 
 }
 

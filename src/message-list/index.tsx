@@ -5,6 +5,7 @@ import useCheckIsMobile from '../hooks/useCheckIsMobile'
 import Loading from '../loading'
 import useDetectScrollPosition from '../hooks/useDetectScrollPosition'
 import MessageType from '../MessageType'
+import TypingIndicator from '../typing-indicator'
 
 export type ChatProps = {
     themeColor?: string
@@ -15,6 +16,8 @@ export type ChatProps = {
     sendMessageLoading?: boolean
     onScrollToTop?: () => void
     mobileView?: boolean
+    showTypingIndicator?: boolean
+    typingIndicatorContent?: string
 }
 
 
@@ -97,8 +100,10 @@ export default function MessageList({
     loading = false,
     sendMessageLoading = false,
     onScrollToTop,
-    themeColor ='#6ea9d7',
-    mobileView
+    themeColor = '#6ea9d7',
+    mobileView,
+    typingIndicatorContent,
+    showTypingIndicator
 }: ChatProps) {
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
@@ -171,7 +176,7 @@ export default function MessageList({
 
     return (
         <Container
-            >
+        >
 
             <ScrollBackgroundContainer mobile={mobileView || isMobile}>
                 <ScrollBackground />
@@ -225,6 +230,11 @@ export default function MessageList({
                                     >{text}</Message>
                                 }
                             })}
+
+                            {showTypingIndicator && <TypingIndicator
+                                content={typingIndicatorContent}
+                                themeColor={themeColor} />
+                            }
 
                             {/* bottom buffer */}
                             <div>

@@ -82,7 +82,6 @@ const WithPaddingContainer = styled.div`
     width: 500px;
     background-color: red;
     border: 3px solid black;
-
 `
 
 const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer> <MessageList
@@ -93,6 +92,29 @@ const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer
 
 /></WithPaddingContainer></div>;
 
+const TypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+  {...args}
+  currentUserId="danny_1"
+  loading={false}
+  sendMessageLoading={true}
+  themeColor='#6ea9d7'
+  showTypingIndicator={true}
+  typingIndicatorContent="Mark is typing"
+  messages={[
+    {
+      "user": {
+        "id": "danny_1",
+        "name": "Daniel Georgetown",
+        avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+
+      },
+      "text": "this message should have loading"
+    },
+    ...messages
+  ]}
+/>
+</div>;
+
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
@@ -101,6 +123,8 @@ export const FewMessages = FewEntriesTemplate.bind({});
 export const NoMessages = NoEntriesTemplate.bind({});
 export const MessagesLoading = LoadingTemplate.bind({});
 export const SendMessageLoading = SendMessageLoadingTemplate.bind({});
+export const TypingIndicator = TypingIndicatorTemplate.bind({});
+
 
 
 

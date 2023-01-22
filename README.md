@@ -29,7 +29,6 @@ yarn add @minchat/react-chat-ui
 import { MainContainer } from "@minchat/react-chat-ui";
 
         <div style={{ height: '100vh' }}> <MainContainer
-            {...args}
             inbox={{
                 onScrollToBottom: () => { },
                 themeColor: "#6ea9d7",

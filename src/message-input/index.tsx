@@ -119,7 +119,7 @@ box-sizing: border-box;
 
 export default function MessageInput({
     onSendMessage,
-    themeColor,
+    themeColor='#6ea9d7',
     mobileView
 }: Props) {
 
@@ -151,7 +151,7 @@ export default function MessageInput({
                     bgColor={themeColor}
                 />
 
-                <InputElement
+                <InputElement            
                     type={'text'}
                     onChange={(event) => setText(event.target.value)}
                     value={text}
