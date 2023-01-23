@@ -10,11 +10,20 @@ const useDetectScrollPosition = (ref: RefObject<HTMLElement>) => {
         return false
     }
 
+    // const detectBottom = () => {
+    //     if (ref.current) {
+    //         return ref.current.scrollHeight - ref.current.scrollTop === ref.current.clientHeight
+    //     }
+    //     return false
+    // }
+
+
     const detectBottom = () => {
         if (ref.current) {
-            return ref.current.scrollHeight - ref.current.scrollTop === ref.current.clientHeight
+            const threshold = 100;
+            return ref.current.scrollHeight - ref.current.scrollTop <= ref.current.clientHeight + threshold;
         }
-        return false
+        return false;
     }
 
 

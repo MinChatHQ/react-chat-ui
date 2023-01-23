@@ -139,13 +139,10 @@ export default function MessageList({
                 //if a user has instead scrolled to the top and the next page of messages arrives then don't scroll to bottom
 
                 setMessagesWasEmpty(false)
+                scrollToBottom()
             }
 
-            //todo this is just a quick fix, the ideal behavior we would want is when new messages are added, it doesnt 
-            //scroll to the bottom and neither does it scroll to the top it remains right where it is
-            scrollToBottom()
-
-            //TODO when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
+            // when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
             if (detectBottom()) {
                 scrollToBottom()
             }
@@ -160,7 +157,7 @@ export default function MessageList({
             scrollToBottom()
         }
     }, [showTypingIndicator])
-    
+
 
     const scrollToBottom = async () => {
         if (bottomBufferRef.current && scrollContainerRef.current) {

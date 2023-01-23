@@ -128,14 +128,14 @@ export default function MessageInput({
     const [typing, setTyping] = useState(false);
 
 
-    useEffect(() =>{
+    useEffect(() => {
         //call the function when typing starts or ends but should not call it on every render and should only be called when the value of typing changes
-        if(typing){
+        if (typing) {
             onStartTyping && onStartTyping()
-        }else{
+        } else {
             onEndTyping && onEndTyping()
         }
-    },[typing])
+    }, [typing])
 
     let timeout: NodeJS.Timeout;
 
@@ -146,6 +146,7 @@ export default function MessageInput({
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
+            setTyping(false)
             onSendMessage && onSendMessage(text.trim())
             setText("")
 
