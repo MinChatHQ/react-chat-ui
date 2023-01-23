@@ -21,6 +21,8 @@ const Template: Story<Props> = args => <div style={{ height: "100vh" }}><Message
   currentUserId="danny_1"
   messages={messages}
   themeColor='#6ea9d7'
+  onStartTyping={()=>console.log('start typing')}
+  onEndTyping={()=>console.log('end typing')}
 />
 </div>;
 

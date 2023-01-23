@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
@@ -6,7 +6,8 @@ export type Props = {
     onSendMessage?: (text: string) => void
     themeColor?: string
     mobileView?: boolean
-
+    onStartTyping?: () => void,
+    onEndTyping?: () => void,
 }
 
 const Container = styled.form<{ mobile?: boolean }>`
@@ -119,9 +120,24 @@ box-sizing: border-box;
 
 export default function MessageInput({
     onSendMessage,
-    themeColor='#6ea9d7',
-    mobileView
+    themeColor = '#6ea9d7',
+    mobileView,
+    onStartTyping,
+    onEndTyping
 }: Props) {
+    const [typing, setTyping] = useState(false);
+
+
+    useEffect(() =>{
+        //call the function when typing starts or ends but should not call it on every render and should only be called when the value of typing changes
+        if(typing){
+            onStartTyping && onStartTyping()
+        }else{
+            onEndTyping && onEndTyping()
+        }
+    },[typing])
+
+    let timeout: NodeJS.Timeout;
 
     const [text, setText] = useState("")
 
@@ -130,7 +146,7 @@ export default function MessageInput({
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
-            onSendMessage &&  onSendMessage(text.trim())
+            onSendMessage && onSendMessage(text.trim())
             setText("")
 
         }
@@ -151,11 +167,20 @@ export default function MessageInput({
                     bgColor={themeColor}
                 />
 
-                <InputElement            
+                <InputElement
                     type={'text'}
                     onChange={(event) => setText(event.target.value)}
                     value={text}
                     placeholder='Send a message...'
+                    onKeyDown={() => {
+                        clearTimeout(timeout);
+                        setTyping(true);
+                    }}
+                    onKeyUp={() => {
+                        timeout = setTimeout(() => {
+                            setTyping(false);
+                        }, 1500);
+                    }}
                 />
             </InputContainer>
 

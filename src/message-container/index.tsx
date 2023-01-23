@@ -20,7 +20,8 @@ export type Props = {
   messages?: MessageType[]
   showTypingIndicator?: boolean
   typingIndicatorContent?: string
-
+  onStartTyping?: () => void,
+  onEndTyping?: () => void,
 }
 
 const Container = styled.div<{ mobile: boolean }>`
