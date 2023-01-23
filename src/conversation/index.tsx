@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import useCheckIsMobile from '../hooks/useCheckIsMobile'
 import MessageType from '../MessageType'
 import placeholderProfilePNG from './profile.png'
 
@@ -70,24 +69,25 @@ font-weight: 700;
 
 `
 
-const LastMessageUser = styled.div<{ seen?: boolean }>`
-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    text-align:left;
-vertical-align:text-top;
-font-size:12px;
-align-self:flex-start;
-position:relative;
-color:#7a7a7a;
-white-space: nowrap;
+// const LastMessageUser = styled.div<{ seen?: boolean }>`
+// font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+//     text-align:left;
+// vertical-align:text-top;
+// font-size:12px;
+// align-self:flex-start;
+// position:relative;
+// color:#7a7a7a;
+// white-space: nowrap;
+// text-overflow: ellipsis;
 
-${({ seen }) => !seen ? `
-color: black;
-font-weight: 600;
-` : ''}
+// ${({ seen }) => !seen ? `
+// color: black;
+// font-weight: 600;
+// ` : ''}
 
-`
+// `
 
-const MessageComponent = styled.div<{ width: number, seen?: boolean }>`
+const MessageComponent = styled.div<{ seen?: boolean, width: number }>`
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 text-align:left;
 vertical-align:text-top;
@@ -97,24 +97,16 @@ position:relative;
 color:#7a7a7a;
 margin-left: 6px;  
 overflow: hidden;
-text-overflow: ellipsis;
 white-space: nowrap;
-max-width: ${({ width }) => width}px;
+text-overflow: ellipsis;
 box-sizing: border-box;
+max-width: ${({ width }) => width}px;
 
 ${({ seen }) => !seen ? `
 color: black;
 font-weight: 600;
 ` : ''}
 
-`
-
-const MessageContainer = styled.div`
-display: flex;
-align-items: center;
-margin-top: 3px;
-width: 100%;
-box-sizing: border-box;
 `
 
 // const TimeSent = styled.div`
@@ -129,13 +121,6 @@ box-sizing: border-box;
 // white-space: nowrap;
 // `
 
-
-const MessageContent = styled.div`
-      justify-content : space-between;
-      display: flex; 
-      width: 100%;
-     
-`
 const DisplayPictureContainer = styled.div`
 width: 58px;
     height: 58px;
@@ -160,28 +145,19 @@ export default function Conversation({
     onClick,
     avatar,
     selected = false,
-    themeColor='#6ea9d7',
+    themeColor = '#6ea9d7',
     currentUserId
 }: Props) {
+    const [containerWidth, setContainerWidth] = useState(0)
+
     const [usedAvatar, setUsedAvatar] = React.useState<string>(placeholderProfilePNG)
 
-    const isMobile = useCheckIsMobile()
 
-    const getMessageWidth = () => {
-        if (isMobile) {
-            return window.innerWidth - 200 //250
-        } else {
-            /** 384px */
-            return 384 - 150 //250
-        }
-    }
-
-    const [messageWidth, setMessageWidth] = useState(getMessageWidth())
-    themeColor
+    console.log({ containerWidth })
 
     useEffect(() => {
         window.addEventListener('resize', () => {
-            setMessageWidth(getMessageWidth())
+            calculateContainerWidth()
         })
     }, [])
 
@@ -193,8 +169,24 @@ export default function Conversation({
         }
     }, [avatar])
 
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        calculateContainerWidth()
+    }, [containerRef])
+
+    /**
+     * 
+     */
+    const calculateContainerWidth = () => {
+        if (containerRef && containerRef.current) {
+            setContainerWidth(containerRef.current.clientWidth);
+        }
+    }
+
     return (
         <Container
+            ref={containerRef}
             onClick={onClick}
             className='fade-animation'
         >
@@ -214,24 +206,17 @@ export default function Conversation({
                         />
                     </DisplayPictureContainer>
                 </div>
-                
+
                 <div style={{ width: "100%" }}>
                     <Name seen={lastMessage?.seen}>{title}</Name>
 
-                    <MessageContainer
-                    >
-                        <LastMessageUser
-                            seen={lastMessage?.seen}
-                        >{lastMessage?.user.id === currentUserId ? "You" : lastMessage?.user.name}:</LastMessageUser>
 
-                        <MessageContent>
-                            <MessageComponent
-                                seen={lastMessage?.seen}
-                                width={messageWidth}> {lastMessage?.text}</MessageComponent>
-                            {/* <TimeSent>12:35 am</TimeSent> */}
-                        </MessageContent>
+                    <MessageComponent
+                        width={containerWidth - 96}
+                        seen={lastMessage?.seen}
+                    >{lastMessage?.user.id === currentUserId ? "You" : lastMessage?.user.name}:{"  "}{lastMessage?.text}</MessageComponent>
+                    {/* <TimeSent>12:35 am</TimeSent> */}
 
-                    </MessageContainer>
                 </div>
             </ContentContainer>
         </Container>

@@ -24,7 +24,7 @@ export const chats = [{
         user: {
             avatar: "https://fsdfsdfsdfs",
             id: "daniel",
-            name: "Daniel",
+            name: "Stanley Herbert Lee",
         }
     }
 }, {
