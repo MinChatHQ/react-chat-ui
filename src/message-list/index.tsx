@@ -153,6 +153,15 @@ export default function MessageList({
         }
     }, [messages])
 
+
+    useEffect(() => {
+        //TODO when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
+        if (detectBottom()) {
+            scrollToBottom()
+        }
+    }, [showTypingIndicator])
+    
+
     const scrollToBottom = async () => {
         if (bottomBufferRef.current && scrollContainerRef.current) {
             const container = scrollContainerRef.current

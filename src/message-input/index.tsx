@@ -179,7 +179,7 @@ export default function MessageInput({
                     onKeyUp={() => {
                         timeout = setTimeout(() => {
                             setTyping(false);
-                        }, 1500);
+                        }, 2_000);
                     }}
                 />
             </InputContainer>

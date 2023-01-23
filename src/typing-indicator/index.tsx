@@ -14,6 +14,7 @@ const Container = styled.div`
     /* this is to compensate for the width of the other message dp and its margin left */
     margin-left: 42px;
     margin-bottom: 16px;
+    margin-top: 16px;
 `
 
 const Text = styled.div<{ themeColor: string }>`
