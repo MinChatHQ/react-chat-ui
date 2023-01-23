@@ -153,8 +153,6 @@ export default function Conversation({
     const [usedAvatar, setUsedAvatar] = React.useState<string>(placeholderProfilePNG)
 
 
-    console.log({ containerWidth })
-
     useEffect(() => {
         window.addEventListener('resize', () => {
             calculateContainerWidth()
