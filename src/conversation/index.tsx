@@ -32,9 +32,6 @@ position:relative;
 flex-direction: row;
 align-items: center;
 padding-left:8px;
-padding-right:20px;
-padding-top:12px;
-padding-bottom:12px;
 width: 100%;
 height: 100%;
 box-sizing: border-box;
@@ -121,6 +118,17 @@ font-weight: 600;
 // white-space: nowrap;
 // `
 
+const TextContainer = styled.div`
+    position: relative;
+    height: 100% ;
+    width: 100%;
+    padding-right:20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+`
+
 const DisplayPictureContainer = styled.div`
 width: 58px;
     height: 58px;
@@ -194,18 +202,18 @@ export default function Conversation({
 
 
             <ContentContainer>
-                <div>
-                    <DisplayPictureContainer>
-                        <DisplayPicture
-                            onError={() => {
-                                setUsedAvatar(placeholderProfilePNG)
-                            }}
-                            src={usedAvatar}
-                        />
-                    </DisplayPictureContainer>
-                </div>
 
-                <div style={{ width: "100%" }}>
+                <DisplayPictureContainer>
+                    <DisplayPicture
+                        onError={() => {
+                            setUsedAvatar(placeholderProfilePNG)
+                        }}
+                        src={usedAvatar}
+                    />
+                </DisplayPictureContainer>
+
+
+                <TextContainer>
                     <Name seen={lastMessage?.seen}>{title}</Name>
 
 
@@ -215,7 +223,7 @@ export default function Conversation({
                     >{lastMessage?.user.id === currentUserId ? "You" : lastMessage?.user.name}:{"  "}{lastMessage?.text}</MessageComponent>
                     {/* <TimeSent>12:35 am</TimeSent> */}
 
-                </div>
+                </TextContainer>
             </ContentContainer>
         </Container>
 
