@@ -17,7 +17,7 @@ export default meta;
 
 const Template: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
-  currentUserId="danny_1"
+  currentUserId="mark"
   messages={messages}
 />
 </div>;

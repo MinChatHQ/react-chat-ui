@@ -1,25 +1,32 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import User from '../../UserType'
-import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../my-message'
+import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../outgoing-message'
 import placeholderProfilePNG from './profile.webp'
 
 type Props = {
     children: string,
     user?: User,
     themeColor?: string
+    showAvatar?: boolean
+    showHeader?: boolean
+    // determines whether its the last message in the group of incoming messages
+    last?: boolean
+    //determines whether its the only message in the group of incoming messages
+    single?: boolean
+
 }
 
 const MessageContainer = styled(MyMessageContainer)`
-    margin-top: 8px;
     margin-left: 0px;
     box-sizing: border-box;
+    margin-bottom: 0px;
 `
 
 
 const Wrapper = styled(MyMessageWrapper)`
 justify-content: start;
-
+align-items: flex-end;
 `
 
 const DPContainer = styled.div`
@@ -52,7 +59,7 @@ font-weight: 500;
 `
 
 const TextWrapper = styled.div`
-margin-left:12px;
+margin-left:8px;
 box-sizing: border-box;
 `
 
@@ -67,9 +74,21 @@ const OtherMessageBackground = styled(Background)`
     opacity: 0.5;
 `
 
+const HeaderContainer = styled.div`
+ display: flex; 
+ align-items: "center";
+ margin-top: 16px;
+ margin-bottom: 6px;
+ `
 
-
-export default function OtherMessage({ children, user, themeColor = '#6ea9d7' }: Props) {
+export default function IncomingMessage({
+    children,
+    user,
+    showAvatar,
+    showHeader,
+    last,
+    single,
+    themeColor = '#6ea9d7' }: Props) {
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
@@ -84,29 +103,37 @@ export default function OtherMessage({ children, user, themeColor = '#6ea9d7' }:
         <Wrapper
             className='fade-animation'
         >
-
             <DPContainer>
-                <DisplayPicture
-                    onError={() => {
-                        setAvatar(placeholderProfilePNG)
-                    }}
-                    src={avatar}
-                />
+                {showAvatar &&
+
+                    <DisplayPicture
+                        onError={() => {
+                            setAvatar(placeholderProfilePNG)
+                        }}
+                        src={avatar}
+                    />}
             </DPContainer>
 
             <TextWrapper>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <Name>{user?.name}</Name>
+                {showHeader &&
+                    <HeaderContainer>
+                        <Name>{user?.name}</Name>
 
 
-                    <TimestampContainer>
-                        {/* <Timestamp >13:01 </Timestamp> */}
-                    </TimestampContainer>
-                </div>
+                        <TimestampContainer>
+                            {/* <Timestamp >13:01 </Timestamp> */}
+                        </TimestampContainer>
+                    </HeaderContainer>
+                }
 
                 <div style={{ display: "flex" }}>
                     <MessageContainer>
-                        <OtherMessageBackground bgColor={themeColor} />
+                        <OtherMessageBackground 
+                        borderTopRight
+                        borderBottomRight={!last ? true: false}
+                        borderBottomLeft={last || single ? true: false}
+                        bgColor={themeColor} />
+
                         <Content>{children}</Content>
                     </MessageContainer>
                 </div>

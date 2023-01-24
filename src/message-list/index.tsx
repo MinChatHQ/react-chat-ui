@@ -215,24 +215,53 @@ export default function MessageList({
                             </NoMessagesTextContainer>
                             }
                             {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text }, index) => {
+                                //determining the type of message to render
+                                let lastClusterMessage, firstClusterMessage, last, single
+
+                                //if it is the first message in the messages array then show the header
+                                if (index === 0) { firstClusterMessage = true }
+                                //if the previous message from a different user then show the header
+                                if (index > 0 && messages[index - 1].user.id !== user.id) { firstClusterMessage = true }
+                                //if it is the last message in the messages array then show the avatar and is the last incoming
+                                if (index === messages.length - 1) { lastClusterMessage = true; last = true }
+                                //if the next message from a different user then show the avatar and is last message incoming
+                                if (index < messages.length - 1 && messages[index + 1].user.id !== user.id) { lastClusterMessage = true; last = true }
+                                //if the next message and the previous message are not from the same user then single incoming is true
+                                if (index < messages.length - 1 && index > 0 && messages[index + 1].user.id !== user.id && messages[index - 1].user.id !== user.id) { single = true }
+                                //if it is the first message in the messages array and the next message is from a different user then single incoming is true
+                                if (index === 0 && index < messages.length - 1 && messages[index + 1].user.id !== user.id) { single = true }
+                                //if it is the last message in the messages array and the previous message is from a different user then single incoming is true
+                                if (index === messages.length - 1 && index > 0 && messages[index - 1].user.id !== user.id) { single = true }
+                                //if the messages array contains only 1 message then single incoming is true
+                                if (messages.length === 1) { single = true }
+
+
                                 if (user.id == (currentUserId && currentUserId.toLowerCase())) {
 
                                     // my message
                                     return <Message key={index}
-                                        position="right"
+                                        type="outgoing"
                                         themeColor={themeColor}
+                                        last={single ? false : last}
+                                        single={single}
                                         // the last message should show loading if sendMessage loading is true
                                         loading={(index === messages.length - 1) && sendMessageLoading}
+                                        clusterFirstMessage={firstClusterMessage}
+                                        clusterLastMessage={lastClusterMessage}
                                     >{text}</Message>
 
                                 } else {
 
                                     // other message
                                     return <Message
-                                        position='left'
+                                        type='incoming'
                                         themeColor={themeColor}
                                         key={index}
                                         user={user}
+                                        showAvatar={lastClusterMessage}
+                                        showHeader={firstClusterMessage}
+                                        last={single ? false : last}
+                                        single={single}
                                     >{text}</Message>
                                 }
                             })}

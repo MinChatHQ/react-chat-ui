@@ -179,7 +179,7 @@ export const messages = [
     },
     {
         "user": {
-            "id": "danny_2",
+            "id": "danny_1",
             "name": "Daniel Georgetown"
         },
         "text": "how do you think we should aproach this"
@@ -193,7 +193,7 @@ export const messages = [
     },
     {
         "user": {
-            "id": "danny_2",
+            "id": "danny_1",
             "name": "Daniel Georgetown"
         },
         "text": "lets talk things out"
@@ -214,7 +214,7 @@ export const messages = [
     },
     {
         "user": {
-            "id": "danny_2",
+            "id": "danny_1",
             "name": "Daniel Georgetown"
         },
         "text": "resolve"
@@ -223,7 +223,6 @@ export const messages = [
         "user": {
             "id": "danny_1",
             "name": "Daniel Georgetown",
-            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
         "text": "will"
     },
@@ -236,7 +235,7 @@ export const messages = [
     },
     {
         "user": {
-            "id": "danny_2",
+            "id": "danny_1",
             "name": "Daniel Georgetown"
         },
         "text": "how"
@@ -250,7 +249,7 @@ export const messages = [
     },
     {
         "user": {
-            "id": "danny_2",
+            "id": "danny_1",
             "name": "Daniel Georgetown",
             avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
@@ -281,21 +280,23 @@ export const messages = [
     {
         "user": {
             "id": "danny_2",
-            "name": "Daniel Georgetown"
-        },
+            "name": "Dan",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+               },
         "text": "it "
     },
     {
         "user": {
-            "id": "danny_1",
-            "name": "Daniel Georgetown"
-        },
+            "id": "danny_2",
+            "name": "Dan",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+               },
         "text": "is "
     },
     {
         "user": {
             "id": "danny_2",
-            "name": "Daniel Georgetown",
+            "name": "Dan",
             avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
         "text": "is"
@@ -325,7 +326,6 @@ export const messages = [
         "user": {
             "id": "danny_1",
             "name": "Daniel Georgetown",
-            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
         "text": "come on man"
     },

@@ -6,24 +6,29 @@ type Props = {
     children: string,
     loading?: boolean
     themeColor?: string
+    // determines whether its the last message in the group of outgoing messages
+    last?: boolean
+    //determines whether its the only message in the group of outgoing messages
+    single?: boolean
+    clusterFirstMessage?: boolean
+    clusterLastMessage? : boolean
 
 }
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{firstMessage?: boolean,lastMessage?: boolean}>`
     display:flex;
     justify-content: end;
     margin-right: 10px;
-    margin-top: 12px;
+    margin-top: ${({ firstMessage }) => firstMessage ? "16px" : "6px"};
     position: relative;
     box-sizing: border-box;
-
+    margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "0px"};
 `
 
 
 
 export const Container = styled.div`
 max-width:272px;
-margin-bottom: 12px;
 margin-left: 10px;
 display:flex;
 flex-direction:row;
@@ -34,12 +39,23 @@ position:relative;
 box-sizing: border-box;
 
 `
-export const Background = styled.div<{ bgColor: string }>`
+export const Background = styled.div<{
+    bgColor: string,
+    borderTopRight?: boolean,
+    borderTopLeft?: boolean,
+    borderBottomLeft?: boolean,
+    borderBottomRight?: boolean,
+}>`
     position: absolute;
     width: 100%;
     height: 100%;
     background-color:${({ bgColor }) => bgColor};
-border-radius:16px;
+
+    border-top-left-radius: ${({ borderTopLeft }) => borderTopLeft ? "8px" : "2px"};
+    border-top-right-radius: ${({ borderTopRight }) => borderTopRight ? "8px" : "2px"};
+    border-bottom-left-radius: ${({ borderBottomLeft }) => borderBottomLeft ? "8px" : "2px"};
+    border-bottom-right-radius: ${({ borderBottomRight }) => borderBottomRight ? "8px" : "2px"};
+
 
 `
 
@@ -101,10 +117,17 @@ const LoadingContainer = styled.div`
 
 export default function MyMessage({
     children,
-    themeColor ='#6ea9d7',
-    loading }: Props) {
+    themeColor = '#6ea9d7',
+    loading,
+    last,
+    single, 
+    clusterFirstMessage,
+    clusterLastMessage
+}: Props) {
     return (
         <Wrapper
+        lastMessage={clusterLastMessage}
+        firstMessage={clusterFirstMessage}
             className='fade-animation'
         >
             <div>
@@ -114,7 +137,12 @@ export default function MyMessage({
             </TimestampContainer> */}
 
                 <Container>
-                    <Background bgColor={themeColor} />
+                    <Background
+                        borderTopLeft
+                        borderBottomLeft
+                        borderBottomRight={last ? true : false}
+                        borderTopRight={!last && single ? true : false}
+                        bgColor={themeColor} />
 
                     <Content>{children}</Content>
 

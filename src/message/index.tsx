@@ -1,15 +1,23 @@
 import React from 'react'
 import User from '../UserType';
-import MyMessage from './my-message'
-import OtherMessage from './other-message'
+import OutgoingMessage from './outgoing-message'
+import IncomingMessage from './incoming-message'
 
 
 export type Props = {
     children: string,
     loading?: boolean
     themeColor?: string
-    position?: "left" | "right"
+    type?: "incoming" | "outgoing"
     user?: User
+    showAvatar?: boolean
+    showHeader?: boolean
+    // determines whether its the last message in the group of outgoing or incoming
+    last?: boolean
+    //determines whether its the only message in the group of outgoing or incoming
+    single?: boolean
+    clusterFirstMessage?: boolean
+    clusterLastMessage? : boolean
 
 };
 
@@ -18,23 +26,37 @@ export default function Message({
     children,
     themeColor,
     loading,
-    position = "left",
-    user
+    type = "outgoing",
+    user,
+    showAvatar,
+    showHeader,
+    last,
+    single,
+    clusterFirstMessage,
+    clusterLastMessage
 }: Props) {
     return (
-        position === "right" ?
-            <MyMessage
+        type === "outgoing" ?
+            <OutgoingMessage
                 themeColor={themeColor}
                 loading={loading}
                 children={children}
+                last={last}
+                single={single}
+                clusterFirstMessage={clusterFirstMessage}
+                clusterLastMessage={clusterLastMessage}
             />
 
             : 
 
-            <OtherMessage
+            <IncomingMessage
+            showAvatar={showAvatar}
             themeColor={themeColor}
             children={children}
             user={user}
+            showHeader={showHeader}
+            last={last}
+            single={single}
             />
 
     )
