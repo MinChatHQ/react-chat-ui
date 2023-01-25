@@ -22,7 +22,7 @@ export const Wrapper = styled.div<{firstMessage?: boolean,lastMessage?: boolean}
     margin-top: ${({ firstMessage }) => firstMessage ? "16px" : "6px"};
     position: relative;
     box-sizing: border-box;
-    margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "0px"};
+    margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "6px"};
 `
 
 

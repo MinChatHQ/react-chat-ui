@@ -202,15 +202,16 @@ export default function Conversation({
 
 
             <ContentContainer>
-
-                <DisplayPictureContainer>
-                    <DisplayPicture
-                        onError={() => {
-                            setUsedAvatar(placeholderProfilePNG)
-                        }}
-                        src={usedAvatar}
-                    />
-                </DisplayPictureContainer>
+                <div>
+                    <DisplayPictureContainer>
+                        <DisplayPicture
+                            onError={() => {
+                                setUsedAvatar(placeholderProfilePNG)
+                            }}
+                            src={usedAvatar}
+                        />
+                    </DisplayPictureContainer>
+                </div>
 
 
                 <TextContainer>
@@ -225,7 +226,7 @@ export default function Conversation({
 
                 </TextContainer>
             </ContentContainer>
-        </Container>
+        </Container >
 
     )
 }

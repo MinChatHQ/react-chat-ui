@@ -103,6 +103,7 @@ export default function MainContainer({
                             <DesktopContent>
                                 {selectedConversation &&
                                     <MessageContainer
+                                        showBack={false}
                                         {...selectedConversation}
                                     />}
                             </DesktopContent>
