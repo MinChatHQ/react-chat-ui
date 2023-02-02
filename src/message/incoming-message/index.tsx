@@ -5,7 +5,8 @@ import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, 
 import placeholderProfilePNG from './profile.webp'
 
 type Props = {
-    children: string,
+    text?: string,
+    image?: string,
     user?: User,
     themeColor?: string
     showAvatar?: boolean
@@ -81,8 +82,20 @@ const HeaderContainer = styled.div`
  margin-bottom: 6px;
  `
 
+const ImageContainer = styled.div`
+    width: 100%;
+    margin: 8px;
+    position: relative;
+    `
+
+const Image = styled.img`
+    width: 100%;
+ `
+
+
 export default function IncomingMessage({
-    children,
+    text,
+    image,
     user,
     showAvatar,
     showHeader,
@@ -128,13 +141,19 @@ export default function IncomingMessage({
 
                 <div style={{ display: "flex" }}>
                     <MessageContainer>
-                        <OtherMessageBackground 
-                        borderTopRight
-                        borderBottomRight={!last ? true: false}
-                        borderBottomLeft={last || single ? true: false}
-                        bgColor={themeColor} />
+                        <OtherMessageBackground
+                            borderTopRight
+                            borderBottomRight={!last ? true : false}
+                            borderBottomLeft={last || single ? true : false}
+                            bgColor={themeColor} />
 
-                        <Content>{children}</Content>
+                        {image ?
+                            <ImageContainer>
+                                <Image src={image} />
+                            </ImageContainer>
+                            :
+                            <Content>{text}</Content>
+                        }
                     </MessageContainer>
                 </div>
 

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Loading from './loading'
 
 type Props = {
-    children: string,
+    text?: string,
+    image?: string,
     loading?: boolean
     themeColor?: string
     // determines whether its the last message in the group of outgoing messages
@@ -11,11 +12,11 @@ type Props = {
     //determines whether its the only message in the group of outgoing messages
     single?: boolean
     clusterFirstMessage?: boolean
-    clusterLastMessage? : boolean
+    clusterLastMessage?: boolean
 
 }
 
-export const Wrapper = styled.div<{firstMessage?: boolean,lastMessage?: boolean}>`
+export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolean }>`
     display:flex;
     justify-content: end;
     margin-right: 10px;
@@ -114,20 +115,30 @@ const LoadingContainer = styled.div`
     align-items: center;
 `
 
+const ImageContainer = styled.div`
+    width: 100%;
+    margin: 8px;
+    position: relative;
+    `
+
+const Image = styled.img`
+    width: 100%;
+ `
 
 export default function MyMessage({
-    children,
+    text,
+    image,
     themeColor = '#6ea9d7',
     loading,
     last,
-    single, 
+    single,
     clusterFirstMessage,
     clusterLastMessage
 }: Props) {
     return (
         <Wrapper
-        lastMessage={clusterLastMessage}
-        firstMessage={clusterFirstMessage}
+            lastMessage={clusterLastMessage}
+            firstMessage={clusterFirstMessage}
             className='fade-animation'
         >
             <div>
@@ -144,7 +155,13 @@ export default function MyMessage({
                         borderTopRight={!last && single ? true : false}
                         bgColor={themeColor} />
 
-                    <Content>{children}</Content>
+                    {image ?
+                        <ImageContainer>
+                            <Image src={image} />
+                        </ImageContainer>
+                        :
+                        <Content>{text}</Content>
+                    }
 
 
                     {loading && <LoadingContainer> <Loading /> </LoadingContainer>}

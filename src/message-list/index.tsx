@@ -214,7 +214,7 @@ export default function MessageList({
                                 <p>No messages yet...</p>
                             </NoMessagesTextContainer>
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text,image }, index) => {
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 
@@ -244,11 +244,13 @@ export default function MessageList({
                                         themeColor={themeColor}
                                         last={single ? false : last}
                                         single={single}
+                                        text={text}
+                                        image={image}
                                         // the last message should show loading if sendMessage loading is true
                                         loading={(index === messages.length - 1) && sendMessageLoading}
                                         clusterFirstMessage={firstClusterMessage}
                                         clusterLastMessage={lastClusterMessage}
-                                    >{text}</Message>
+                                    />
 
                                 } else {
 
@@ -258,11 +260,13 @@ export default function MessageList({
                                         themeColor={themeColor}
                                         key={index}
                                         user={user}
+                                        image={image}
                                         showAvatar={lastClusterMessage}
                                         showHeader={firstClusterMessage}
                                         last={single ? false : last}
                                         single={single}
-                                    >{text}</Message>
+                                        text={text}
+                                    />
                                 }
                             })}
 

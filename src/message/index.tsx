@@ -5,7 +5,8 @@ import IncomingMessage from './incoming-message'
 
 
 export type Props = {
-    children: string,
+    text?: string,
+    image?: string,
     loading?: boolean
     themeColor?: string
     type?: "incoming" | "outgoing"
@@ -17,13 +18,14 @@ export type Props = {
     //determines whether its the only message in the group of outgoing or incoming
     single?: boolean
     clusterFirstMessage?: boolean
-    clusterLastMessage? : boolean
+    clusterLastMessage?: boolean
 
 };
 
 
 export default function Message({
-    children,
+    text,
+    image,
     themeColor,
     loading,
     type = "outgoing",
@@ -40,23 +42,25 @@ export default function Message({
             <OutgoingMessage
                 themeColor={themeColor}
                 loading={loading}
-                children={children}
+                text={text}
+                image={image}
                 last={last}
                 single={single}
                 clusterFirstMessage={clusterFirstMessage}
                 clusterLastMessage={clusterLastMessage}
             />
 
-            : 
+            :
 
             <IncomingMessage
-            showAvatar={showAvatar}
-            themeColor={themeColor}
-            children={children}
-            user={user}
-            showHeader={showHeader}
-            last={last}
-            single={single}
+                showAvatar={showAvatar}
+                themeColor={themeColor}
+                text={text}
+                image={image}
+                user={user}
+                showHeader={showHeader}
+                last={last}
+                single={single}
             />
 
     )

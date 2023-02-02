@@ -189,21 +189,21 @@ export const messages = [
             "id": "danny_1",
             "name": "Daniel Georgetown"
         },
-        "text": "Is everything alright"
+        "image": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
     },
     {
         "user": {
             "id": "danny_1",
             "name": "Daniel Georgetown"
         },
-        "text": "lets talk things out"
+        "image": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
     },
     {
         "user": {
             "id": "mark",
             "name": "Markus"
         },
-        "text": "how are things going"
+        "image": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
     },
     {
         "user": {
@@ -299,7 +299,7 @@ export const messages = [
             "name": "Dan",
             avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
-        "text": "is"
+        "image": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
     },
     {
         "user": {
