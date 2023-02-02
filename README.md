@@ -1,3 +1,9 @@
+<p align="center">
+<img src="https://img.shields.io/github/license/minchathq/react-chat-ui"/>
+<img src="https://img.shields.io/npm/v/@minchat/react-chat-ui"/>
+<img src="https://img.shields.io/twitter/follow/minchathq?style=social"/>
+</p>
+
 Build your own chat UI with React components in a few minutes. Chat UI Kit from [MinChat](https://minchat.io) is an open source UI toolkit for developing web chat applications.
 
 **React Chat UI makes chat UI development faster**
@@ -114,6 +120,8 @@ Articles on the [minchat blog](https://minchat.io/blog)
 # Website
 
 [https://minchat.io](https://minchat.io)
+
+Unleash the power of seamless chat functionality with MinChat's [React Chat API!](https://minchat.io) Say goodbye to backend worries and hello to effortless integration. Get started today and save months of development time. Build a full-fledged React chat application in just minutes, not months!
 
 # License
 
