@@ -189,7 +189,7 @@ export const messages = [
             "id": "danny_1",
             "name": "Daniel Georgetown"
         },
-        "image": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+        "image": "sdfsdf"
     },
     {
         "user": {

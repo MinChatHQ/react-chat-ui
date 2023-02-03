@@ -5,7 +5,7 @@ import MessageInput, { Props } from "../src/message-input"
 
 const meta: Meta = {
   title: 'MessageInput',
-  component: MessageInput,
+  component: MessageInput,  
   parameters: {
     controls: { expanded: true },
   },
@@ -16,7 +16,9 @@ export default meta;
 
 const Template: Story<Props> = args => <MessageInput
   {...args}
+
   themeColor='#6ea9d7'
+  onAttachClick={()=>console.log("onAttachClick")}
 ></MessageInput>
 
 
