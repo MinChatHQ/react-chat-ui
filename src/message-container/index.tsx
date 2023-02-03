@@ -22,6 +22,8 @@ export type Props = {
   typingIndicatorContent?: string
   onStartTyping?: () => void,
   onEndTyping?: () => void,
+  onAttachClick?: () => void,
+
 }
 
 const Container = styled.div<{ mobile: boolean }>`
