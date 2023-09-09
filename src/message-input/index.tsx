@@ -155,7 +155,7 @@ export default function MessageInput({
         }
     }, [typing])
 
-    let timeout: NodeJS.Timeout;
+    let timeout: any;
 
     const [text, setText] = useState("")
 
@@ -174,7 +174,7 @@ export default function MessageInput({
         <Container
             className='fade-animation'
             mobile={mobile || mobileView}
-            onSubmit={(e) => {
+            onSubmit={(e: any) => {
                 e.preventDefault()
                 handleSubmit()
             }}
@@ -213,7 +213,7 @@ export default function MessageInput({
 
                 <InputElement
                     type={'text'}
-                    onChange={(event) => setText(event.target.value)}
+                    onChange={(event: any) => setText(event.target.value)}
                     value={text}
                     placeholder='Send a message...'
                     onKeyDown={() => {
