@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MessageType from '../MessageType';
 import placeholderProfilePNG from './profile.png';
+import imageIcon from './image-gallery.png';
+import imageGrayIcon from './image-gallery-gray.png';
 
 export type Props = {
   title: string;
@@ -90,7 +92,11 @@ font-weight: 700;
 
 // `
 
-const MessageComponent = styled.div<{ seen?: boolean; width: number }>`
+const MessageComponent = styled.div<{
+  seen?: boolean;
+  width: number;
+  media?: boolean;
+}>`
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -154,6 +160,12 @@ const DisplayPicture = styled.img`
   border-width: 2px;
   border-color: rgb(255 255 255);
   object-fit: cover;
+`;
+
+const ImageIcon = styled.img`
+  width: 12px;
+  height: 12px;
+  margin-left: 3px;
 `;
 
 export default function Conversation({
@@ -225,7 +237,17 @@ export default function Conversation({
               ? 'You'
               : lastMessage?.user.name}
             :{'  '}
-            {lastMessage?.text}
+            {lastMessage?.image ? (
+              <>
+                <ImageIcon
+                  src={selected ? imageIcon : imageGrayIcon}
+                  alt="image icon"
+                />{' '}
+                Image
+              </>
+            ) : (
+              lastMessage?.text
+            )}
           </MessageComponent>
           {/* <TimeSent>12:35 am</TimeSent> */}
         </TextContainer>
