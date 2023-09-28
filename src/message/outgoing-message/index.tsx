@@ -137,6 +137,7 @@ export default function MyMessage({
 }: Props) {
     return (
         <Wrapper
+            data-testid="outgoing-message"
             lastMessage={clusterLastMessage}
             firstMessage={clusterFirstMessage}
             className='fade-animation'
