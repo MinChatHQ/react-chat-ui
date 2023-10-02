@@ -18,20 +18,19 @@ export interface Props {
   currentUserId?: string;
 }
 
-const ScrollContainer = styled.div`
-  position: relative;
+const ScrollContainer = styled.div<{ loading: boolean }>`
+position: relative;
   height: 100%;
   width: 100%;
-  padding-top: 56px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  max-height: 100vh;
-  overflow-x: hidden;
-  background-color: #ffffff;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  ::-webkit-scrollbar {
-    /* WebKit */
+padding-top: ${({ loading }) => loading ? '0px' : '56px'};
+box-sizing: border-box;
+overflow-y: auto;
+max-height: 100vh;
+overflow-x: hidden;
+background-color: #ffffff;
+scrollbar-width: none; /* Firefox */
+ -ms-overflow-style: none;  /* Internet Explorer 10+ */
+::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
   }
@@ -91,6 +90,7 @@ export default function ConversationList({
   return (
     <Container>
       <ScrollContainer
+        loading={loading}
         onScroll={() => {
           //detect when scrolled to bottom
           const bottom =

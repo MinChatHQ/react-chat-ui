@@ -114,6 +114,7 @@ export default function IncomingMessage({
 
     return (
         <Wrapper
+            data-testid="incoming-message"
             className='fade-animation'
         >
             <DPContainer>
