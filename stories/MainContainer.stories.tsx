@@ -38,7 +38,8 @@ const Template: Story<Props> = args => {
             conversations: chats,
             loading: false,
             onConversationClick: () => console.log("onChat click"),
-            selectedConversationId: "1"
+            selectedConversationId: "1",
+            currentUserId: "me"
         }}
         selectedConversation={
             {

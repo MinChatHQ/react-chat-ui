@@ -43,7 +43,7 @@ position: absolute;
 width: 100%;
 height: 100%;
 background-color: ${({ themeColor, selected }) =>
-  selected ? themeColor : '#ffffff'};
+    selected ? themeColor : '#ffffff'};
 opacity: 0.2;
 z-index: 1;
 transition: all 0.3s ease-in-out;
@@ -106,12 +106,14 @@ const MessageComponent = styled.div<{
   align-self: flex-start;
   position: relative;
   color: #7a7a7a;
-  margin-left: 6px;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   box-sizing: border-box;
   max-width: ${({ width }) => width}px;
+  display: flex;
+  margin-top: 4px;
 
   ${({ seen }) =>
     !seen
@@ -167,6 +169,15 @@ const ImageIcon = styled.img`
   height: 12px;
   margin-left: 3px;
 `;
+
+const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4px;
+  margin-left: 4px;
+`
 
 export default function Conversation({
   title,
@@ -238,13 +249,13 @@ export default function Conversation({
               : lastMessage?.user.name}
             :{'  '}
             {lastMessage?.image ? (
-              <>
+              <ImageContainer>
                 <ImageIcon
                   src={selected ? imageIcon : imageGrayIcon}
                   alt="image icon"
-                />{' '}
+                />{'  '}
                 Image
-              </>
+              </ImageContainer>
             ) : (
               lastMessage?.text
             )}

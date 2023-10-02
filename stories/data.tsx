@@ -10,8 +10,7 @@ export const chats = [
       user: {
         id: 'martha_stewart',
         name: 'Daniel',
-        avatar:
-          'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+        avatar: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
       },
     },
   },
@@ -21,9 +20,7 @@ export const chats = [
     title: 'Devops',
     lastMessage: {
       seen: true,
-      text:
-        'How do you enable an actuator on a servo motor of a hardware and design laboratory experiment in the city,an actuator on a servo motor of a hardware and design laboratory experiment in the city',
-
+      text: 'How do you enable an actuator on a servo motor of a hardware and design laboratory experiment in the city,an actuator on a servo motor of a hardware and design laboratory experiment in the city',
       user: {
         avatar: 'https://fsdfsdfsdfs',
         id: 'daniel',
@@ -39,8 +36,9 @@ export const chats = [
     lastMessage: {
       seen: true,
       text: 'Hello everbody',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
       user: {
-        id: 'daniel',
+        id: 'me',
         name: 'Martha Stewart',
       },
     },
