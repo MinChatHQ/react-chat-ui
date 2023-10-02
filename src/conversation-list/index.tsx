@@ -1,24 +1,21 @@
-import React, { useRef } from 'react'
-import styled from 'styled-components'
-import Loading from '../loading'
-import ConversationType from '../ConversationType'
-import Conversation from '../conversation'
-
-
-
+import React, { useRef } from 'react';
+import styled from 'styled-components';
+import Loading from '../loading';
+import ConversationType from '../ConversationType';
+import Conversation from '../conversation';
 
 export interface Props {
-  onConversationClick?: (index: number) => void
-  conversations?: ConversationType[],
-  loading?: boolean
-  selectedConversationId?: string
-  onScrollToBottom?: () => void
-  themeColor?: string
-  mobileView?: boolean
+  onConversationClick?: (index: number) => void;
+  conversations?: ConversationType[];
+  loading?: boolean;
+  selectedConversationId?: string;
+  onScrollToBottom?: () => void;
+  themeColor?: string;
+  mobileView?: boolean;
   /**
-     * the current user on the chat ui
-     */
-  currentUserId?: string
+   * the current user on the chat ui
+   */
+  currentUserId?: string;
 }
 
 const ScrollContainer = styled.div<{ loading: boolean }>`
@@ -36,18 +33,15 @@ scrollbar-width: none; /* Firefox */
 ::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
-}
-  
-`
+  }
+`;
 
 const Container = styled.div`
-height: 100%;
+  height: 100%;
   position: relative;
   max-height: 100vh;
-overflow: hidden;
-`
-
-
+  overflow: hidden;
+`;
 
 // const SearchElement = styled.input`
 // width:100%;
@@ -71,15 +65,16 @@ overflow: hidden;
 //  `
 
 const NoChatsTextContainer = styled.div`
-  color: rgba(0,0,0,.36);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size:14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-
-`
+  color: rgba(0, 0, 0, 0.36);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+`;
 
 export default function ConversationList({
   conversations,
@@ -88,50 +83,54 @@ export default function ConversationList({
   selectedConversationId,
   onScrollToBottom,
   themeColor = '#6ea9d7',
-  currentUserId
+  currentUserId,
 }: Props) {
-
-  const scrollContainerRef = useRef<any>()
+  const scrollContainerRef = useRef<any>();
 
   return (
-    <Container
-    >
-
+    <Container>
       <ScrollContainer
         loading={loading}
         onScroll={() => {
           //detect when scrolled to bottom
-          const bottom = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.scrollTop === scrollContainerRef.current.clientHeight;
+          const bottom =
+            scrollContainerRef.current.scrollHeight -
+              scrollContainerRef.current.scrollTop ===
+            scrollContainerRef.current.clientHeight;
           if (bottom) {
-            onScrollToBottom && onScrollToBottom()
+            onScrollToBottom && onScrollToBottom();
           }
         }}
-        ref={scrollContainerRef}>
-
-        {loading ? <Loading themeColor={themeColor} /> :
+        ref={scrollContainerRef}
+      >
+        {loading ? (
+          <Loading themeColor={themeColor} />
+        ) : (
           <>
-            {conversations && conversations.length <= 0 && <NoChatsTextContainer>
-              <p>No conversation started...</p>
-            </NoChatsTextContainer>
-            }
+            {conversations && conversations.length <= 0 && (
+              <NoChatsTextContainer>
+                <p>No conversation started...</p>
+              </NoChatsTextContainer>
+            )}
 
-            {(conversations && conversations.map((conversation, index) => <Conversation
-              themeColor={themeColor}
-              onClick={() => onConversationClick && onConversationClick(index)}
-              key={index}
-              title={conversation.title}
-              lastMessage={conversation.lastMessage}
-              avatar={conversation.avatar}
-              selected={selectedConversationId === conversation.id}
-              currentUserId={currentUserId}
-            />
-            ))
-            }
+            {conversations &&
+              conversations.map((conversation, index) => (
+                <Conversation
+                  themeColor={themeColor}
+                  onClick={() =>
+                    onConversationClick && onConversationClick(index)
+                  }
+                  key={index}
+                  title={conversation.title}
+                  lastMessage={conversation.lastMessage}
+                  avatar={conversation.avatar}
+                  selected={selectedConversationId === conversation.id}
+                  currentUserId={currentUserId}
+                />
+              ))}
           </>
-        }
-
+        )}
       </ScrollContainer>
     </Container>
-
-  )
+  );
 }

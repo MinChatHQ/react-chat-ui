@@ -73,6 +73,22 @@ const SelectedTemplate: Story<Props> = args => <Conversation
   }}
   onClick={() => { }} />
 
+const ImageMessageTemplate: Story<Props> = args => <Conversation
+  selected={true}
+  title='GroupChat'
+  lastMessage={{
+    seen: true,
+    text: "Hello everbody",
+    image: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    ,
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
@@ -80,6 +96,8 @@ export const Default = Template.bind({});
 export const NewMessage = UnseenTemplate.bind({});
 export const WithPlaceholderAvatar = NoAvatarTemplate.bind({});
 export const Selected = SelectedTemplate.bind({});
+export const ImageMessage = ImageMessageTemplate.bind({});
+
 
 
 
