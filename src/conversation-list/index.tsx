@@ -21,11 +21,11 @@ export interface Props {
   currentUserId?: string
 }
 
-const ScrollContainer = styled.div`
+const ScrollContainer = styled.div<{ loading: boolean }>`
 position: relative;
   height: 100%;
   width: 100%;
-padding-top: 56px;
+padding-top: ${({ loading }) => loading ? '0px' : '56px'};
 box-sizing: border-box;
 overflow-y: auto;
 max-height: 100vh;
@@ -98,6 +98,7 @@ export default function ConversationList({
     >
 
       <ScrollContainer
+        loading={loading}
         onScroll={() => {
           //detect when scrolled to bottom
           const bottom = scrollContainerRef.current.scrollHeight - scrollContainerRef.current.scrollTop === scrollContainerRef.current.clientHeight;

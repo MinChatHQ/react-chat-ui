@@ -21,7 +21,7 @@ const Template: Story<Props> = args => <ConversationList
   conversations={chats}
   themeColor='#6ea9d7'
   selectedConversationId='1'
-/>;
+/>
 
 
 const NoChatsTemplate: Story<Props> = args => <ConversationList
@@ -30,18 +30,23 @@ const NoChatsTemplate: Story<Props> = args => <ConversationList
   conversations={[]}
   themeColor='#6ea9d7'
 
-/>;
+/>
 
 
 
-const LoadingTemplate: Story<Props> = args => <div style={{ height: "100vh" }}> <ConversationList
-  {...args}
-  selectedConversationId='1'
-  loading={true}
-  conversations={chats}
-  themeColor='#6ea9d7'
+const LoadingTemplate: Story<Props> = args => <div style={{
+  height: "100vh",
+  borderWidth: 1,
+  borderColor: "black",
+  borderStyle: "solid",
+}}> <ConversationList
+    {...args}
+    selectedConversationId='1'
+    loading={true}
+    conversations={chats}
+    themeColor='#6ea9d7'
 
-/>;
+  />
 </div>
 
 const FewChatsTemplate: Story<Props> = args => <div style={{ height: "100vh" }}><ConversationList
