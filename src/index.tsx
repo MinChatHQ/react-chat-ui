@@ -9,6 +9,7 @@ import ConversationHeader from "./conversation-header";
 import ConversationContainer from "./conversation-container";
 import MessageContainer from "./message-container";
 import TypingIndicator from "./typing-indicator";
+import useCheckIsMobile from "./hooks/useCheckIsMobile";
 
 
 export {
@@ -22,5 +23,6 @@ export {
   MessageContainer,
   ConversationContainer,
   ConversationHeader,
-  TypingIndicator
+  TypingIndicator,
+  useCheckIsMobile
 }
