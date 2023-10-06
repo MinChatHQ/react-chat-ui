@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from "styled-components"
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
@@ -72,9 +72,11 @@ box-sizing: border-box;
 
 `
 export default function MessageHeader({ onBack, children, showBack = true, mobileView }: Props) {
-    const mobile = useCheckIsMobile()
+    const containerRef = useRef<any>(null)
+    const mobile = useCheckIsMobile(containerRef)
     return (
         <Container
+            ref={containerRef}
             mobile={mobile || mobileView}>
 
             {showBack && <BackContainer

@@ -108,12 +108,12 @@ export default function MessageList({
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
     const [messagesWasEmpty, setMessagesWasEmpty] = useState(true)
-
+    const containerRef = useRef<any>()
 
     const bottomBufferRef = useRef<any>()
     const scrollContainerRef = useRef<any>()
 
-    const isMobile = useCheckIsMobile()
+    const isMobile = useCheckIsMobile(containerRef)
 
     const { detectBottom, detectTop } = useDetectScrollPosition(scrollContainerRef)
 
@@ -182,6 +182,7 @@ export default function MessageList({
 
     return (
         <Container
+            ref={containerRef}
         >
 
             <ScrollBackgroundContainer mobile={mobileView || isMobile}>
@@ -214,7 +215,7 @@ export default function MessageList({
                                 <p>No messages yet...</p>
                             </NoMessagesTextContainer>
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text,image }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, image }, index) => {
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 

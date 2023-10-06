@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile';
 import Loading from '../loading';
@@ -57,8 +57,9 @@ export default function MainContainer({
 }: Props) {
 
     const [useMobileView, setUseMobileView] = useState<boolean>(true)
+    const containerRef = useRef<HTMLDivElement>(null)
 
-    const isMobile = useCheckIsMobile()
+    const isMobile = useCheckIsMobile(containerRef)
 
     useEffect(() => {
         if (mobileView === true) {
@@ -72,7 +73,8 @@ export default function MainContainer({
     }, [isMobile, mobileView])
 
     return (
-        <Container>
+        <Container
+            ref={containerRef}>
             {useMobileView ? (
                 selectedConversation ?
                     <MessageContainer

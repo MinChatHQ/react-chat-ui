@@ -54,12 +54,12 @@ const Template: Story<Props> = args => {
         }
     />
 
-    
+
     </div>
 }
 
 const MobileTemplate: Story<Props> = args => {
-    return <div style={{}}>
+    return <div style={{ width: "100%", height: "100%", backgroundColor: 'blue' }}>
         <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
             <MainContainer
 
@@ -164,26 +164,30 @@ const WithPaddingContainer = styled.div`
     position: relative;
     width: 800px;
 `
-const TemplateWithPadding: Story<Props> = args => <WithPaddingContainer>
-    <MainContainer
-        {...args}
-        inbox={{
+const TemplateWithPadding: Story<Props> = args => <div
+    {...args}
+    style={{ height: "100vh" }}
+> <WithPaddingContainer>
+        <MainContainer
 
-            themeColor: "#6ea9d7",
-            conversations: chats,
-            loading: false,
-        }}
-        selectedConversation={{
-            themeColor: "#6ea9d7",
-            messages: messages,
-            header: "Sandra Bullock",
-            currentUserId: "danny_1",
-            onSendMessage: () => console.log("onSendMessage"),
-            onBack: () => { }
+            inbox={{
 
-        }}
-    />
-</WithPaddingContainer>
+                themeColor: "#6ea9d7",
+                conversations: chats,
+                loading: false,
+            }}
+            selectedConversation={{
+                themeColor: "#6ea9d7",
+                messages: messages,
+                header: "Sandra Bullock",
+                currentUserId: "danny_1",
+                onSendMessage: () => console.log("onSendMessage"),
+                onBack: () => { }
+
+            }}
+        />
+    </WithPaddingContainer >
+</div>
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing

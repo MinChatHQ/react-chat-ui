@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
 
 
-const useCheckIsMobile = () => {
+const useCheckIsMobile = (containerRef: React.RefObject<HTMLDivElement>) => {
 
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
     useEffect(() => {
-        if (typeof window !== undefined) {
-
-
-            const handleResize = () => {
-                let mobile = false
-                if (typeof window !== undefined) {
-                    const match = window.matchMedia(`(max-width: 640px)`);
-                    mobile = match.matches;
+        if (containerRef?.current) {
+            const resizeObserver = new ResizeObserver(entries => {
+                if (!Array.isArray(entries) || !entries.length) {
+                    return;
                 }
 
-                setIsMobile(mobile);
-            };
+                const width = entries[0].contentRect.width
+                setIsMobile(width < 768);
+            });
 
-            window.addEventListener("resize", handleResize);
+            resizeObserver.observe(containerRef.current);
 
-            return () => window.removeEventListener("resize", handleResize);
+
+            return () => {
+                if (containerRef.current) {
+                    resizeObserver.unobserve(containerRef.current);
+                }
+            }
         }
 
-        return () => { };
-    }, []);
+        return () =>{}
+
+    }, [containerRef?.current]);
 
     return isMobile
 }

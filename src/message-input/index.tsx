@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
@@ -159,8 +159,8 @@ export default function MessageInput({
 
     const [text, setText] = useState("")
 
-
-    const mobile = useCheckIsMobile()
+    const containerRef = useRef<any>(null)
+    const mobile = useCheckIsMobile(containerRef)
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
@@ -172,6 +172,7 @@ export default function MessageInput({
     }
     return (
         <Container
+            ref={containerRef}
             data-testid='message-form'
             className='fade-animation'
             mobile={mobile || mobileView}

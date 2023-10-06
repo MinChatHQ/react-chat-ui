@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import MessageList from '../message-list'
 import MessageInput from '../message-input'
 import MessageHeader from '../message-header'
@@ -38,10 +38,12 @@ border-radius: 16px;
 `
 
 export default function MessageContainer(props: Props) {
-  const isMobile = useCheckIsMobile()
+  const containerRef = useRef<any>(null)
+  const isMobile = useCheckIsMobile(containerRef)
 
   return (
     <Container
+      ref={containerRef}
       mobile={props.mobileView || isMobile}>
       {!props.loading &&
         <MessageHeader
