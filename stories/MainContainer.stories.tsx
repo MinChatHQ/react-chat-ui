@@ -70,7 +70,7 @@ const Template: Story<Props> = args => {
             />
         </Sidebar>
 
-        <div style={{ position: "relative" ,width: "100%"}}>
+        <div style={{ position: "relative", width: "100%" }}>
             <MessageHeader> Welcome</MessageHeader>
             <MessageList
                 currentUserId="danny_1"

@@ -7,9 +7,10 @@ import MessageInput from "./message-input";
 import MessageHeader from "./message-header";
 import ConversationHeader from "./conversation-header";
 import ConversationContainer from "./conversation-container";
-import MessageContainer from "./message-container";
 import TypingIndicator from "./typing-indicator";
 import useCheckIsMobile from "./hooks/useCheckIsMobile";
+import Sidebar from "./sidebar"
+
 
 
 export {
@@ -20,9 +21,9 @@ export {
   MessageList,
   ConversationList,
   MainContainer,
-  MessageContainer,
   ConversationContainer,
   ConversationHeader,
   TypingIndicator,
-  useCheckIsMobile
+  useCheckIsMobile,
+  Sidebar
 }

@@ -44,7 +44,6 @@ import {
 
 <MainContainer style={{ height: '100vh' }}>
     <MessageHeader/>
-
     <MessageList
         currentUserId='dan'
         messages={[{
