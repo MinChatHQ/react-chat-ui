@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
+import useTypingListener from '../hooks/useTypingListener'
 
 export type Props = {
     onSendMessage?: (text: string) => void
@@ -146,24 +147,12 @@ export default function MessageInput({
     placeholder = 'Send a message...'
 }: Props) {
 
-    const [typing, setTyping] = useState(false);
-
-
-    useEffect(() => {
-        //call the function when typing starts or ends but should not call it on every render and should only be called when the value of typing changes
-        if (typing) {
-            onStartTyping && onStartTyping()
-        } else {
-            onEndTyping && onEndTyping()
-        }
-    }, [typing])
-
-    let timeout: any;
-
     const [text, setText] = useState("")
 
     const containerRef = useRef<any>(null)
     const mobile = useCheckIsMobile(containerRef)
+
+    const { setTyping, ...inputProps } = useTypingListener({ onStartTyping, onEndTyping })
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
@@ -222,15 +211,7 @@ export default function MessageInput({
                     onChange={(event: any) => setText(event.target.value)}
                     value={text}
                     placeholder={placeholder}
-                    onKeyDown={() => {
-                        clearTimeout(timeout);
-                        setTyping(true);
-                    }}
-                    onKeyUp={() => {
-                        timeout = setTimeout(() => {
-                            setTyping(false);
-                        }, 2_000);
-                    }}
+                    {...inputProps}
                 />
             </InputContainer>
 

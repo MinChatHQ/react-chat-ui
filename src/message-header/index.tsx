@@ -4,7 +4,7 @@ import useCheckIsMobile from '../hooks/useCheckIsMobile'
 
 export type Props = {
     onBack?: () => void
-    children?: string
+    children?: React.ReactNode
     showBack?: boolean
     mobileView?: boolean
 }
