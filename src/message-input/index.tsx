@@ -10,6 +10,7 @@ export type Props = {
     onEndTyping?: () => void,
     // showAttachButton?: boolean,
     onAttachClick?: () => void,
+    placeholder?: string
 }
 
 const Container = styled.form<{ mobile?: boolean }>`
@@ -141,8 +142,10 @@ export default function MessageInput({
     onStartTyping,
     onEndTyping,
     // showAttachButton = true,
-    onAttachClick
+    onAttachClick,
+    placeholder = 'Send a message...'
 }: Props) {
+
     const [typing, setTyping] = useState(false);
 
 
@@ -218,7 +221,7 @@ export default function MessageInput({
                     type={'text'}
                     onChange={(event: any) => setText(event.target.value)}
                     value={text}
-                    placeholder='Send a message...'
+                    placeholder={placeholder}
                     onKeyDown={() => {
                         clearTimeout(timeout);
                         setTyping(true);
