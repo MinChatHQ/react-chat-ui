@@ -23,6 +23,13 @@ const Template: Story<Props> = args => <ConversationList
   selectedConversationId='1'
 />
 
+const TemplateCustomConversationItem: Story<Props> = args => <ConversationList
+  {...args}
+  conversations={chats}
+  themeColor='#6ea9d7'
+  selectedConversationId='1'
+  renderCustomConversationitem={(conversation) => <div>{conversation.lastMessage?.text}</div>}
+/>
 
 const NoChatsTemplate: Story<Props> = args => <ConversationList
   {...args}
@@ -81,6 +88,8 @@ export const WithPadding = TemplateWithPadding.bind({});
 export const FewConversation = FewChatsTemplate.bind({});
 export const LoadingConversation = LoadingTemplate.bind({});
 export const NoConversation = NoChatsTemplate.bind({});
+export const CustomConversationItem = TemplateCustomConversationItem.bind({});
+
 
 
 

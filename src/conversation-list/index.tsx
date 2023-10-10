@@ -16,6 +16,7 @@ export interface Props {
    * the current user on the chat ui
    */
   currentUserId?: string;
+  renderCustomConversationitem?: (conversation: ConversationType,index: number) => React.ReactNode
 }
 
 const ScrollContainer = styled.div<{ loading: boolean }>`
@@ -84,6 +85,7 @@ export default function ConversationList({
   onScrollToBottom,
   themeColor = '#6ea9d7',
   currentUserId,
+  renderCustomConversationitem
 }: Props) {
   const scrollContainerRef = useRef<any>();
 
@@ -95,7 +97,7 @@ export default function ConversationList({
           //detect when scrolled to bottom
           const bottom =
             scrollContainerRef.current.scrollHeight -
-              scrollContainerRef.current.scrollTop ===
+            scrollContainerRef.current.scrollTop ===
             scrollContainerRef.current.clientHeight;
           if (bottom) {
             onScrollToBottom && onScrollToBottom();
@@ -115,18 +117,21 @@ export default function ConversationList({
 
             {conversations &&
               conversations.map((conversation, index) => (
-                <Conversation
-                  themeColor={themeColor}
-                  onClick={() =>
-                    onConversationClick && onConversationClick(index)
-                  }
-                  key={index}
-                  title={conversation.title}
-                  lastMessage={conversation.lastMessage}
-                  avatar={conversation.avatar}
-                  selected={selectedConversationId === conversation.id}
-                  currentUserId={currentUserId}
-                />
+                renderCustomConversationitem ?
+                  renderCustomConversationitem(conversation,index)
+                  :
+                  <Conversation
+                    themeColor={themeColor}
+                    onClick={() =>
+                      onConversationClick && onConversationClick(index)
+                    }
+                    key={index}
+                    title={conversation.title}
+                    lastMessage={conversation.lastMessage}
+                    avatar={conversation.avatar}
+                    selected={selectedConversationId === conversation.id}
+                    currentUserId={currentUserId}
+                  />
               ))}
           </>
         )}
