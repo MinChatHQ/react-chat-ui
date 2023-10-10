@@ -219,11 +219,11 @@ export default function MessageInput({
                     value={text}
                     placeholder={placeholder}
                     {...inputProps}
-                    onKeyDown={(event) => {
+                    onKeyDown={(event: any) => {
                         inputProps.onKeyDown()
                         onKeyDown && onKeyDown(event)
                     }}
-                    onKeyUp={(event) => {
+                    onKeyUp={(event: any) => {
                         inputProps.onKeyUp()
                         onKeyUp && onKeyUp(event)
                     }}

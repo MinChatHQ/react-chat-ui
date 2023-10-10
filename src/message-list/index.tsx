@@ -18,6 +18,7 @@ export type ChatProps = {
     mobileView?: boolean
     showTypingIndicator?: boolean
     typingIndicatorContent?: string
+    customTypingIndicatorComponent?: React.ReactNode
 }
 
 
@@ -103,7 +104,8 @@ export default function MessageList({
     themeColor = '#6ea9d7',
     mobileView,
     typingIndicatorContent,
-    showTypingIndicator
+    showTypingIndicator,
+    customTypingIndicatorComponent
 }: ChatProps) {
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
@@ -271,10 +273,13 @@ export default function MessageList({
                                 }
                             })}
 
-                            {showTypingIndicator && <TypingIndicator
-                                content={typingIndicatorContent}
-                                themeColor={themeColor} />
-                            }
+                            {showTypingIndicator && (
+                                customTypingIndicatorComponent ?
+                                    customTypingIndicatorComponent
+                                    : <TypingIndicator
+                                        content={typingIndicatorContent}
+                                        themeColor={themeColor} />
+                            )}
 
                             {/* bottom buffer */}
                             <div>
