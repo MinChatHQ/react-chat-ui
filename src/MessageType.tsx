@@ -7,6 +7,7 @@ import UserType from "./UserType"
     image?: string
     created_at?: string
     seen?: boolean
+    loading?: boolean
   }
 
   export default MessageType

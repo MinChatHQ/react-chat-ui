@@ -12,8 +12,6 @@ export type ChatProps = {
     messages?: MessageType[]
     currentUserId?: string
     loading?: boolean
-    // this is true when the message a message is still being sent so show some form of loader on the last message
-    sendMessageLoading?: boolean
     onScrollToTop?: () => void
     mobileView?: boolean
     showTypingIndicator?: boolean
@@ -99,7 +97,6 @@ export default function MessageList({
     messages,
     currentUserId,
     loading = false,
-    sendMessageLoading = false,
     onScrollToTop,
     themeColor = '#6ea9d7',
     mobileView,
@@ -217,7 +214,7 @@ export default function MessageList({
                                 <p>No messages yet...</p>
                             </NoMessagesTextContainer>
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, image }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, image, loading: messageLoading }, index) => {
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 
@@ -250,7 +247,7 @@ export default function MessageList({
                                         text={text}
                                         image={image}
                                         // the last message should show loading if sendMessage loading is true
-                                        loading={(index === messages.length - 1) && sendMessageLoading}
+                                        loading={messageLoading}
                                         clusterFirstMessage={firstClusterMessage}
                                         clusterLastMessage={lastClusterMessage}
                                     />

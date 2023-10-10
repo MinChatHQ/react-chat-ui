@@ -343,6 +343,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     text: 'come on man',
+    loading: true
   },
   {
     user: {
@@ -350,6 +351,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     text: 'this is the last message',
+    loading: true
   },
 ];
 
