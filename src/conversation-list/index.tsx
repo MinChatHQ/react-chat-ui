@@ -138,7 +138,7 @@ export default function ConversationList({
 
               {conversations &&
                 conversations.map((conversation, index) => (
-                  renderCustomConversationitem ?
+                  (renderCustomConversationitem && renderCustomConversationitem(conversation, index)) ?
                     renderCustomConversationitem(conversation, index)
                     :
                     <Conversation

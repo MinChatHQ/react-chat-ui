@@ -21,6 +21,7 @@ const Template: Story<Props> = args => <ConversationList
   conversations={chats}
   themeColor='#6ea9d7'
   selectedConversationId='1'
+  renderCustomConversationitem={() => undefined}
 />
 
 const TemplateCustomConversationItem: Story<Props> = args => <ConversationList
