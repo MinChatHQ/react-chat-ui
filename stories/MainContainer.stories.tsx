@@ -4,7 +4,9 @@ import MainContainer, { Props } from '../src/main-container';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
 import Sidebar from '../src/sidebar';
-import ConversationContainer from '../src/conversation-container';
+import ConversationList from '../src/conversation-list';
+import ConversationHeader from '../src/conversation-header';
+
 import MessageHeader from '../src/message-header';
 import MessageInput from '../src/message-input';
 import MessageList from '../src/message-list';
@@ -65,7 +67,9 @@ const Template: Story<Props> = args => {
 
     return <MainContainer style={{ height: '100vh' }}>
         <Sidebar>
-            <ConversationContainer
+            <ConversationHeader />
+
+            <ConversationList
                 conversations={chats}
             />
         </Sidebar>
@@ -81,38 +85,31 @@ const Template: Story<Props> = args => {
     </MainContainer>
 }
 
-// const MobileTemplate: Story<Props> = args => {
-//     return <div style={{ width: "100%", height: "100%", backgroundColor: 'blue' }}>
-//         <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
-//             <MainContainer
+const MobileTemplate: Story<Props> = args => {
+    return <div style={{ width: "100%", height: "100%", backgroundColor: 'blue' }}>
+        <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
+            <MainContainer style={{ height: '100vh' }}>
+                {/* <Sidebar> */}
+                    <ConversationHeader />
 
-//                 mobileView
-//                 {...args}
-//                 inbox={{
-//                     onScrollToBottom: () => { },
-//                     themeColor: "#6ea9d7",
-//                     conversations: chats,
-//                     loading: false,
-//                     onConversationClick: () => console.log("onChat click"),
-//                     selectedConversationId: "1"
-//                 }}
-//                 selectedConversation={
-//                     {
+                    <ConversationList
+                        conversations={chats}
+                    />
+                {/* </Sidebar>
 
-//                         themeColor: "#6ea9d7",
-//                         messages,
-//                         header: "Sandra Bullock",
-//                         currentUserId: "danny_1",
-//                         onSendMessage: () => console.log("onSendMessage"),
-//                         onBack: () => { }
+                <div style={{ position: "relative", width: "100%" }}>
+                    <MessageHeader> Welcome</MessageHeader>
+                    <MessageList
+                        currentUserId="danny_1"
+                        messages={messages}
+                    />
+                    <MessageInput />
+                </div>*/}
+            </MainContainer> 
+        </div>
 
-//                     }
-//                 }
-//             />
-//         </div>
-
-//     </div>
-// }
+    </div>
+}
 
 
 // const LoadingTemplate: Story<Props> = args => {
@@ -215,7 +212,7 @@ const Template: Story<Props> = args => {
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
-// export const Mobile = MobileTemplate.bind({});
+export const Mobile = MobileTemplate.bind({});
 // export const MobileNoSelectedConversation = MobileNoSelectedChatTemplate.bind({});
 // export const NoSelectedConversation = NoSelectedChatTemplate.bind({});
 // export const NoConversation = NoChatsTemplate.bind({});

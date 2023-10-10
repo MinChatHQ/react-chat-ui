@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import useCheckIsMobile from '../hooks/useCheckIsMobile'
 import useTypingListener from '../hooks/useTypingListener'
@@ -7,11 +7,16 @@ export type Props = {
     onSendMessage?: (text: string) => void
     themeColor?: string
     mobileView?: boolean
-    onStartTyping?: () => void,
-    onEndTyping?: () => void,
-    // showAttachButton?: boolean,
-    onAttachClick?: () => void,
+    onStartTyping?: () => void
+    onEndTyping?: () => void
+    // showAttachButton?: boolean
+    onAttachClick?: () => void
     placeholder?: string
+
+    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined
+    onKeyUp?: React.KeyboardEventHandler<HTMLInputElement> | undefined
+
+
 }
 
 const Container = styled.form<{ mobile?: boolean }>`
@@ -144,7 +149,9 @@ export default function MessageInput({
     onEndTyping,
     // showAttachButton = true,
     onAttachClick,
-    placeholder = 'Send a message...'
+    placeholder = 'Send a message...',
+    onKeyDown,
+    onKeyUp
 }: Props) {
 
     const [text, setText] = useState("")
@@ -212,6 +219,14 @@ export default function MessageInput({
                     value={text}
                     placeholder={placeholder}
                     {...inputProps}
+                    onKeyDown={(event) => {
+                        inputProps.onKeyDown()
+                        onKeyDown && onKeyDown(event)
+                    }}
+                    onKeyUp={(event) => {
+                        inputProps.onKeyUp()
+                        onKeyUp && onKeyUp(event)
+                    }}
                 />
             </InputContainer>
 

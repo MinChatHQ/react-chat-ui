@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 export type Props = {
+    showHeader?: boolean
+    loading?: boolean
 }
 
 const Container = styled.div`
@@ -30,15 +32,31 @@ width: 100%;
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 `
+const HeaderPlaceholder = styled.div`
+   background-color: #ffffff;
+     height: 56px;
+      position: absolute;
+      top: 0px;
+left: 0px;
+right: 0px;
+z-index: 10;
+box-sizing: border-box;
+`
 
-export default function ConversationHeader({  }: Props) {
+export default function ConversationHeader({ loading, showHeader=true }: Props) {
     return (
-        <Container>
+        loading ?
+            <div />
+            :
+            (!showHeader ?
+                <HeaderPlaceholder />
+                :
+                <Container>
 
-            <ChatTitle
-            >Messages</ChatTitle>
+                    <ChatTitle
+                    >Messages</ChatTitle>
 
-        </Container>
-
+                </Container>
+            )
     )
 }
