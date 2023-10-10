@@ -16,7 +16,10 @@ export interface Props {
    * the current user on the chat ui
    */
   currentUserId?: string;
-  renderCustomConversationitem?: (conversation: ConversationType,index: number) => React.ReactNode
+  renderCustomConversationitem?: (conversation: ConversationType, index: number) => React.ReactNode
+  customLoaderComponent?: React.ReactNode
+  customEmptyConversationsComponent?: React.ReactNode
+
 }
 
 const ScrollContainer = styled.div<{ loading: boolean }>`
@@ -77,6 +80,17 @@ const NoChatsTextContainer = styled.div`
   height: 100px;
 `;
 
+
+const LoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+position: relative;
+`
+
 export default function ConversationList({
   conversations,
   loading = false,
@@ -85,7 +99,9 @@ export default function ConversationList({
   onScrollToBottom,
   themeColor = '#6ea9d7',
   currentUserId,
-  renderCustomConversationitem
+  renderCustomConversationitem,
+  customLoaderComponent,
+  customEmptyConversationsComponent
 }: Props) {
   const scrollContainerRef = useRef<any>();
 
@@ -105,36 +121,39 @@ export default function ConversationList({
         }}
         ref={scrollContainerRef}
       >
-        {loading ? (
-          <Loading themeColor={themeColor} />
-        ) : (
-          <>
-            {conversations && conversations.length <= 0 && (
-              <NoChatsTextContainer>
-                <p>No conversation started...</p>
-              </NoChatsTextContainer>
-            )}
+        {loading ?
+          <LoadingContainer>
+            {customLoaderComponent ?
+              customLoaderComponent :
+              <Loading themeColor={themeColor} />}
+          </LoadingContainer> : (
+            <>
+              {conversations && conversations.length <= 0 && (
+                customEmptyConversationsComponent ?
+                  customEmptyConversationsComponent :
+                  <NoChatsTextContainer>
+                    <p>No conversation started...</p>
+                  </NoChatsTextContainer>
+              )}
 
-            {conversations &&
-              conversations.map((conversation, index) => (
-                renderCustomConversationitem ?
-                  renderCustomConversationitem(conversation,index)
-                  :
-                  <Conversation
-                    themeColor={themeColor}
-                    onClick={() =>
-                      onConversationClick && onConversationClick(index)
-                    }
-                    key={index}
-                    title={conversation.title}
-                    lastMessage={conversation.lastMessage}
-                    avatar={conversation.avatar}
-                    selected={selectedConversationId === conversation.id}
-                    currentUserId={currentUserId}
-                  />
-              ))}
-          </>
-        )}
+              {conversations &&
+                conversations.map((conversation, index) => (
+                  renderCustomConversationitem ?
+                    renderCustomConversationitem(conversation, index)
+                    :
+                    <Conversation
+                      themeColor={themeColor}
+                      onClick={() => onConversationClick && onConversationClick(index)}
+                      key={index}
+                      title={conversation.title}
+                      lastMessage={conversation.lastMessage}
+                      avatar={conversation.avatar}
+                      selected={selectedConversationId === conversation.id}
+                      currentUserId={currentUserId}
+                    />
+                ))}
+            </>
+          )}
       </ScrollContainer>
     </Container>
   );

@@ -17,6 +17,8 @@ export type ChatProps = {
     showTypingIndicator?: boolean
     typingIndicatorContent?: string
     customTypingIndicatorComponent?: React.ReactNode
+    customEmptyMessagesComponent?: React.ReactNode
+    customLoaderComponent?: React.ReactNode
 }
 
 
@@ -52,6 +54,7 @@ const ScrollBackgroundContainer = styled.div<{ mobile: boolean }>`
 position: absolute;
 width: 100%;
 height: 100%;
+z-index: 0;
 box-sizing: border-box;
 ${({ mobile }) => !mobile ? `
 padding-right: 12px;
@@ -93,6 +96,16 @@ const NoMessagesTextContainer = styled.div`
 
 `
 
+const LoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+position: relative;
+`
+
 export default function MessageList({
     messages,
     currentUserId,
@@ -102,7 +115,9 @@ export default function MessageList({
     mobileView,
     typingIndicatorContent,
     showTypingIndicator,
-    customTypingIndicatorComponent
+    customTypingIndicatorComponent,
+    customLoaderComponent,
+    customEmptyMessagesComponent
 }: ChatProps) {
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
@@ -192,7 +207,11 @@ export default function MessageList({
             <InnerContainer>
 
                 {loading ?
-                    <Loading themeColor={themeColor} />
+                    <LoadingContainer>
+                        {customLoaderComponent ?
+                            customLoaderComponent :
+                            <Loading themeColor={themeColor} />}
+                    </LoadingContainer>
                     :
                     <>
 
@@ -210,9 +229,13 @@ export default function MessageList({
                                 <Buffer />
                             </div>
 
-                            {(messages && messages.length <= 0) && <NoMessagesTextContainer>
-                                <p>No messages yet...</p>
-                            </NoMessagesTextContainer>
+                            {(messages && messages.length <= 0) &&
+                                (customEmptyMessagesComponent ?
+                                    customEmptyMessagesComponent
+                                    :
+                                    <NoMessagesTextContainer>
+                                        <p>No messages yet...</p>
+                                    </NoMessagesTextContainer>)
                             }
                             {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, image, loading: messageLoading }, index) => {
                                 //determining the type of message to render

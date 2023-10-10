@@ -26,10 +26,19 @@ const LoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" 
   {...args}
   currentUserId="danny_1"
   loading={true}
-  sendMessageLoading={true}
   messages={messages}
   themeColor='#6ea9d7'
 
+/>
+</div>;
+
+const CustomLoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+  {...args}
+  currentUserId="danny_1"
+  loading={true}
+  messages={messages}
+  themeColor='#6ea9d7'
+  customLoaderComponent={<div style={{backgroundColor: "red"}}>Custom Loading...</div>}
 />
 </div>;
 
@@ -37,7 +46,6 @@ const SendMessageLoadingTemplate: Story<ChatProps> = args => <div style={{ heigh
   {...args}
   currentUserId="danny_1"
   loading={false}
-  sendMessageLoading={true}
   themeColor='#6ea9d7'
 
   messages={[
@@ -74,6 +82,15 @@ const NoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh
 />
 </div>;
 
+const CustomNoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+  {...args}
+  currentUserId="danny_1"
+  messages={[]}
+  themeColor='#6ea9d7'
+  customEmptyMessagesComponent={<div>Custom No Messages View...</div>}
+/>
+</div>;
+
 
 const WithPaddingContainer = styled.div`
     height: 400px; 
@@ -96,7 +113,6 @@ const TypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ height: 
   {...args}
   currentUserId="danny_1"
   loading={false}
-  sendMessageLoading={true}
   themeColor='#6ea9d7'
   showTypingIndicator={true}
   typingIndicatorContent="Mark is typing"
@@ -120,7 +136,6 @@ const CustomTypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ he
   currentUserId="danny_1"
   loading={false}
   customTypingIndicatorComponent={<div>Custom typing indicator working!</div>}
-  sendMessageLoading={true}
   themeColor='#6ea9d7'
   showTypingIndicator={true}
   typingIndicatorContent="Mark is typing"
@@ -145,7 +160,10 @@ export const Default = Template.bind({});
 export const WithPadding = TemplateWithPadding.bind({});
 export const FewMessages = FewEntriesTemplate.bind({});
 export const NoMessages = NoEntriesTemplate.bind({});
+export const CustomNoMessages = CustomNoEntriesTemplate.bind({});
 export const MessagesLoading = LoadingTemplate.bind({});
+export const CustomMessagesLoading = CustomLoadingTemplate.bind({});
+
 export const SendMessageLoading = SendMessageLoadingTemplate.bind({});
 export const TypingIndicator = TypingIndicatorTemplate.bind({});
 export const CustomTypingIndicator = CustomTypingIndicatorTemplate.bind({});

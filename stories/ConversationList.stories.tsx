@@ -39,7 +39,14 @@ const NoChatsTemplate: Story<Props> = args => <ConversationList
 
 />
 
+const CustomNoChatsTemplate: Story<Props> = args => <ConversationList
+  {...args}
+  selectedConversationId='1'
+  conversations={[]}
+  themeColor='#6ea9d7'
+  customEmptyConversationsComponent={<div>Custom No Chats View...</div>}
 
+/>
 
 const LoadingTemplate: Story<Props> = args => <div style={{
   height: "100vh",
@@ -52,6 +59,22 @@ const LoadingTemplate: Story<Props> = args => <div style={{
     loading={true}
     conversations={chats}
     themeColor='#6ea9d7'
+
+  />
+</div>
+
+const CustomLoadingTemplate: Story<Props> = args => <div style={{
+  height: "100vh",
+  borderWidth: 1,
+  borderColor: "black",
+  borderStyle: "solid",
+}}> <ConversationList
+    {...args}
+    selectedConversationId='1'
+    loading={true}
+    conversations={chats}
+    themeColor='#6ea9d7'
+    customLoaderComponent={<div>Custom Loading...</div>}
 
   />
 </div>
@@ -87,7 +110,9 @@ export const Default = Template.bind({});
 export const WithPadding = TemplateWithPadding.bind({});
 export const FewConversation = FewChatsTemplate.bind({});
 export const LoadingConversation = LoadingTemplate.bind({});
+export const CustomLoadingConversation = CustomLoadingTemplate.bind({});
 export const NoConversation = NoChatsTemplate.bind({});
+export const CustomNoConversation = CustomNoChatsTemplate.bind({});
 export const CustomConversationItem = TemplateCustomConversationItem.bind({});
 
 
