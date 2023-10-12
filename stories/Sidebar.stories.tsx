@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Sidebar, { Props } from "../src/sidebar"
 import { chats } from './data';
-import ConversationContainer from '../src/conversation-container';
+import ConversationList from '../src/conversation-list';
 
 const meta: Meta = {
   title: 'Sidebar',
@@ -14,7 +14,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<Props> = args => <Sidebar> <ConversationContainer
+const Template: Story<Props> = args => <Sidebar> <ConversationList
   {...args}
   conversations={chats}
   themeColor='#6ea9d7'

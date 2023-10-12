@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Message from '../message'
 import styled from 'styled-components'
-import useCheckIsMobile from '../hooks/useCheckIsMobile'
 import Loading from '../loading'
 import useDetectScrollPosition from '../hooks/useDetectScrollPosition'
 import MessageType from '../MessageType'
 import TypingIndicator from '../typing-indicator'
+import MessageListBackground from '../message-list-background'
 
 export type ChatProps = {
     themeColor?: string
@@ -40,27 +40,6 @@ const InnerContainer = styled.div`
 height: 100%;
 `
 
-
-const ScrollBackground = styled.div`
-background-color: #f3f4f6;
-position: relative;
-width: 100%;
-height: 100%;
-border-radius: 16px;
-
-`
-
-const ScrollBackgroundContainer = styled.div<{ mobile: boolean }>`
-position: absolute;
-width: 100%;
-height: 100%;
-z-index: 0;
-box-sizing: border-box;
-${({ mobile }) => !mobile ? `
-padding-right: 12px;
-` : ""}
-
-`
 
 const ScrollContainer = styled.div`
 overflow-y: auto;
@@ -126,8 +105,6 @@ export default function MessageList({
 
     const bottomBufferRef = useRef<any>()
     const scrollContainerRef = useRef<any>()
-
-    const isMobile = useCheckIsMobile(containerRef)
 
     const { detectBottom, detectTop } = useDetectScrollPosition(scrollContainerRef)
 
@@ -199,9 +176,7 @@ export default function MessageList({
             ref={containerRef}
         >
 
-            <ScrollBackgroundContainer mobile={mobileView || isMobile}>
-                <ScrollBackground />
-            </ScrollBackgroundContainer>
+         <MessageListBackground mobileView={mobileView}/>
 
 
             <InnerContainer>

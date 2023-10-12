@@ -16,6 +16,10 @@ export default meta;
 
 const Template: Story<Props> = args => <MessageInput
   {...args}
+  // onStartTyping={()=>console.log("typing started")}
+  // onEndTyping={()=>console.log("typing stopped")}
+  // onKeyDown={()=>console.log("key down")}
+  // onKeyUp={()=>console.log("key up")}
 
   themeColor='#6ea9d7'
   onAttachClick={()=>console.log("onAttachClick")}

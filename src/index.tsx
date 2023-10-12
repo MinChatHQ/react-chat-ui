@@ -1,4 +1,5 @@
 import MessageList from "./message-list";
+import MessageListBackground from "./message-list-background";
 import ConversationList from "./conversation-list";
 import MainContainer from "./main-container";
 import Loading from "./loading";
@@ -26,5 +27,6 @@ export {
   TypingIndicator,
   useCheckIsMobile,
   useTypingListener,
-  Sidebar
+  Sidebar,
+  MessageListBackground
 }
