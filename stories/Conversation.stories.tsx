@@ -43,6 +43,27 @@ const UnseenTemplate: Story<Props> = args => <Conversation
   }}
   onClick={() => { }} />
 
+const UnseenFileTemplate: Story<Props> = args => <Conversation
+  title='GroupChat'
+  avatar='https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+  lastMessage={{
+    seen: false,
+    text: "Hello everbody"
+    ,
+    media: {
+      type: "file",
+      url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
+      name: "Architecture Design.pdf"
+    },
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
+
 
 const NoAvatarTemplate: Story<Props> = args => <Conversation
   title='GroupChat'
@@ -79,7 +100,46 @@ const ImageMessageTemplate: Story<Props> = args => <Conversation
   lastMessage={{
     seen: true,
     text: "Hello everbody",
-    image: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    media: {
+      type: "image",
+      url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    }
+    ,
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
+const FileMessageTemplate: Story<Props> = args => <Conversation
+  selected={true}
+  title='GroupChat'
+  lastMessage={{
+    seen: true,
+    media: {
+      type: "file",
+      url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    }
+    ,
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
+const VideoMessageTemplate: Story<Props> = args => <Conversation
+  selected={true}
+  title='GroupChat'
+  lastMessage={{
+    seen: true,
+    media: {
+      type: "video",
+      url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    }
     ,
     user: {
       id: "martha_stewart",
@@ -94,9 +154,14 @@ const ImageMessageTemplate: Story<Props> = args => <Conversation
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 export const NewMessage = UnseenTemplate.bind({});
+export const NewFileMessage = UnseenFileTemplate.bind({});
 export const WithPlaceholderAvatar = NoAvatarTemplate.bind({});
 export const Selected = SelectedTemplate.bind({});
 export const ImageMessage = ImageMessageTemplate.bind({});
+export const VideoMessage = VideoMessageTemplate.bind({});
+export const FileMessage = FileMessageTemplate.bind({});
+
+
 
 
 

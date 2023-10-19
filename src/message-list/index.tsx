@@ -212,7 +212,7 @@ export default function MessageList({
                                         <p>No messages yet...</p>
                                     </NoMessagesTextContainer>)
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, image, loading: messageLoading }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, media, loading: messageLoading }, index) => {
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 
@@ -243,7 +243,7 @@ export default function MessageList({
                                         last={single ? false : last}
                                         single={single}
                                         text={text}
-                                        image={image}
+                                        media={media}
                                         // the last message should show loading if sendMessage loading is true
                                         loading={messageLoading}
                                         clusterFirstMessage={firstClusterMessage}
@@ -258,7 +258,7 @@ export default function MessageList({
                                         themeColor={themeColor}
                                         key={index}
                                         user={user}
-                                        image={image}
+                                        media={media}
                                         showAvatar={lastClusterMessage}
                                         showHeader={firstClusterMessage}
                                         last={single ? false : last}

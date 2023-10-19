@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MessageType from '../MessageType';
 import placeholderProfilePNG from './profile.png';
-import imageIcon from './image-gallery.png';
-import imageGrayIcon from './image-gallery-gray.png';
 
 export type Props = {
   title: string;
@@ -164,13 +162,13 @@ const DisplayPicture = styled.img`
   object-fit: cover;
 `;
 
-const ImageIcon = styled.img`
-  width: 12px;
-  height: 12px;
+const MediaIconContainer = styled.div`
+  width: 16px;
+  height: 16px;
   margin-left: 3px;
 `;
 
-const ImageContainer = styled.div`
+const MediaContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -221,6 +219,61 @@ export default function Conversation({
     }
   };
 
+
+  const getMediaIcon = () => {
+
+    switch (lastMessage?.media?.type) {
+      case "image":
+        return <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          width={"100%"}
+          height={"100%"}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        </svg>
+
+      case "video":
+        return <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          width={"100%"}
+          height={"100%"}
+        >
+          <path strokeLinecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+
+      default:
+        return <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none" viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          width={"100%"}
+          height={"100%"}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+        </svg>
+
+    }
+  }
+
+  const getMediaText = () => {
+
+    switch (lastMessage?.media?.type) {
+      case "image":
+        return "Image"
+      case "video":
+        return lastMessage?.media?.name ? lastMessage?.media?.name : "Video"
+      default:
+        return lastMessage?.media?.name ? lastMessage?.media?.name : "File"
+    }
+  }
+
   return (
     <Container ref={containerRef} onClick={onClick} className="fade-animation">
       <Background selected={selected} themeColor={themeColor} />
@@ -248,14 +301,13 @@ export default function Conversation({
               ? 'You'
               : lastMessage?.user.name}
             :{'  '}
-            {lastMessage?.image ? (
-              <ImageContainer>
-                <ImageIcon
-                  src={selected ? imageIcon : imageGrayIcon}
-                  alt="image icon"
-                />{'  '}
-                Image
-              </ImageContainer>
+            {lastMessage?.media ? (
+              <MediaContainer>
+                <MediaIconContainer>
+                  {getMediaIcon()}
+                </MediaIconContainer>
+                {getMediaText()}
+              </MediaContainer>
             ) : (
               lastMessage?.text
             )}

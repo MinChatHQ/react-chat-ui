@@ -4,6 +4,7 @@ export interface MediaType {
   type: "image" | "video" | "file"
   url: string
   size?: string
+  name?: string
 }
 
 type MessageType = {
