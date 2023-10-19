@@ -2,11 +2,12 @@ import React from 'react'
 import User from '../UserType';
 import OutgoingMessage from './outgoing-message'
 import IncomingMessage from './incoming-message'
+import { MediaType } from '../MessageType';
 
 
 export type Props = {
     text?: string,
-    image?: string,
+    media?: MediaType,
     loading?: boolean
     themeColor?: string
     type?: "incoming" | "outgoing"
@@ -25,7 +26,7 @@ export type Props = {
 
 export default function Message({
     text,
-    image,
+    media,
     themeColor,
     loading,
     type = "outgoing",
@@ -43,7 +44,7 @@ export default function Message({
                 themeColor={themeColor}
                 loading={loading}
                 text={text}
-                image={image}
+                media={media}
                 last={last}
                 single={single}
                 clusterFirstMessage={clusterFirstMessage}
@@ -56,7 +57,7 @@ export default function Message({
                 showAvatar={showAvatar}
                 themeColor={themeColor}
                 text={text}
-                image={image}
+                media={media}
                 user={user}
                 showHeader={showHeader}
                 last={last}

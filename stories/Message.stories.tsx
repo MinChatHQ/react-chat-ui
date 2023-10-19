@@ -63,7 +63,7 @@ const WithAvatarTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
-  text="Hello World!"
+  text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
 const ImageContentTemplate: Story<Props> = args => <Message
@@ -76,8 +76,44 @@ const ImageContentTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
-  image="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  media={{
+    type: "image",
+    url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
 />
+
+const FileContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  showAvatar={true}
+  media={{
+    type: "file",
+    url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
+    size: "2 mb"
+
+  }} />
+
+const VideoContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  showAvatar={true}
+  media={{
+    type: "video",
+    url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
+    size: "2 mb"
+  }} />
 
 const WithHeaderTemplate: Story<Props> = args => <Message
   {...args}
@@ -134,7 +170,7 @@ const SingleOutgoingTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   single
-  text="Hello World!"
+  text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
 const LastOutgoingTemplate: Story<Props> = args => <Message
@@ -147,7 +183,7 @@ const LastOutgoingTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   last
-  text="Hello World!"
+  text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
 const OutgoingImageContentTemplate: Story<Props> = args => <Message
@@ -160,7 +196,42 @@ const OutgoingImageContentTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   showAvatar={true}
-  image="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  media={{
+    type: "image",
+    url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }} />
+
+const OutgoingFileContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="outgoing"
+  showAvatar={true}
+  media={{
+    type: "file",
+    url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
+    size: "2 mb"
+  }} />
+
+const OutgoingVideoContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="outgoing"
+  showAvatar={true}
+  media={{
+    type: "video",
+    url: "https://www.youtube.com/watch?v=dfhbmlm4emI",
+    size: "2 mb"
+  }}
 />
 
 
@@ -173,6 +244,10 @@ export const IncomingWithHeader = WithHeaderTemplate.bind({});
 export const SingleIncoming = SingleIncomingTemplate.bind({});
 export const LastIncoming = LastIncomingTemplate.bind({});
 export const IncomingImageContent = ImageContentTemplate.bind({});
+export const IncomingFileContent = FileContentTemplate.bind({});
+export const IncomingVideoContent = VideoContentTemplate.bind({});
+
+
 
 
 
@@ -181,6 +256,9 @@ export const SingleOutgoing = SingleOutgoingTemplate.bind({});
 export const LastOutgoing = LastOutgoingTemplate.bind({});
 export const SendMessageLoading = LoadingTemplate.bind({});
 export const OutgoingImageContent = OutgoingImageContentTemplate.bind({});
+export const OutgoingFileContent = OutgoingFileContentTemplate.bind({});
+export const OutgoingVideoContent = OutgoingVideoContentTemplate.bind({});
+
 
 
 

@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import User from '../../UserType'
 import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../outgoing-message'
 import placeholderProfilePNG from './profile.webp'
+import MediaContent from '../media-content'
+import { MediaType } from '../../MessageType'
+import { getBorderCss } from '../borderController'
 
 type Props = {
     text?: string,
-    image?: string,
+    media?: MediaType,
     user?: User,
     themeColor?: string
     showAvatar?: boolean
@@ -82,20 +85,11 @@ const HeaderContainer = styled.div`
  margin-bottom: 6px;
  `
 
-const ImageContainer = styled.div`
-    width: 100%;
-    margin: 8px;
-    position: relative;
-    `
-
-const Image = styled.img`
-    width: 100%;
- `
 
 
 export default function IncomingMessage({
     text,
-    image,
+    media,
     user,
     showAvatar,
     showHeader,
@@ -143,18 +137,21 @@ export default function IncomingMessage({
                 <div style={{ display: "flex" }}>
                     <MessageContainer>
                         <OtherMessageBackground
-                            borderTopRight
-                            borderBottomRight={!last ? true : false}
-                            borderBottomLeft={last || single ? true : false}
+                            borderCss={(() => getBorderCss({
+                                type: "incoming",
+                                last,
+                                single
+                            }))()}
                             bgColor={themeColor} />
 
-                        {image ?
-                            <ImageContainer>
-                                <Image src={image} />
-                            </ImageContainer>
+                        {media ? <MediaContent
+                            last={last}
+                            single={single}
+                            messageType='incoming'
+                            {...media} />
                             :
-                            <Content>{text}</Content>
-                        }
+                            <Content>{text}</Content>}
+
                     </MessageContainer>
                 </div>
 

@@ -1,13 +1,19 @@
 import UserType from "./UserType"
 
- type MessageType = {
-    user: UserType
-    id?: string
-    text?: string
-    image?: string
-    created_at?: string
-    seen?: boolean
-    loading?: boolean
-  }
+export interface MediaType {
+  type: "image" | "video" | "file"
+  url: string
+  size?: string
+}
 
-  export default MessageType
+type MessageType = {
+  user: UserType
+  id?: string
+  text?: string
+  media?: MediaType
+  created_at?: string
+  seen?: boolean
+  loading?: boolean
+}
+
+export default MessageType

@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import Loading from './loading'
+import MediaContent from '../media-content'
+import { MediaType } from '../../MessageType'
+import { getBorderCss } from '../borderController'
 
 type Props = {
     text?: string,
-    image?: string,
+    media?: MediaType,
     loading?: boolean
     themeColor?: string
     // determines whether its the last message in the group of outgoing messages
@@ -38,26 +41,17 @@ align-items:flex-end;
 gap:10px;
 position:relative;
 box-sizing: border-box;
-
 `
 export const Background = styled.div<{
     bgColor: string,
-    borderTopRight?: boolean,
-    borderTopLeft?: boolean,
-    borderBottomLeft?: boolean,
-    borderBottomRight?: boolean,
+    borderCss: string,
 }>`
     position: absolute;
     width: 100%;
     height: 100%;
     background-color:${({ bgColor }) => bgColor};
 
-    border-top-left-radius: ${({ borderTopLeft }) => borderTopLeft ? "8px" : "2px"};
-    border-top-right-radius: ${({ borderTopRight }) => borderTopRight ? "8px" : "2px"};
-    border-bottom-left-radius: ${({ borderBottomLeft }) => borderBottomLeft ? "8px" : "2px"};
-    border-bottom-right-radius: ${({ borderBottomRight }) => borderBottomRight ? "8px" : "2px"};
-
-
+    ${({ borderCss }) => borderCss};
 `
 
 export const Content = styled.div`
@@ -74,7 +68,8 @@ padding-top:8px;
 padding-bottom:8px;
 position: relative;
 box-sizing: border-box;
-
+word-wrap: break-word;
+width: 100%;
 `
 
 // const Check = styled.img`
@@ -115,19 +110,9 @@ const LoadingContainer = styled.div`
     align-items: center;
 `
 
-const ImageContainer = styled.div`
-    width: 100%;
-    margin: 8px;
-    position: relative;
-    `
-
-const Image = styled.img`
-    width: 100%;
- `
-
 export default function MyMessage({
     text,
-    image,
+    media,
     themeColor = '#6ea9d7',
     loading,
     last,
@@ -150,19 +135,20 @@ export default function MyMessage({
 
                 <Container>
                     <Background
-                        borderTopLeft
-                        borderBottomLeft
-                        borderBottomRight={last ? true : false}
-                        borderTopRight={!last && single ? true : false}
+                        borderCss={(() => getBorderCss({
+                            type: "outgoing",
+                            last,
+                            single
+                        }))()}
                         bgColor={themeColor} />
 
-                    {image ?
-                        <ImageContainer>
-                            <Image src={image} />
-                        </ImageContainer>
+                    {media ? <MediaContent
+                        last={last}
+                        single={single}
+                        messageType='outgoing'
+                        {...media} />
                         :
-                        <Content>{text}</Content>
-                    }
+                        <Content>{text}</Content>}
 
 
                     {loading && <LoadingContainer> <Loading /> </LoadingContainer>}
