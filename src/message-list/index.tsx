@@ -7,7 +7,7 @@ import MessageType from '../MessageType'
 import TypingIndicator from '../typing-indicator'
 import MessageListBackground from '../message-list-background'
 
-export type ChatProps = {
+export type MessageListProps = {
     themeColor?: string
     messages?: MessageType[]
     currentUserId?: string
@@ -97,7 +97,7 @@ export default function MessageList({
     customTypingIndicatorComponent,
     customLoaderComponent,
     customEmptyMessagesComponent
-}: ChatProps) {
+}: MessageListProps) {
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
     const [messagesWasEmpty, setMessagesWasEmpty] = useState(true)

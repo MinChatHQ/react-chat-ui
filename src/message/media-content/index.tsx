@@ -13,7 +13,6 @@ interface Props extends MediaType {
 const ImageContainer = styled.div`
     width: 100%;
     margin: 2px;
-    margin-bottom: -1px;
     position: relative;
     `
 
