@@ -149,6 +149,25 @@ const VideoMessageTemplate: Story<Props> = args => <Conversation
   }}
   onClick={() => { }} />
 
+  const GifMessageTemplate: Story<Props> = args => <Conversation
+  selected={true}
+  title='GroupChat'
+  lastMessage={{
+    seen: true,
+    media: {
+      type: "gif",
+      url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    }
+    ,
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
+
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
@@ -160,6 +179,8 @@ export const Selected = SelectedTemplate.bind({});
 export const ImageMessage = ImageMessageTemplate.bind({});
 export const VideoMessage = VideoMessageTemplate.bind({});
 export const FileMessage = FileMessageTemplate.bind({});
+export const GifMessage = GifMessageTemplate.bind({});
+
 
 
 

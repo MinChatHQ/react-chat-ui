@@ -115,6 +115,22 @@ const VideoContentTemplate: Story<Props> = args => <Message
     size: "2 mb"
   }} />
 
+const GifContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  showAvatar={true}
+  media={{
+    type: "gif",
+    url: "https://media2.giphy.com/media/sugyoDHOvvFVawa7qZ/giphy.gif?cid=ecf05e47c6mrta3sn8ol5nv1hgz6eu8jew3b2v0iya4ckbmv&ep=v1_gifs_gifId&rid=giphy.gif&ct=s",
+    size: "2 mb"
+  }} />
+
 const WithHeaderTemplate: Story<Props> = args => <Message
   {...args}
   user={{
@@ -235,6 +251,23 @@ const OutgoingVideoContentTemplate: Story<Props> = args => <Message
 />
 
 
+const OutgoingGifContentTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="outgoing"
+  showAvatar={true}
+  media={{
+    type: "gif",
+    url: "https://media2.giphy.com/media/sugyoDHOvvFVawa7qZ/giphy.gif?cid=ecf05e47c6mrta3sn8ol5nv1hgz6eu8jew3b2v0iya4ckbmv&ep=v1_gifs_gifId&rid=giphy.gif&ct=s",
+    size: "2 mb"
+  }}
+/>
+
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
@@ -246,6 +279,8 @@ export const LastIncoming = LastIncomingTemplate.bind({});
 export const IncomingImageContent = ImageContentTemplate.bind({});
 export const IncomingFileContent = FileContentTemplate.bind({});
 export const IncomingVideoContent = VideoContentTemplate.bind({});
+export const IncomingGifContent = GifContentTemplate.bind({});
+
 
 
 
@@ -258,6 +293,8 @@ export const SendMessageLoading = LoadingTemplate.bind({});
 export const OutgoingImageContent = OutgoingImageContentTemplate.bind({});
 export const OutgoingFileContent = OutgoingFileContentTemplate.bind({});
 export const OutgoingVideoContent = OutgoingVideoContentTemplate.bind({});
+export const OutgoingGifContent = OutgoingGifContentTemplate.bind({});
+
 
 
 

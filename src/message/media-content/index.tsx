@@ -87,7 +87,7 @@ export default function MediaContent({
 
     return (
         <>
-            {type === 'image' &&
+            {(type === 'image' || type === 'gif') &&
                 <ImageContainer>
                     <Image
                         borderCss={(() => getBorderCss({
@@ -95,9 +95,12 @@ export default function MediaContent({
                             last,
                             single
                         }))()}
-                        src={url} />
+                        src={url}
+                        alt={url} />
                 </ImageContainer>
             }
+
+
 
             {(type === 'file' || type === 'video') &&
                 <div style={{ position: "relative", width: "100%" }}>
