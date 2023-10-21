@@ -23,10 +23,10 @@ export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolea
     display:flex;
     justify-content: end;
     margin-right: 10px;
-    margin-top: ${({ firstMessage }) => firstMessage ? "16px" : "6px"};
+    margin-top: ${({ firstMessage }) => firstMessage ? "16px" : "2px"};
     position: relative;
     box-sizing: border-box;
-    margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "6px"};
+    margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "2px"};
 `
 
 

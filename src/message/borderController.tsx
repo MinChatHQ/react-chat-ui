@@ -14,7 +14,7 @@ export const getBorderCss = ({
 
     let borderTopLeft, borderTopRight, borderBottomLeft, borderBottomRight
 
-    if (type === "incoming") {
+    if (type === "outgoing") {
         borderTopLeft = true
         borderBottomLeft = true
         borderBottomRight = last ? true : false

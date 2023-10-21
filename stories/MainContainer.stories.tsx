@@ -11,6 +11,7 @@ import MessageHeader from '../src/message-header';
 import MessageInput from '../src/message-input';
 import MessageList from '../src/message-list';
 import MessageContainer from '../src/message-container';
+import MessageListBackground from '../src/message-list-background';
 
 
 
@@ -43,6 +44,31 @@ export default meta
 const Template: Story<Props> = args => {
 
 
+    return  <MainContainer
+    {...args}
+     style={{ height: '100vh'}}>
+        <Sidebar>
+            <ConversationHeader showHeader={false} />
+
+            <ConversationList
+                conversations={chats}
+            />
+        </Sidebar>
+
+        <MessageContainer>
+            <MessageHeader showBack={false}> Welcome</MessageHeader>
+            <MessageList
+                currentUserId="danny_1"
+                messages={messages}
+            />
+            <MessageInput />
+        </MessageContainer>
+    </MainContainer>
+}
+
+const NoSelectedChatTemplate: Story<Props> = args => {
+
+
     return <MainContainer style={{ height: '100vh' }}>
         <Sidebar>
             <ConversationHeader />
@@ -53,12 +79,7 @@ const Template: Story<Props> = args => {
         </Sidebar>
 
         <MessageContainer>
-            <MessageHeader> Welcome</MessageHeader>
-            <MessageList
-                currentUserId="danny_1"
-                messages={messages}
-            />
-            <MessageInput />
+            <MessageListBackground />
         </MessageContainer>
     </MainContainer>
 }
@@ -67,14 +88,14 @@ const MobileTemplate: Story<Props> = args => {
     return <div style={{ width: "100%", height: "100%" }}>
         <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
             <MainContainer style={{ height: '100vh' }}>
-                    <ConversationHeader />
+                <ConversationHeader />
 
-                    <ConversationList
-                        conversations={chats}
-                    />
-             
+                <ConversationList
+                    conversations={chats}
+                />
 
-            </MainContainer> 
+
+            </MainContainer>
         </div>
 
     </div>
@@ -107,18 +128,6 @@ const MobileTemplate: Story<Props> = args => {
 //     </div>
 // }
 
-
-// const NoSelectedChatTemplate: Story<Props> = args => <MainContainer
-
-//     {...args}
-//     inbox={{
-
-//         themeColor: "#6ea9d7",
-//         conversations: chats,
-//         loading: false,
-//     }}
-//     selectedConversation={undefined}
-// />;
 
 // const MobileNoSelectedChatTemplate: Story<Props> = args =>
 //     <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
@@ -183,7 +192,7 @@ const MobileTemplate: Story<Props> = args => {
 export const Default = Template.bind({});
 export const Mobile = MobileTemplate.bind({});
 // export const MobileNoSelectedConversation = MobileNoSelectedChatTemplate.bind({});
-// export const NoSelectedConversation = NoSelectedChatTemplate.bind({});
+export const NoSelectedConversation = NoSelectedChatTemplate.bind({});
 // export const NoConversation = NoChatsTemplate.bind({});
 // export const WithPadding = TemplateWithPadding.bind({});
 // export const LoadingConversation = LoadingTemplate.bind({});
