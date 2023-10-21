@@ -6,6 +6,7 @@ import Loading from "./loading";
 import Message from "./message"
 import MessageInput from "./message-input";
 import MessageHeader from "./message-header";
+import MessageContainer from "./message-container";
 import ConversationHeader from "./conversation-header";
 import TypingIndicator from "./typing-indicator";
 import useCheckIsMobile from "./hooks/useCheckIsMobile";
@@ -28,5 +29,6 @@ export {
   useCheckIsMobile,
   useTypingListener,
   Sidebar,
-  MessageListBackground
+  MessageListBackground,
+  MessageContainer
 }

@@ -39,22 +39,25 @@ yarn add @minchat/react-chat-ui
 ```jsx
 import {
     MainContainer,
-    MessageInput
-    } from "@minchat/react-chat-ui";
+    MessageInput,
+    MessageContainer
+} from "@minchat/react-chat-ui";
 
 <MainContainer style={{ height: '100vh' }}>
-    <MessageHeader/>
-    <MessageList
-        currentUserId='dan'
-        messages={[{
-            text: 'Hello',
-            user: {
-                id: 'mark',
-                name: 'Markus',
-            },
-        }]}
-    >
-    <MessageInput placeholder="Type message here" />
+    <MessageContainer>
+        <MessageHeader/>
+        <MessageList
+            currentUserId='dan'
+            messages={[{
+                text: 'Hello',
+                user: {
+                    id: 'mark',
+                    name: 'Markus',
+                },
+            }]}
+        >
+        <MessageInput placeholder="Type message here" />
+    </MessageContainer>
 </MainContainer>
 ```
 
