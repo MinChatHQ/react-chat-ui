@@ -10,6 +10,8 @@ import ConversationHeader from '../src/conversation-header';
 import MessageHeader from '../src/message-header';
 import MessageInput from '../src/message-input';
 import MessageList from '../src/message-list';
+import MessageContainer from '../src/message-container';
+
 
 
 
@@ -40,30 +42,6 @@ export default meta
 
 const Template: Story<Props> = args => {
 
-    // return <div style={{ height: '100vh' }}> <MainContainer
-    //     {...args}
-    //     inbox={{
-    //         onScrollToBottom: () => { },
-    //         themeColor: "#6ea9d7",
-    //         conversations: chats,
-    //         loading: false,
-    //         onConversationClick: () => console.log("onChat click"),
-    //         selectedConversationId: "1",
-    //         currentUserId: "me"
-    //     }}
-    //     selectedConversation={
-    //         {
-    //             themeColor: "#6ea9d7",
-    //             messages,
-    //             header: "Sandra Bullock",
-    //             currentUserId: "danny_1",
-    //             onSendMessage: () => console.log("onSendMessage"),
-    //             onBack: () => { }
-
-    //         }
-    //     }
-    // />
-    // </div>
 
     return <MainContainer style={{ height: '100vh' }}>
         <Sidebar>
@@ -74,37 +52,28 @@ const Template: Story<Props> = args => {
             />
         </Sidebar>
 
-        <div style={{ position: "relative", width: "100%" }}>
+        <MessageContainer>
             <MessageHeader> Welcome</MessageHeader>
             <MessageList
                 currentUserId="danny_1"
                 messages={messages}
             />
             <MessageInput />
-        </div>
+        </MessageContainer>
     </MainContainer>
 }
 
 const MobileTemplate: Story<Props> = args => {
-    return <div style={{ width: "100%", height: "100%", backgroundColor: 'blue' }}>
+    return <div style={{ width: "100%", height: "100%" }}>
         <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
             <MainContainer style={{ height: '100vh' }}>
-                {/* <Sidebar> */}
                     <ConversationHeader />
 
                     <ConversationList
                         conversations={chats}
                     />
-                {/* </Sidebar>
+             
 
-                <div style={{ position: "relative", width: "100%" }}>
-                    <MessageHeader> Welcome</MessageHeader>
-                    <MessageList
-                        currentUserId="danny_1"
-                        messages={messages}
-                    />
-                    <MessageInput />
-                </div>*/}
             </MainContainer> 
         </div>
 

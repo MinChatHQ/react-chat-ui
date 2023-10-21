@@ -32,7 +32,6 @@ max-height: 100vh;
 overflow-y: hidden;
 /* background-color: #ffffff; */
 padding-left: 0px;
-border-radius: 16px;
 padding-right: 12px; 
 `
 
@@ -59,7 +58,7 @@ scrollbar-width: none; /* Firefox */
 `
 
 const Buffer = styled.div`
-    height: 60px;
+    height: 2px;
     width: 100%;
     position: relative;
 `
@@ -176,7 +175,9 @@ export default function MessageList({
             ref={containerRef}
         >
 
-         <MessageListBackground mobileView={mobileView}/>
+            <MessageListBackground
+                roundedCorners={false}
+                mobileView={mobileView} />
 
 
             <InnerContainer>
@@ -198,11 +199,6 @@ export default function MessageList({
                                 }
                             }}
                             ref={scrollContainerRef}>
-
-                            {/* top buffer */}
-                            <div>
-                                <Buffer />
-                            </div>
 
                             {(messages && messages.length <= 0) &&
                                 (customEmptyMessagesComponent ?

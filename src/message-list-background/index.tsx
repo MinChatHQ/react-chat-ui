@@ -1,16 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ScrollBackground = styled.div`
+const ScrollBackground = styled.div<{
+    roundedCorners?: boolean
+}>`
 background-color: #f3f4f6;
 position: relative;
 width: 100%;
 height: 100%;
-border-radius: 16px;
+border-radius: ${({ roundedCorners }) => roundedCorners ? '16px' : '0px'};
 
 `
 
-const ScrollBackgroundContainer = styled.div<{ mobile?: boolean }>`
+const ScrollBackgroundContainer = styled.div<{
+    mobile?: boolean,
+}>`
 position: absolute;
 width: 100%;
 height: 100%;
@@ -23,13 +27,18 @@ padding-right: 12px;
 `
 
 type Props = {
-    mobileView?: boolean
+    mobileView?: boolean,
+    roundedCorners?: boolean
 }
 
-export default function MessageListBackground({ mobileView }: Props) {
+export default function MessageListBackground({
+    mobileView,
+    roundedCorners = true
+}: Props) {
+
     return (
         <ScrollBackgroundContainer mobile={mobileView}>
-            <ScrollBackground />
+            <ScrollBackground roundedCorners={roundedCorners} />
         </ScrollBackgroundContainer>
     )
 }
