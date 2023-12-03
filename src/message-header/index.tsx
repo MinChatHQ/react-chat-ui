@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
+import { calculateLastSeen } from '../utils/date-utils'
 
 export type Props = {
     onBack?: () => void
@@ -107,29 +108,7 @@ export default function MessageHeader({
          */
         function updateLastSeen() {
             if (lastActive) {
-                const currentDate = new Date()
-
-                const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(lastActive.toUTCString())).getTime();
-                const minutesAgo = Math.floor(timeDifference / (1000 * 60));
-                const hoursAgo = Math.floor(minutesAgo / 60);
-                const daysAgo = Math.floor(hoursAgo / 24);
-
-
-                if (minutesAgo < 1) {
-                    setLastSeen('Active now');
-                } else if (minutesAgo === 1) {
-                    setLastSeen('Seen 1 minute ago');
-                } else if (minutesAgo < 60) {
-                    setLastSeen(`Seen ${minutesAgo} minutes ago`);
-                } else if (hoursAgo === 1) {
-                    setLastSeen('Seen 1 hour ago');
-                } else if (hoursAgo < 24) {
-                    setLastSeen(`Seen ${hoursAgo} hours ago`);
-                } else if (daysAgo === 1) {
-                    setLastSeen('Seen 1 day ago');
-                } else {
-                    setLastSeen(`Seen ${daysAgo} days ago`);
-                }
+                setLastSeen(calculateLastSeen(lastActive))
             }
         }
 

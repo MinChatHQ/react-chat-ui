@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MessageType from '../MessageType';
 import placeholderProfilePNG from './profile.png';
+import { calculateTimeAgo } from '../utils/date-utils';
 
 export type Props = {
   title: string;
@@ -72,6 +73,25 @@ font-weight: 700;
       : ''}
 `;
 
+const NameContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: space-between;
+`
+
+const Timestamp = styled.div`
+text-align:right;
+vertical-align:text-top;
+font-size:12px;
+margin-left: 6px;
+margin-top:2px;
+margin-right:2px;
+align-self:flex-start;
+line-height:auto;
+color: rgb(75 85 99);
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+`
+
 // const LastMessageUser = styled.div<{ seen?: boolean }>`
 // font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 //     text-align:left;
@@ -122,17 +142,6 @@ font-weight: 600;
       : ''}
 `;
 
-// const TimeSent = styled.div`
-// text-align:left;
-// vertical-align:text-top;
-// font-size:12px;
-// font-family:SF Pro Text;
-// align-self:flex-start;
-// position:relative;
-// color:#7a7a7a;
-// margin-right: 24px;
-// white-space: nowrap;
-// `
 
 const TextContainer = styled.div`
   position: relative;
@@ -191,6 +200,20 @@ export default function Conversation({
   const [usedAvatar, setUsedAvatar] = React.useState<string>(
     placeholderProfilePNG
   );
+
+  const [dateSent, setDateSent] = useState<string | undefined>()
+
+  useEffect(() => {
+    function updateDateSent() {
+      if (lastMessage?.date) {
+        setDateSent(calculateTimeAgo(lastMessage.date))
+      }
+    }
+
+    updateDateSent()
+    setTimeout(() => updateDateSent(), 60_000)
+  }, [])
+
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -305,7 +328,11 @@ export default function Conversation({
         </div>
 
         <TextContainer>
-          <Name seen={lastMessage?.seen}>{title}</Name>
+
+          <NameContainer>
+            <Name seen={lastMessage?.seen}>{title}</Name>
+            <Timestamp>{dateSent}</Timestamp>
+          </NameContainer>
 
           <MessageComponent
             width={containerWidth - 96}

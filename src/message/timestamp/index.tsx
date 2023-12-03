@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Loading from './loading'
 import styled from 'styled-components'
+import { calculateTimeAgo } from '../../utils/date-utils'
 
 type Props = {
     loading?: boolean
@@ -65,32 +66,9 @@ export default function Timestamp({
     const [dateSent, setDateSent] = useState<string | undefined>()
 
     useEffect(() => {
-
-        /**
-         * 
-         */
         function updateDateSent() {
-
             if (date) {
-
-                const currentDate = new Date()
-
-                const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(date.toUTCString())).getTime();
-                const minutesAgo = Math.floor(timeDifference / (1000 * 60));
-                const hoursAgo = Math.floor(minutesAgo / 60);
-                const daysAgo = Math.floor(hoursAgo / 24);
-
-
-                if (minutesAgo < 1) {
-                    setDateSent('just now');
-                }
-                else if (minutesAgo < 60) {
-                    setDateSent(`${minutesAgo}m`);
-                } else if (hoursAgo < 24) {
-                    setDateSent(`${hoursAgo}h`);
-                } else {
-                    setDateSent(`${daysAgo}d`);
-                }
+                setDateSent(calculateTimeAgo(date))
             }
         }
 
@@ -131,9 +109,9 @@ export default function Timestamp({
                                 width="16px"
                                 height="16px"
                                 viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path>
-                                <path 
-                                fill='currentColor'
-                                d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>
+                                <path
+                                    fill='currentColor'
+                                    d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>
 
 
                         }

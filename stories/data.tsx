@@ -35,7 +35,7 @@ export const chats = [
   },
   {
     // id: "3",
-    title: 'Pigments',
+    title: 'This is a group with a long title heading that is multilines long',
     avatar:
       'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     lastMessage: {
