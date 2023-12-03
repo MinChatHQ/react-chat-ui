@@ -1,4 +1,4 @@
-import React, { } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 
 export type Props = {
@@ -6,13 +6,14 @@ export type Props = {
     children?: React.ReactNode
     showBack?: boolean
     mobileView?: boolean
+    lastActive?: Date
 }
 
 
 const Container = styled.div<{ mobile?: boolean }>`
     position: relative;
     width: 100%;
-    height: 56px;
+    height: 64px;
     display: flex;
     box-sizing: border-box;
 
@@ -37,15 +38,34 @@ const InnerContainer = styled.div`
     box-sizing: border-box;
 `
 
+const HeadingContainer = styled.div`
+position:absolute;
+width: 100%;
+
+`
+
 const ChatTitle = styled.div`
     text-align:center;
     vertical-align:text-top;
     font-size:16px;
     line-height:auto;
     color:#000000;
-    position:absolute;
+    position: relative;
     width: 100%;
     font-weight: 500;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+`
+
+const LastSeenText = styled.div`
+    text-align:center;
+    vertical-align:text-top;
+    font-size:10px;
+    line-height:auto;
+    color: rgb(107 114 128);
+    position: relative;
+    width: 100%;
+    font-weight: 100;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 `
@@ -70,7 +90,55 @@ cursor: pointer;
 box-sizing: border-box;
 
 `
-export default function MessageHeader({ onBack, children, showBack = true, mobileView }: Props) {
+export default function MessageHeader({
+    onBack,
+    children,
+    showBack = true,
+    mobileView,
+    lastActive
+}: Props) {
+
+    const [lastSeen, setLastSeen] = useState<string | undefined>()
+
+    useEffect(() => {
+
+        /**
+         * 
+         */
+        function updateLastSeen() {
+            if (lastActive) {
+                const currentDate = new Date()
+
+                const timeDifference = currentDate.getTime() - lastActive.getTime();
+                const minutesAgo = Math.floor(timeDifference / (1000 * 60));
+                const hoursAgo = Math.floor(minutesAgo / 60);
+                const daysAgo = Math.floor(hoursAgo / 24);
+
+
+                if (minutesAgo < 1) {
+                    setLastSeen('Active now');
+                } else if (minutesAgo === 1) {
+                    setLastSeen('Seen 1 minute ago');
+                } else if (minutesAgo < 60) {
+                    setLastSeen(`Seen ${minutesAgo} minutes ago`);
+                } else if (hoursAgo === 1) {
+                    setLastSeen('Seen 1 hour ago');
+                } else if (hoursAgo < 24) {
+                    setLastSeen(`Seen ${hoursAgo} hours ago`);
+                } else if (daysAgo === 1) {
+                    setLastSeen('Seen 1 day ago');
+                } else {
+                    setLastSeen(`Seen ${daysAgo} days ago`);
+                }
+            }
+        }
+
+        updateLastSeen()
+
+        setTimeout(() => updateLastSeen(), 60_000)
+
+    }, [])
+
     return (
         <Container
             mobile={mobileView}>
@@ -88,13 +156,18 @@ export default function MessageHeader({ onBack, children, showBack = true, mobil
                 </BackContainer>
                 }
 
-                <ChatTitle className='fade-animation'>{children}</ChatTitle>
-                {/* <div id='subheader' class='subheader'>
-                Seen 1 hour ago</div> */}
+                <HeadingContainer>
+                    <ChatTitle className='fade-animation'>{children}</ChatTitle>
 
-                {/* <div id='avatar/9/online👆' class='avatar/9/online👆'>
-                <img id='online2' class='online2' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACHSURBVHgBjZDhDUAwFITvdQIbYAMj1CSMYANsYANs0hFsgA1swD3qn2gveWlf70tzOYFXtjYWgpbXgpNwHE7MWz5M6ssN7U3Lxw5fEnRbOvTCn2ouI/50ojSEKoTESIaHRViFgkcEmCi4RIDOMGgfxFiTYU/uF6anXcq7+5q0AYsn9+Ihp/4FtaknQrWVO5cAAAAASUVORK5CYII=' />
-            </div> */}
+                    {lastSeen &&
+                        <LastSeenText>{lastSeen}</LastSeenText>
+                    }
+
+                </HeadingContainer>
+
+                {/* <div id='avatar/9/online👆' className='avatar/9/online👆'>
+                    <img id='online2' className='online2' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACHSURBVHgBjZDhDUAwFITvdQIbYAMj1CSMYANsYANs0hFsgA1swD3qn2gveWlf70tzOYFXtjYWgpbXgpNwHE7MWz5M6ssN7U3Lxw5fEnRbOvTCn2ouI/50ojSEKoTESIaHRViFgkcEmCi4RIDOMGgfxFiTYU/uF6anXcq7+5q0AYsn9+Ihp/4FtaknQrWVO5cAAAAASUVORK5CYII=' />
+                </div> */}
             </InnerContainer>
         </Container>
 
