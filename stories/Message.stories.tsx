@@ -13,6 +13,18 @@ const meta: Meta = {
 
 export default meta;
 
+const date = new Date()
+const minutesAgoDate = new Date(date)
+const hoursAgoDate = new Date(date)
+const daysAgoDate = new Date(date)
+const monthsAgoDate = new Date(date)
+
+
+
+minutesAgoDate.setMinutes(minutesAgoDate.getMinutes() - 10)
+hoursAgoDate.setHours(hoursAgoDate.getHours() - 3)
+daysAgoDate.setDate(daysAgoDate.getDate() - 10)
+monthsAgoDate.setMonth(monthsAgoDate.getMonth() - 2)
 
 const LeftTemplate: Story<Props> = args => <Message
   {...args}
@@ -24,6 +36,7 @@ const LeftTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   text="Hello World!"
+  date={date}
 />
 
 const IncomingWithLinkTemplate: Story<Props> = args => <Message
@@ -36,6 +49,8 @@ const IncomingWithLinkTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   text="Hello World! visit https://google.com to begin searching"
+  date={minutesAgoDate}
+
 />
 
 const OutgoingWithLinkTemplate: Story<Props> = args => <Message
@@ -48,6 +63,8 @@ const OutgoingWithLinkTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   text="Hello World! visit https://google.com to begin searching"
+  date={hoursAgoDate}
+
 />
 
 
@@ -62,6 +79,8 @@ const RightTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   text="Hello World!"
+  date={daysAgoDate}
+
 />
 
 
@@ -76,6 +95,8 @@ const LoadingTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   text="Hello World!"
+  date={monthsAgoDate}
+
 />
 
 const WithAvatarTemplate: Story<Props> = args => <Message
@@ -88,6 +109,7 @@ const WithAvatarTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
+  date={date}
   text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
@@ -101,6 +123,7 @@ const ImageContentTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
+  date={minutesAgoDate}
   media={{
     type: "image",
     url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
@@ -117,6 +140,8 @@ const FileContentTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
+  date={hoursAgoDate}
+
   media={{
     type: "file",
     url: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
@@ -131,6 +156,8 @@ const VideoContentTemplate: Story<Props> = args => <Message
     "name": "Daniel Georgetown",
     avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
   }}
+  date={daysAgoDate}
+
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
@@ -147,6 +174,8 @@ const GifContentTemplate: Story<Props> = args => <Message
     "name": "Daniel Georgetown",
     avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
   }}
+  date={monthsAgoDate}
+
   themeColor='#6ea9d7'
   type="incoming"
   showAvatar={true}
@@ -165,6 +194,7 @@ const WithHeaderTemplate: Story<Props> = args => <Message
   }}
   themeColor='#6ea9d7'
   type="incoming"
+  date={date}
   showAvatar={true}
   showHeader={true}
   text="Hello World!"
@@ -179,6 +209,7 @@ const LastIncomingTemplate: Story<Props> = args => <Message
   }}
   themeColor='#6ea9d7'
   type="incoming"
+  date={minutesAgoDate}
   showAvatar={true}
   last={true}
   text="Hello World!"
@@ -196,6 +227,7 @@ const SingleIncomingTemplate: Story<Props> = args => <Message
   type="incoming"
   showAvatar={true}
   single={true}
+  date={hoursAgoDate}
   text="Hello World!"
 />
 
@@ -211,6 +243,7 @@ const SingleOutgoingTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   single
+  date={daysAgoDate}
   text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
@@ -224,6 +257,7 @@ const LastOutgoingTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="outgoing"
   last
+  date={monthsAgoDate}
   text="Hello World! adfnjflejkrngelrwgnerljgnerlgnewrlgejnurglwejrnglewrkjgnlewrgnljner"
 />
 
@@ -236,6 +270,7 @@ const OutgoingImageContentTemplate: Story<Props> = args => <Message
   }}
   themeColor='#6ea9d7'
   type="outgoing"
+  date={date}
   showAvatar={true}
   media={{
     type: "image",
@@ -251,6 +286,7 @@ const OutgoingFileContentTemplate: Story<Props> = args => <Message
   }}
   themeColor='#6ea9d7'
   type="outgoing"
+  date={minutesAgoDate}
   showAvatar={true}
   media={{
     type: "file",
@@ -265,6 +301,7 @@ const OutgoingVideoContentTemplate: Story<Props> = args => <Message
     "name": "Daniel Georgetown",
     avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
   }}
+  date={date}
   themeColor='#6ea9d7'
   type="outgoing"
   showAvatar={true}
@@ -283,6 +320,7 @@ const OutgoingGifContentTemplate: Story<Props> = args => <Message
     "name": "Daniel Georgetown",
     avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
   }}
+  date={daysAgoDate}
   themeColor='#6ea9d7'
   type="outgoing"
   showAvatar={true}

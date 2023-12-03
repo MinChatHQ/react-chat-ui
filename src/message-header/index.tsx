@@ -109,7 +109,7 @@ export default function MessageHeader({
             if (lastActive) {
                 const currentDate = new Date()
 
-                const timeDifference = currentDate.getTime() - lastActive.getTime();
+                const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(lastActive.toUTCString())).getTime();
                 const minutesAgo = Math.floor(timeDifference / (1000 * 60));
                 const hoursAgo = Math.floor(minutesAgo / 60);
                 const daysAgo = Math.floor(hoursAgo / 24);

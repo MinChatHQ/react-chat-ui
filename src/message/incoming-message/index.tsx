@@ -1,26 +1,13 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import User from '../../UserType'
-import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../outgoing-message'
+import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, Background } from '../outgoing-message'
 import placeholderProfilePNG from './profile.webp'
 import MediaContent from '../media-content'
-import { MediaType } from '../../MessageType'
 import { getBorderCss } from '../borderController'
 import TextContent from '../text-content'
+import { Props } from '..'
+import Timestamp from '../timestamp'
 
-type Props = {
-    text?: string,
-    media?: MediaType,
-    user?: User,
-    themeColor?: string
-    showAvatar?: boolean
-    showHeader?: boolean
-    // determines whether its the last message in the group of incoming messages
-    last?: boolean
-    //determines whether its the only message in the group of incoming messages
-    single?: boolean
-
-}
 
 const MessageContainer = styled(MyMessageContainer)`
     margin-left: 0px;
@@ -68,12 +55,6 @@ margin-left:8px;
 box-sizing: border-box;
 `
 
-const TimestampContainer = styled(MyMessageTimestampContainer)`
-margin-left: 8px;
-margin-bottom: -2px;
-margin-right: 0px;
-box-sizing: border-box;
-`
 
 const OtherMessageBackground = styled(Background)`
     opacity: 0.5;
@@ -96,7 +77,8 @@ export default function IncomingMessage({
     showHeader,
     last,
     single,
-    themeColor = '#6ea9d7' }: Props) {
+    date,
+    themeColor = '#6ea9d7' }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
@@ -127,11 +109,6 @@ export default function IncomingMessage({
                 {showHeader &&
                     <HeaderContainer>
                         <Name>{user?.name}</Name>
-
-
-                        <TimestampContainer>
-                            {/* <Timestamp >13:01 </Timestamp> */}
-                        </TimestampContainer>
                     </HeaderContainer>
                 }
 
@@ -153,6 +130,9 @@ export default function IncomingMessage({
                             :
                             <TextContent>{text}</TextContent>}
 
+                        <Timestamp
+                            date={date}
+                            />
                     </MessageContainer>
                 </div>
 
