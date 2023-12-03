@@ -24,7 +24,7 @@ export const Content = styled.div`
 text-align:right;
 vertical-align:text-top;
 font-size:12px;
-margin-bottom:4px;
+
 margin-right:2px;
 align-self:flex-start;
 line-height:auto;
@@ -32,24 +32,17 @@ color: rgb(75 85 99);
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 `
 
-const Check = styled.img`
-align-self:flex-start;
-top:2.5px;
+const Check = styled.div`
 position:relative;
 width:16px;
 height:16px;
-padding:0px;
+padding-bottom:4px;
+padding-right:4px;
+color: rgb(75 85 99);
 `
 
-const TimestampContainer = styled.div`
-margin-right: 4px;
-margin-bottom: 4px;
-display:flex;
-flex-direction:row;
-justify-content:flex-end;
-align-items:center;
-box-sizing: border-box;
-position:relative;
+const PlaceholderCheck = styled(Check)`
+width:8px;
 `
 
 const Container = styled.div`
@@ -65,7 +58,8 @@ margin-top: -8px;
 export default function Timestamp({
     loading,
     date,
-    showSeen
+    showSeen,
+    seen
 }: Props) {
 
     const [dateSent, setDateSent] = useState<string | undefined>()
@@ -116,11 +110,39 @@ export default function Timestamp({
                 :
                 (showSeen ?
 
-                    <TimestampContainer>
-                        <Check src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACMSURBVHgB7Yy9DYAgEIUVE2pHcAV7GicxbkFopIJWN3AD3cCGws4VXAMqz0QT/CMhWvKSF47LfV8UhXxO4nPMGKsJIblSajp2yAeGh0MXe38ScM7TrQ64klIOrwKtdWOMmUGSPcFCiO4qj+0PpTRDCI3bjDEuQFa64JvgIkn3vsKPAkvSw9i64JCfsgIYfzJLoAJ44wAAAABJRU5ErkJggg==' />
-                    </TimestampContainer>
+
+                    <Check>
+                        {seen ?
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="16px"
+                                height="16px"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"><path
+                                    fillRule="evenodd"
+                                    d="m6 16.293 9.646-9.647.708.708-10 10a.5.5 0 0 1-.708 0l-4-4 .708-.708L6 16.293zm6 0 9.646-9.647.707.708-9.999 10a.5.5 0 0 1-.707 0l-1.5-1.5.707-.708L12 16.293z"
+                                    clipRule="evenodd"></path></svg>
+                            :
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16px"
+                                height="16px"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        }
+                    </Check>
                     :
-                    <div style={{width:"12px"}} />
+                    <PlaceholderCheck />
                 )
             }
         </Container>

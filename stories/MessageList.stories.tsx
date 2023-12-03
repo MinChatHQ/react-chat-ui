@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MessageList, { ChatProps } from '../src/message-list';
+import MessageList, { MessageListProps } from '../src/message-list';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
 
@@ -15,14 +15,14 @@ const meta: Meta = {
 export default meta;
 
 
-const Template: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const Template: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="mark"
   messages={messages}
 />
 </div>;
 
-const LoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const LoadingTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   loading={true}
@@ -32,7 +32,7 @@ const LoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" 
 />
 </div>;
 
-const CustomLoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const CustomLoadingTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   loading={true}
@@ -42,7 +42,7 @@ const CustomLoadingTemplate: Story<ChatProps> = args => <div style={{ height: "1
 />
 </div>;
 
-const SendMessageLoadingTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const SendMessageLoadingTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   loading={false}
@@ -64,7 +64,7 @@ const SendMessageLoadingTemplate: Story<ChatProps> = args => <div style={{ heigh
 </div>;
 
 
-const FewEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const FewEntriesTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   themeColor='#6ea9d7'
@@ -73,7 +73,7 @@ const FewEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100v
 />
 </div>;
 
-const NoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const NoEntriesTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   messages={[]}
@@ -82,7 +82,7 @@ const NoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh
 />
 </div>;
 
-const CustomNoEntriesTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const CustomNoEntriesTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   messages={[]}
@@ -101,7 +101,7 @@ const WithPaddingContainer = styled.div`
     border: 3px solid black;
 `
 
-const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer> <MessageList
+const TemplateWithPadding: Story<MessageListProps> = args => <div><WithPaddingContainer> <MessageList
   {...args}
   currentUserId="danny_1"
   messages={messages}
@@ -109,7 +109,7 @@ const TemplateWithPadding: Story<ChatProps> = args => <div><WithPaddingContainer
 
 /></WithPaddingContainer></div>;
 
-const TypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const TypingIndicatorTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   loading={false}
@@ -131,7 +131,7 @@ const TypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ height: 
 />
 </div>;
 
-const CustomTypingIndicatorTemplate: Story<ChatProps> = args => <div style={{ height: "100vh" }}><MessageList
+const CustomTypingIndicatorTemplate: Story<MessageListProps> = args => <div style={{ height: "100vh" }}><MessageList
   {...args}
   currentUserId="danny_1"
   loading={false}
