@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import User from '../../UserType'
-import { Container as MyMessageContainer, Content, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../outgoing-message'
+import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, /*Timestamp,*/ TimestampContainer as MyMessageTimestampContainer, Background } from '../outgoing-message'
 import placeholderProfilePNG from './profile.webp'
 import MediaContent from '../media-content'
 import { MediaType } from '../../MessageType'
 import { getBorderCss } from '../borderController'
+import TextContent from '../text-content'
 
 type Props = {
     text?: string,
@@ -150,7 +151,7 @@ export default function IncomingMessage({
                             messageType='incoming'
                             {...media} />
                             :
-                            <Content>{text}</Content>}
+                            <TextContent>{text}</TextContent>}
 
                     </MessageContainer>
                 </div>

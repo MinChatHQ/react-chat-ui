@@ -26,6 +26,31 @@ const LeftTemplate: Story<Props> = args => <Message
   text="Hello World!"
 />
 
+const IncomingWithLinkTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  text="Hello World! visit https://google.com to begin searching"
+/>
+
+const OutgoingWithLinkTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="outgoing"
+  text="Hello World! visit https://google.com to begin searching"
+/>
+
+
 
 const RightTemplate: Story<Props> = args => <Message
   {...args}
@@ -271,7 +296,9 @@ const OutgoingGifContentTemplate: Story<Props> = args => <Message
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
+
 export const Incoming = LeftTemplate.bind({});
+export const IncomingWithLink = IncomingWithLinkTemplate.bind({});
 export const IncomingWithAvatar = WithAvatarTemplate.bind({});
 export const IncomingWithHeader = WithHeaderTemplate.bind({});
 export const SingleIncoming = SingleIncomingTemplate.bind({});
@@ -283,13 +310,11 @@ export const IncomingGifContent = GifContentTemplate.bind({});
 
 
 
-
-
-
 export const Outgoing = RightTemplate.bind({});
 export const SingleOutgoing = SingleOutgoingTemplate.bind({});
 export const LastOutgoing = LastOutgoingTemplate.bind({});
 export const SendMessageLoading = LoadingTemplate.bind({});
+export const OutgoingWithLink = OutgoingWithLinkTemplate.bind({});
 export const OutgoingImageContent = OutgoingImageContentTemplate.bind({});
 export const OutgoingFileContent = OutgoingFileContentTemplate.bind({});
 export const OutgoingVideoContent = OutgoingVideoContentTemplate.bind({});
