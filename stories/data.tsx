@@ -366,6 +366,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
+    seen: true,
     date,
     text: 'this ',
   },
@@ -374,6 +375,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
+    seen: true,
     date,
     text: 'the ',
   },
@@ -382,6 +384,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
+    seen: false,
     date,
     text: 'only message you will send today',
   },
@@ -391,6 +394,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     text: 'come on man',
+    seen: true,
     date,
     loading: true
   },
@@ -401,6 +405,7 @@ export const messages = [
     },
     text: 'this is the last message',
     date,
+    seen: true,
     loading: true
   },
 ];

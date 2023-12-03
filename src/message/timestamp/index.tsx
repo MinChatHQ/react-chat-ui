@@ -126,19 +126,16 @@ export default function Timestamp({
                                     d="m6 16.293 9.646-9.647.708.708-10 10a.5.5 0 0 1-.708 0l-4-4 .708-.708L6 16.293zm6 0 9.646-9.647.707.708-9.999 10a.5.5 0 0 1-.707 0l-1.5-1.5.707-.708L12 16.293z"
                                     clipRule="evenodd"></path></svg>
                             :
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16px"
                                 height="16px"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M4.5 12.75l6 6 9-13.5" />
-                            </svg>
+                                viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path>
+                                <path 
+                                fill='currentColor'
+                                d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>
+
+
                         }
                     </Check>
                     :
