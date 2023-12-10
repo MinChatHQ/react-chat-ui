@@ -205,8 +205,8 @@ export default function Conversation({
 
   useEffect(() => {
     function updateDateSent() {
-      if (lastMessage?.date) {
-        setDateSent(calculateTimeAgo(lastMessage.date))
+      if (lastMessage?.created_at) {
+        setDateSent(calculateTimeAgo(new Date(lastMessage.created_at)))
       }
     }
 

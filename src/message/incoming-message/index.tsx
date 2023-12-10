@@ -77,7 +77,7 @@ export default function IncomingMessage({
     showHeader,
     last,
     single,
-    date,
+    created_at,
     themeColor = '#6ea9d7' }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
@@ -131,7 +131,7 @@ export default function IncomingMessage({
                             <TextContent>{text}</TextContent>}
 
                         <Timestamp
-                            date={date}
+                            date={created_at}
                             />
                     </MessageContainer>
                 </div>

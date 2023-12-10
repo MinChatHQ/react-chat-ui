@@ -55,7 +55,7 @@ export default function MyMessage({
     single,
     clusterFirstMessage,
     clusterLastMessage,
-    date,
+    created_at,
     seen
 }: Omit<Props,"showHeader" | "showAvatar" | "type">) {
     return (
@@ -87,7 +87,7 @@ export default function MyMessage({
 
                     <Timestamp
                         showSeen
-                        date={date}
+                        date={created_at}
                         seen={seen}
                         loading={loading} />
 

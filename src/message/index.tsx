@@ -6,7 +6,7 @@ import { MediaType } from '../MessageType';
 
 
 export type Props = {
-    date?: Date
+    created_at?: Date
     seen?: boolean
     text?: string,
     media?: MediaType,
@@ -29,7 +29,7 @@ export type Props = {
 export default function Message({
     text,
     media,
-    date,
+    created_at,
     seen,
     themeColor,
     loading,
@@ -48,7 +48,7 @@ export default function Message({
                 themeColor={themeColor}
                 loading={loading}
                 text={text}
-                date={date}
+                created_at={created_at}
                 seen={seen}
                 media={media}
                 last={last}
@@ -63,7 +63,7 @@ export default function Message({
                 showAvatar={showAvatar}
                 themeColor={themeColor}
                 text={text}
-                date={date}
+                created_at={created_at}
                 media={media}
                 user={user}
                 showHeader={showHeader}

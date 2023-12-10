@@ -9,7 +9,7 @@ export const chats = [
       'https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg',
     lastMessage: {
       seen: false,
-      date,
+      created_at: date,
       text: 'Hello everbody',
       user: {
         id: 'martha_stewart',
@@ -23,7 +23,7 @@ export const chats = [
 
     title: 'Devops',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'How do you enable an actuator on a servo motor of a hardware and design laboratory experiment in the city,an actuator on a servo motor of a hardware and design laboratory experiment in the city',
       user: {
@@ -39,14 +39,14 @@ export const chats = [
     avatar:
       'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       media: {
         type: "image",
         url: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
       },
-            user: {
+      user: {
         id: 'me',
         name: 'Martha Stewart',
       },
@@ -56,7 +56,7 @@ export const chats = [
     id: '4',
     title: 'Epic gamers',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       user: {
@@ -71,7 +71,7 @@ export const chats = [
     id: '5',
     title: 'Devops',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'How do you enable an actuator',
 
@@ -85,7 +85,7 @@ export const chats = [
     id: '6',
     title: 'Pigments',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       user: {
@@ -98,7 +98,7 @@ export const chats = [
     id: '7',
     title: 'Epic gamers',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       user: {
@@ -111,7 +111,7 @@ export const chats = [
     id: '8',
     title: 'Devops',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'How do you enable an actuator',
 
@@ -125,7 +125,7 @@ export const chats = [
     id: '9',
     title: 'Pigments',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       user: {
@@ -140,7 +140,7 @@ export const fewChats = [
   {
     title: 'Epic gamers',
     lastMessage: {
-      date,
+      created_at: date,
       seen: false,
       text: 'Hello everbody',
       user: {
@@ -166,7 +166,7 @@ export const fewChats = [
     id: '3',
     title: 'Pigments',
     lastMessage: {
-      date,
+      created_at: date,
       seen: true,
       text: 'Hello everbody',
       user: {
@@ -186,7 +186,7 @@ export const messages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'first message',
   },
   {
@@ -194,7 +194,7 @@ export const messages = [
       id: 'mark',
       name: 'Markus',
     },
-    date,
+    created_at: date,
     text: 'hello',
   },
   {
@@ -202,7 +202,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'last message 2',
   },
   {
@@ -210,7 +210,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'how do you think we should aproach this',
   },
   {
@@ -218,7 +218,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'sdfsdf',
   },
   {
@@ -230,7 +230,7 @@ export const messages = [
       type: "image",
       url: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
 
   },
   {
@@ -238,7 +238,7 @@ export const messages = [
       id: 'mark',
       name: 'Markus',
     },
-    date,
+    created_at: date,
     media: {
       type: "image",
       url: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
@@ -249,7 +249,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'determine',
   },
   {
@@ -257,7 +257,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'resolve',
   },
   {
@@ -265,7 +265,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'will',
   },
   {
@@ -273,7 +273,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'this',
   },
   {
@@ -281,7 +281,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'how',
   },
   {
@@ -289,7 +289,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'we ',
   },
   {
@@ -299,7 +299,7 @@ export const messages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'foks',
   },
   {
@@ -307,7 +307,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'ipsum',
   },
   {
@@ -315,7 +315,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    date,
+    created_at: date,
     text: 'lorem',
   },
   {
@@ -325,7 +325,7 @@ export const messages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'totally justifiable',
   },
   {
@@ -335,7 +335,7 @@ export const messages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'it ',
   },
   {
@@ -345,11 +345,11 @@ export const messages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'is ',
   },
   {
-    date,
+    created_at: date,
     user: {
       id: 'danny_2',
       name: 'Dan',
@@ -367,7 +367,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     seen: true,
-    date,
+    created_at: date,
     text: 'this ',
   },
   {
@@ -376,7 +376,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     seen: true,
-    date,
+    created_at: date,
     text: 'the ',
   },
   {
@@ -385,7 +385,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     seen: false,
-    date,
+    created_at: date,
     text: 'only message you will send today',
   },
   {
@@ -395,7 +395,7 @@ export const messages = [
     },
     text: 'come on man',
     seen: true,
-    date,
+    created_at: date,
     loading: true
   },
   {
@@ -404,7 +404,7 @@ export const messages = [
       name: 'Daniel Georgetown',
     },
     text: 'this is the last message',
-    date,
+    created_at: date,
     seen: true,
     loading: true
   },
@@ -418,7 +418,7 @@ export const fewMessages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'first message',
   },
   {
@@ -428,7 +428,7 @@ export const fewMessages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'come on man',
   },
   {
@@ -438,7 +438,7 @@ export const fewMessages = [
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
-    date,
+    created_at: date,
     text: 'this is the last message',
   },
 ];
