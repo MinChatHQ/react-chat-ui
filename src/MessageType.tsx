@@ -12,7 +12,7 @@ type MessageType = {
   id?: string
   text?: string
   media?: MediaType
-  created_at?: string
+  createdAt?: string
   seen?: boolean
   loading?: boolean
 }
