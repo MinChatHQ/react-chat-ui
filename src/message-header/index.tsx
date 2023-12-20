@@ -115,6 +115,8 @@ export default function MessageHeader({
     function updateLastSeen() {
         if (lastActive) {
             setLastSeen(calculateLastSeen(lastActive))
+        } else {
+            setLastSeen(undefined)
         }
     }
 
