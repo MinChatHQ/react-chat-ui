@@ -103,6 +103,18 @@ export default function MessageHeader({
     const [intervalId, setIntervalId] = useState<any>()
 
     useEffect(() => {
+        /**
+    * 
+    */
+        function updateLastSeen() {
+            if (lastActive) {
+                setLastSeen(calculateLastSeen(lastActive))
+            } else {
+                setLastSeen(undefined)
+            }
+        }
+
+
         updateLastSeen()
 
         if (!intervalId) {
@@ -113,16 +125,6 @@ export default function MessageHeader({
         return () => clearInterval(intervalId);
     }, [lastActive])
 
-    /**
-    * 
-    */
-    function updateLastSeen() {
-        if (lastActive) {
-            setLastSeen(calculateLastSeen(lastActive))
-        } else {
-            setLastSeen(undefined)
-        }
-    }
 
     return (
         <Container
