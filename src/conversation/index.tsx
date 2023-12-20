@@ -211,7 +211,7 @@ export default function Conversation({
     }
 
     updateDateSent()
-    setTimeout(() => updateDateSent(), 60_000)
+    setInterval(() => updateDateSent(), 60_000)
   }, [])
 
 

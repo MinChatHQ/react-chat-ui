@@ -102,21 +102,21 @@ export default function MessageHeader({
     const [lastSeen, setLastSeen] = useState<string | undefined>()
 
     useEffect(() => {
-
-        /**
-         * 
-         */
-        function updateLastSeen() {
-            if (lastActive) {
-                setLastSeen(calculateLastSeen(lastActive))
-            }
-        }
-
-        updateLastSeen()
-
-        setTimeout(() => updateLastSeen(), 60_000)
-
+        setInterval(() => updateLastSeen(), 60_000)
     }, [])
+
+    useEffect(() => {
+        updateLastSeen()
+    }, [lastActive])
+
+    /**
+    * 
+    */
+    function updateLastSeen() {
+        if (lastActive) {
+            setLastSeen(calculateLastSeen(lastActive))
+        }
+    }
 
     return (
         <Container

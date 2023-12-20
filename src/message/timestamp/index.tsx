@@ -74,7 +74,7 @@ export default function Timestamp({
 
         updateDateSent()
 
-        setTimeout(() => updateDateSent(), 60_000)
+        setInterval(() => updateDateSent(), 60_000)
 
     }, [])
 
