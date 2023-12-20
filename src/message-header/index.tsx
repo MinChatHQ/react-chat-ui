@@ -99,15 +99,22 @@ export default function MessageHeader({
     lastActive
 }: Props) {
 
+    const [localLastActive, setLocalLastActive] = useState(lastActive)
+
     const [lastSeen, setLastSeen] = useState<string | undefined>()
 
     useEffect(() => {
         setInterval(() => updateLastSeen(), 60_000)
     }, [])
 
+
+    useEffect(() => {
+        setLocalLastActive(lastActive)
+    }, [lastActive])
+
     useEffect(() => {
         updateLastSeen()
-    }, [lastActive])
+    }, [localLastActive])
 
     /**
     * 
