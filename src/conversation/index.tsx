@@ -202,6 +202,7 @@ export default function Conversation({
   );
 
   const [dateSent, setDateSent] = useState<string | undefined>()
+  const [intervalId, setIntervalId] = useState<any>()
 
   useEffect(() => {
     function updateDateSent() {
@@ -211,10 +212,19 @@ export default function Conversation({
     }
 
     updateDateSent()
-    const intervalId = setInterval(() => updateDateSent(), 60_000)
-    
-    return () => clearInterval(intervalId);
-  }, [])
+    clearInterval(intervalId)
+
+    const id = setInterval(() => updateDateSent(), 60_000)
+    setIntervalId(id)
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        setIntervalId(null); // Reset intervalId after clearing
+      }
+
+    };
+  }, [lastMessage])
 
 
   useEffect(() => {

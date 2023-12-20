@@ -1,5 +1,6 @@
 function calculateDifferences(date: Date) {
     const currentDate = new Date()
+    console.log({ currentDate })
 
     const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(date.toUTCString())).getTime();
     const minutesAgo = Math.floor(timeDifference / (1000 * 60));
@@ -10,6 +11,27 @@ function calculateDifferences(date: Date) {
         minutesAgo,
         hoursAgo,
         daysAgo
+    }
+}
+
+
+export function calculateLastSeen(date: Date): string {
+    const diff = calculateDifferences(date)
+
+    if (diff.minutesAgo < 1) {
+        return 'Active now'
+    } else if (diff.minutesAgo === 1) {
+        return 'Seen 1 minute ago'
+    } else if (diff.minutesAgo < 60) {
+        return `Seen ${diff.minutesAgo} minutes ago`
+    } else if (diff.hoursAgo === 1) {
+        return 'Seen 1 hour ago'
+    } else if (diff.hoursAgo < 24) {
+        return `Seen ${diff.hoursAgo} hours ago`
+    } else if (diff.daysAgo === 1) {
+        return 'Seen 1 day ago'
+    } else {
+        return `Seen ${diff.daysAgo} days ago`
     }
 }
 
@@ -31,25 +53,5 @@ export function calculateTimeAgo(date: Date): string {
         return `${diff.hoursAgo}h`
     } else {
         return `${diff.daysAgo}d`
-    }
-}
-
-export function calculateLastSeen(date: Date): string {
-    const diff = calculateDifferences(date)
-
-    if (diff.minutesAgo < 1) {
-        return 'Active now'
-    } else if (diff.minutesAgo === 1) {
-        return 'Seen 1 minute ago'
-    } else if (diff.minutesAgo < 60) {
-        return `Seen ${diff.minutesAgo} minutes ago`
-    } else if (diff.hoursAgo === 1) {
-        return 'Seen 1 hour ago'
-    } else if (diff.hoursAgo < 24) {
-        return `Seen ${diff.hoursAgo} hours ago`
-    } else if (diff.daysAgo === 1) {
-        return 'Seen 1 day ago'
-    } else {
-        return `Seen ${diff.daysAgo} days ago`
     }
 }
