@@ -117,10 +117,11 @@ export default function MessageHeader({
 
         updateLastSeen()
 
-        if (!intervalId) {
+        if (!intervalId && lastActive) {
             const id = setInterval(() => updateLastSeen(), 5_000)
             setIntervalId(id)
         }
+
 
         return () => {
             if (intervalId) {
