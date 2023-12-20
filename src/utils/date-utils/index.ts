@@ -1,7 +1,5 @@
 function calculateDifferences(date: Date) {
     const currentDate = new Date()
-    console.log({ currentDate })
-
     const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(date.toUTCString())).getTime();
     const minutesAgo = Math.floor(timeDifference / (1000 * 60));
     const hoursAgo = Math.floor(minutesAgo / 60);
