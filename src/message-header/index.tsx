@@ -120,8 +120,8 @@ export default function MessageHeader({
     * 
     */
     function updateLastSeen() {
-        if (lastActive) {
-            setLastSeen(calculateLastSeen(lastActive))
+        if (localLastActive) {
+            setLastSeen(calculateLastSeen(localLastActive))
         } else {
             setLastSeen(undefined)
         }
