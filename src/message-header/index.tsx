@@ -99,29 +99,26 @@ export default function MessageHeader({
     lastActive
 }: Props) {
 
-    const [localLastActive, setLocalLastActive] = useState(lastActive)
-
     const [lastSeen, setLastSeen] = useState<string | undefined>()
-
-    useEffect(() => {
-        setInterval(() => updateLastSeen(), 60_000)
-    }, [])
-
-
-    useEffect(() => {
-        setLocalLastActive(lastActive)
-    }, [lastActive])
+    const [intervalId, setIntervalId] = useState<any>()
 
     useEffect(() => {
         updateLastSeen()
-    }, [localLastActive])
+
+        if (!intervalId) {
+            const id = setInterval(() => updateLastSeen(), 60_000)
+            setIntervalId(id)
+        }
+
+        return () => clearInterval(intervalId);
+    }, [lastActive])
 
     /**
     * 
     */
     function updateLastSeen() {
-        if (localLastActive) {
-            setLastSeen(calculateLastSeen(localLastActive))
+        if (lastActive) {
+            setLastSeen(calculateLastSeen(lastActive))
         } else {
             setLastSeen(undefined)
         }

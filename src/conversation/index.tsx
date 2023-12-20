@@ -211,7 +211,9 @@ export default function Conversation({
     }
 
     updateDateSent()
-    setInterval(() => updateDateSent(), 60_000)
+    const intervalId = setInterval(() => updateDateSent(), 60_000)
+    
+    return () => clearInterval(intervalId);
   }, [])
 
 
