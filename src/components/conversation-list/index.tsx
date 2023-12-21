@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Loading from '../loading';
 import ConversationType from '../../types/ConversationType';
 import Conversation from '../conversation';
 import useColorSet from '../../hooks/useColorSet';
+import MinChatUIContext from '../../contexts/MinChatUIContext';
 
 export interface Props {
   onConversationClick?: (index: number) => void;
@@ -24,7 +25,7 @@ export interface Props {
 }
 
 const ScrollContainer = styled.div<{
-  loading: boolean,
+  loading?: boolean,
   backgroundColor?: string
 }>`
 position: relative;
@@ -72,8 +73,10 @@ const Container = styled.div`
 // }
 //  `
 
-const NoChatsTextContainer = styled.div`
-  color: rgba(0, 0, 0, 0.36);
+const NoChatsTextContainer = styled.div<{
+  color?: string
+}>`
+  color: ${({ color }) => color || 'rgba(0, 0, 0, 0.36)'};
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -101,7 +104,6 @@ export default function ConversationList({
   onConversationClick,
   selectedConversationId,
   onScrollToBottom,
-  themeColor = '#6ea9d7',
   currentUserId,
   renderCustomConversationitem,
   customLoaderComponent,
@@ -110,6 +112,10 @@ export default function ConversationList({
   const scrollContainerRef = useRef<any>();
 
   const backgroundColor = useColorSet("--chatlist-background-color")
+  const noConversation = useColorSet("--no-conversation-text-color")
+
+  const { themeColor } = useContext(MinChatUIContext)
+
 
   return (
     <Container>
@@ -138,7 +144,7 @@ export default function ConversationList({
               {conversations && conversations.length <= 0 && (
                 customEmptyConversationsComponent ?
                   customEmptyConversationsComponent :
-                  <NoChatsTextContainer>
+                  <NoChatsTextContainer color={noConversation}>
                     <p>No conversation started...</p>
                   </NoChatsTextContainer>
               )}
@@ -149,7 +155,6 @@ export default function ConversationList({
                     renderCustomConversationitem(conversation, index)
                     :
                     <Conversation
-                      themeColor={themeColor}
                       onClick={() => onConversationClick && onConversationClick(index)}
                       key={index}
                       title={conversation.title}
