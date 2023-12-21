@@ -94,11 +94,14 @@ box-sizing: border-box;
 
 `
 
-const BackIcon = styled.svg`
+const BackIcon = styled.svg<{
+    color?: string
+}>`
 padding:0px;
 cursor: pointer;
 box-sizing: border-box;
 
+color: ${({ color }) => color ? ` ${color}` : 'black'};
 `
 export default function MessageHeader({
     onBack,
@@ -144,6 +147,7 @@ export default function MessageHeader({
     const backgroundColor = useColorSet("--message-header-background-color")
     const textColor = useColorSet("--message-header-text-color")
     const lastActiveColor = useColorSet("--message-header-last-active-color")
+    const backColor = useColorSet("--message-header-back-color")
 
     return (
         <Container
@@ -156,9 +160,14 @@ export default function MessageHeader({
                     onClick={onBack}
                 >
                     <BackIcon
+                        color={backColor}
                         className='fade-animation'
                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M14.694 18.6943C15.102 18.2867 15.102 17.6259 14.694 17.2184L9.4699 12L14.694 6.78165C15.102 6.37408 15.102 5.71326 14.694 5.30568C14.2859 4.89811 13.6244 4.8981 13.2164 5.30568L7.30602 11.2096C7.08861 11.4267 6.98704 11.7158 7.00132 12.0002C6.98713 12.2844 7.0887 12.5733 7.30603 12.7904L13.2164 18.6943C13.6244 19.1019 14.2859 19.1019 14.694 18.6943Z" fill="black" />
+                        <path
+                            fill="currentColor"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M14.694 18.6943C15.102 18.2867 15.102 17.6259 14.694 17.2184L9.4699 12L14.694 6.78165C15.102 6.37408 15.102 5.71326 14.694 5.30568C14.2859 4.89811 13.6244 4.8981 13.2164 5.30568L7.30602 11.2096C7.08861 11.4267 6.98704 11.7158 7.00132 12.0002C6.98713 12.2844 7.0887 12.5733 7.30603 12.7904L13.2164 18.6943C13.6244 19.1019 14.2859 19.1019 14.694 18.6943Z" />
                     </BackIcon>
                 </BackContainer>
                 }

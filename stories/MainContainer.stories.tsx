@@ -54,6 +54,7 @@ const Provider = ({ children }: any) => <MinChatUIProvider
         "--message-header-background-color": "red",
         "--message-header-text-color": "#fff",
         "--message-header-last-active-color": "blue",
+        "--message-header-back-color": "white",
         // chat list header
         "--chatlist-header-background-color": "red",
         "--chatlist-header-text-color": "white",
@@ -86,13 +87,6 @@ const Provider = ({ children }: any) => <MinChatUIProvider
         "--outgoing-message-checkmark-color": "red",
         "--outgoing-message-loader-color": "red",
         "--outgoing-message-link-color": "green",
-
-
-
-
-
-
-
     }}>{children}</MinChatUIProvider>
 
 
