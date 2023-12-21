@@ -28,6 +28,8 @@ const DPContainer = styled.div`
     height: 32px;
     margin-left: 10px;
     box-sizing: border-box;
+    user-select: none;
+
 `
 const DisplayPicture = styled.img`
     width: 32px;
@@ -88,9 +90,9 @@ export default function IncomingMessage({
     last,
     single,
     created_at,
-    }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
+}: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
-    const {themeColor} = useContext(MinChatUIContext)
+    const { themeColor } = useContext(MinChatUIContext)
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
