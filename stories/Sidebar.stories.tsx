@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import Sidebar, { Props } from "../src/sidebar"
+import Sidebar, { Props } from "../src/components/sidebar"
 import { chats } from './data';
-import ConversationList from '../src/conversation-list';
+import ConversationList from '../src/components/conversation-list';
 
 const meta: Meta = {
   title: 'Sidebar',

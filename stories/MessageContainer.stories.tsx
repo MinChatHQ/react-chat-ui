@@ -2,10 +2,10 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
-import MessageHeader from '../src/message-header';
-import MessageInput from '../src/message-input';
-import MessageList from '../src/message-list';
-import MessageContainer, { Props } from '../src/message-container';
+import MessageHeader from '../src/components/message-header';
+import MessageInput from '../src/components/message-input';
+import MessageList from '../src/components/message-list';
+import MessageContainer, { Props } from '../src/components/message-container';
 
 
 

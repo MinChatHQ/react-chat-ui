@@ -1,7 +1,9 @@
+import ConversationType from "../src/types/ConversationType";
+import MessageType from "../src/types/MessageType";
 
 const date = new Date()
 
-export const chats = [
+export const chats: ConversationType[] = [
   {
     id: '1',
     title: 'Epic gamers',
@@ -178,7 +180,7 @@ export const fewChats = [
 ];
 
 
-export const messages = [
+export const messages: MessageType[] = [
   {
     user: {
       id: 'danny_1',
@@ -232,6 +234,14 @@ export const messages = [
     },
     createdAt: date,
 
+  },
+  {
+    user: {
+      id: 'danny_1',
+      name: 'Daniel Georgetown',
+    },
+    createdAt: date,
+    text: 'how do you think we should aproach this https://google.com',
   },
   {
     user: {
@@ -346,7 +356,7 @@ export const messages = [
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
     createdAt: date,
-    text: 'is ',
+    text: 'is https://google.com ',
   },
   {
     createdAt: date,
@@ -393,7 +403,7 @@ export const messages = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    text: 'come on man',
+    text: 'come on man https://google.com',
     seen: true,
     createdAt: date,
     loading: true

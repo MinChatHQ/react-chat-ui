@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
-import MessageHeader, { Props } from "../src/message-header"
+import MessageHeader, { Props } from "../src/components/message-header"
 
 const meta: Meta = {
   title: 'MessageHeader',

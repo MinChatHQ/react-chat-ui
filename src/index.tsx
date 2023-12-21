@@ -1,18 +1,20 @@
-import MessageList from "./message-list";
-import MessageListBackground from "./message-list-background";
-import ConversationList from "./conversation-list";
-import MainContainer from "./main-container";
-import Loading from "./loading";
-import Message from "./message"
-import MessageInput from "./message-input";
-import MessageHeader from "./message-header";
-import MessageContainer from "./message-container";
-import ConversationHeader from "./conversation-header";
-import TypingIndicator from "./typing-indicator";
+import MessageList from "./components/message-list";
+import MessageListBackground from "./components/message-list-background";
+import ConversationList from "./components/conversation-list";
+import MainContainer from "./components/main-container";
+import Loading from "./components/loading";
+import Message from "./components/message"
+import MessageInput from "./components/message-input";
+import MessageHeader from "./components/message-header";
+import MessageContainer from "./components/message-container";
+import ConversationHeader from "./components/conversation-header";
+import TypingIndicator from "./components/typing-indicator";
 import useCheckIsMobile from "./hooks/useCheckIsMobile";
 import useTypingListener from "./hooks/useTypingListener";
 
-import Sidebar from "./sidebar"
+import Sidebar from "./components/sidebar"
+import MinChatUiProvider from "./providers/MinChatUiProvider";
+
 
 
 
@@ -30,5 +32,6 @@ export {
   useTypingListener,
   Sidebar,
   MessageListBackground,
-  MessageContainer
+  MessageContainer,
+  MinChatUiProvider
 }

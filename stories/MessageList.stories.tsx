@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import MessageList, { MessageListProps } from '../src/message-list';
+import MessageList, { MessageListProps } from '../src/components/message-list';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from './data';
 

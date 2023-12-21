@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
-import ConversationHeader, { Props } from "../src/conversation-header"
+import ConversationHeader, { Props } from "../src/components/conversation-header"
 
 const meta: Meta = {
   title: 'ConversationHeader',

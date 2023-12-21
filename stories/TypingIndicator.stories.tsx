@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import styled from 'styled-components';
-import TypingIndicator, { Props } from "../src/typing-indicator"
+import TypingIndicator, { Props } from "../src/components/typing-indicator"
 
 const meta: Meta = {
   title: 'TypingIndicator',
