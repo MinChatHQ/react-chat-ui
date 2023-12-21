@@ -50,27 +50,39 @@ Here's a quick example to get you started:
 
 ```jsx
 import {
-    MainContainer,
-    MessageInput,
-    MessageContainer
+  MainContainer,
+  MessageInput,
+  MessageContainer,
+  MessageList,
+  MessageHeader
 } from "@minchat/react-chat-ui";
 
-<MainContainer style={{ height: '100vh' }}>
-    <MessageContainer>
-        <MessageHeader/>
-        <MessageList
+function App() {
+  return (
+    <>
+      <MainContainer style={{ height: '100vh' }}>
+        <MessageContainer>
+          <MessageHeader />
+          <MessageList
             currentUserId='dan'
             messages={[{
-                text: 'Hello',
-                user: {
-                    id: 'mark',
-                    name: 'Markus',
-                },
+              text: 'Hello',
+              user: {
+                id: 'mark',
+                name: 'Markus',
+              },
             }]}
-        >
-        <MessageInput placeholder="Type message here" />
-    </MessageContainer>
-</MainContainer>
+          />
+          <MessageInput placeholder="Type message here" />
+        </MessageContainer>
+      </MainContainer>
+    </>
+  )
+}
+
+export default App
+
+
 ```
 
 # Typescript
