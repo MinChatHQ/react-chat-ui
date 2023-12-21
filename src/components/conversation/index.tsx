@@ -75,7 +75,7 @@ const Name = styled.div<{
   font-size: 14px;
   line-height: auto;
   position: relative;
-  z-index: 10;
+  z-index: 1;
   color: ${({ titleTextColor }) => titleTextColor || '#000000'};
 
   ${({ seen }) =>
@@ -186,7 +186,7 @@ const DisplayPicture = styled.img`
   border-width: 2px;
   border-color: rgb(255 255 255);
   object-fit: cover;
-  z-index: 10;
+  z-index: 1;
   position: relative;
 `;
 

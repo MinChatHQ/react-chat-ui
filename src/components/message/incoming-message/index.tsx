@@ -40,7 +40,7 @@ const DisplayPicture = styled.img`
     border-color: rgb(255 255 255);
     object-fit: cover;
     position: relative;
-    z-index: 10;
+    z-index: 1;
 `
 
 

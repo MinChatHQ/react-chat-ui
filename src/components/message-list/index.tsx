@@ -242,7 +242,6 @@ export default function MessageList({
                                     // my message
                                     return <Message key={index}
                                         type="outgoing"
-                                        themeColor={themeColor}
                                         last={single ? false : last}
                                         single={single}
                                         text={text}
@@ -260,7 +259,6 @@ export default function MessageList({
                                     // other message
                                     return <Message
                                         type='incoming'
-                                        themeColor={themeColor}
                                         key={index}
                                         user={user}
                                         media={media}

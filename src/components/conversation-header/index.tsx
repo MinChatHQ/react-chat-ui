@@ -27,7 +27,7 @@ position:absolute;
 top: 0px;
 left: 0px;
 right: 0px;
-z-index: 10;
+z-index: 1;
 display: flex;
 align-items: center;
 
@@ -54,7 +54,7 @@ const HeaderPlaceholder = styled.div`
       top: 0px;
 left: 0px;
 right: 0px;
-z-index: 10;
+z-index: 1;
 box-sizing: border-box;
 `
 

@@ -36,7 +36,7 @@ const InnerContainer = styled.div<{
     box-shadow:0px 1px 0px rgba(0, 0, 0, 0.07999999821186066);
     position:relative;
     width:100%;
-    z-index: 10;
+    z-index: 1;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -89,7 +89,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 width: 38px;
-z-index: 12;
+z-index: 1;
 box-sizing: border-box;
 
 `

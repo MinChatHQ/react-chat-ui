@@ -62,8 +62,11 @@ position: relative;
 box-sizing: border-box;
 `
 
-const InputBackground = styled.div<{ bgColor?: string }>`
-opacity: 0.4;
+const InputBackground = styled.div<{
+    showOpacity: boolean,
+    bgColor?: string
+}>`
+${({ showOpacity }) => showOpacity ? `opacity: 0.4;` : ''}
 height: 100%;
 width: 100%;
 border-radius:0.7rem;
@@ -179,8 +182,8 @@ export default function MessageInput({
     onKeyUp
 }: Props) {
 
-    const {themeColor} = useContext(MinChatUIContext)
-    
+    const { themeColor } = useContext(MinChatUIContext)
+
     const [text, setText] = useState("")
     const inputRef = useRef<any>(null);
 
@@ -247,6 +250,7 @@ export default function MessageInput({
                 <InputContainer
                 >
                     <InputBackground
+                        showOpacity={inputElementColor ? false : true}
                         bgColor={inputElementColor || themeColor}
                     />
 

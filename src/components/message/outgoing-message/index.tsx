@@ -17,7 +17,7 @@ export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolea
     position: relative;
     box-sizing: border-box;
     margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "2px"};
-    z-index: 10;
+    z-index: 1;
 `
 
 
