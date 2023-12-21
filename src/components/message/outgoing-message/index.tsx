@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import MediaContent from '../media-content'
 import { getBorderCss } from '../borderController'
@@ -6,6 +6,7 @@ import TextContent from '../text-content'
 import Timestamp from '../timestamp'
 import { Props } from '..'
 import useColorSet from '../../../hooks/useColorSet'
+import MinChatUIContext from '../../../contexts/MinChatUIContext'
 
 
 export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolean }>`
@@ -51,7 +52,6 @@ export const Background = styled.div<{
 export default function MyMessage({
     text,
     media,
-    themeColor = '#6ea9d7',
     loading,
     last,
     single,
@@ -60,6 +60,8 @@ export default function MyMessage({
     created_at,
     seen
 }: Omit<Props, "showHeader" | "showAvatar" | "type">) {
+
+    const { themeColor } = useContext(MinChatUIContext)
 
     const textColor = useColorSet("--outgoing-message-text-color")
     const backgroundColor = useColorSet("--outgoing-message-background-color")

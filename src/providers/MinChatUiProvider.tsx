@@ -2,17 +2,19 @@ import React from 'react'
 import MinChatUIContext from '../contexts/MinChatUIContext'
 
 type Props = {
-    colorSet: {},
+    colorSet?: {},
+    theme?: string
     children: any
 }
 
 export default function MinChatUiProvider({
     colorSet,
-    children
+    children,
+    theme
 }: Props) {
 
     return (
-        <MinChatUIContext.Provider value={{ colorSet }} >
+        <MinChatUIContext.Provider value={{ colorSet, themeColor: theme || '#6ea9d7' }} >
             {children}
         </MinChatUIContext.Provider>
     )

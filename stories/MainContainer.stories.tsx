@@ -13,6 +13,7 @@ import MessageList from '../src/components/message-list';
 import MessageContainer from '../src/components/message-container';
 import MessageListBackground from '../src/components/message-list-background';
 import MinChatUIProvider from '../src/providers/MinChatUiProvider'
+import MinChatUiProvider from '../src/providers/MinChatUiProvider';
 
 
 
@@ -44,49 +45,49 @@ export default meta
 const Provider = ({ children }: any) => <MinChatUIProvider
     colorSet={{
         // input
-        "--input-background-color": "red",
+        "--input-background-color": "#FF0000",
         "--input-text-color": "#fff",
-        "--input-element-color": "blue",
+        "--input-element-color": "rgb(0, 0, 255)",
         "--input-attach-color": "#fff",
         "--input-send-color": "#fff",
-        "--input-placeholder-color": "white",
+        "--input-placeholder-color": "rgb(255, 255, 255)",
         // message header
-        "--message-header-background-color": "red",
+        "--message-header-background-color": "#FF0000",
         "--message-header-text-color": "#fff",
-        "--message-header-last-active-color": "blue",
-        "--message-header-back-color": "white",
+        "--message-header-last-active-color": "rgb(0, 0, 255)",
+        "--message-header-back-color": "rgb(255, 255, 255)",
         // chat list header
-        "--chatlist-header-background-color": "red",
-        "--chatlist-header-text-color": "white",
-        "--chatlist-header-divider-color": "green",
+        "--chatlist-header-background-color": "#FF0000",
+        "--chatlist-header-text-color": "rgb(255, 255, 255)",
+        "--chatlist-header-divider-color": "rgb(0, 128, 0)",
         //chatlist
-        "--chatlist-background-color": "pink",
+        "--chatlist-background-color": "rgb(255, 192, 203)",
         //chat item
-        "--chatitem-background-color": "blue",
-        "--chatitem-selected-background-color": "yellow",
-        "--chatitem-title-text-color": "red",
-        "--chatitem-content-text-color": "red",
-        "--chatitem-hover-color": "red",
+        "--chatitem-background-color": "rgb(0, 0, 255)",
+        "--chatitem-selected-background-color": "rgb(255, 255, 0)",
+        "--chatitem-title-text-color": "#FF0000",
+        "--chatitem-content-text-color": "#FF0000",
+        "--chatitem-hover-color": "#FF0000",
         //main container
-        "--container-background-color": "pink",
+        "--container-background-color": "rgb(255, 192, 203)",
         //loader
-        "--loader-color": "green",
+        "--loader-color": "rgb(0, 128, 0)",
         //message list
-        "--messagelist-background-color": "blue",
-        "--no-message-text-color": "white",
+        "--messagelist-background-color": "rgb(0, 0, 255)",
+        "--no-message-text-color": "rgb(255, 255, 255)",
         // incoming message
-        "--incoming-message-text-color": "white",
-        "--incoming-message-name-text-color": "white",
-        "--incoming-message-background-color": "green",
-        "--incoming-message-timestamp-color": "white",
-        "--incoming-message-link-color": "red",
+        "--incoming-message-text-color": "rgb(255, 255, 255)",
+        "--incoming-message-name-text-color": "rgb(255, 255, 255)",
+        "--incoming-message-background-color": "rgb(0, 128, 0)",
+        "--incoming-message-timestamp-color": "rgb(255, 255, 255)",
+        "--incoming-message-link-color": "#FF0000",
         //outgoing message
-        "--outgoing-message-text-color": "red",
-        "--outgoing-message-background-color": "yellow",
-        "--outgoing-message-timestamp-color": "red",
-        "--outgoing-message-checkmark-color": "red",
-        "--outgoing-message-loader-color": "red",
-        "--outgoing-message-link-color": "green",
+        "--outgoing-message-text-color": "#FF0000",
+        "--outgoing-message-background-color": "rgb(255, 255, 0)",
+        "--outgoing-message-timestamp-color": "#FF0000",
+        "--outgoing-message-checkmark-color": "#FF0000",
+        "--outgoing-message-loader-color": "#FF0000",
+        "--outgoing-message-link-color": "rgb(0, 128, 0)",
     }}>{children}</MinChatUIProvider>
 
 
@@ -203,7 +204,7 @@ const NoMessageCustomColorsTemplate: Story<Props> = args => {
 const Template: Story<Props> = args => {
 
 
-    return <MainContainer
+    return <MinChatUiProvider theme="#FF0000"><MainContainer
         {...args}
         style={{ height: '100vh' }}>
         <Sidebar>
@@ -223,6 +224,7 @@ const Template: Story<Props> = args => {
             <MessageInput />
         </MessageContainer>
     </MainContainer>
+    </MinChatUiProvider>
 }
 
 const NoSelectedChatTemplate: Story<Props> = args => {
@@ -245,7 +247,7 @@ const NoSelectedChatTemplate: Story<Props> = args => {
 
 const MobileTemplate: Story<Props> = args => {
     return <div style={{ width: "100%", height: "100%" }}>
-        <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
+        <div style={{ width: '300px', padding: "30px", backgroundColor: '#FF0000' }}>
             <MainContainer style={{ height: '100vh' }}>
                 <ConversationHeader />
 
@@ -288,7 +290,7 @@ const MobileTemplate: Story<Props> = args => {
 
 
 // const MobileNoSelectedChatTemplate: Story<Props> = args =>
-//     <div style={{ width: '300px', padding: "30px", backgroundColor: 'red' }}>
+//     <div style={{ width: '300px', padding: "30px", backgroundColor: '#FF0000' }}>
 //         <MainContainer
 
 //             {...args}
@@ -316,7 +318,7 @@ const MobileTemplate: Story<Props> = args => {
 // const WithPaddingContainer = styled.div`
 //     height: 500px; 
 //     padding: 20px;
-//     border: red 1px solid;
+//     border: #FF0000 1px solid;
 //     position: relative;
 //     width: 800px;
 // `

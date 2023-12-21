@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MessageType from '../../types/MessageType';
 import placeholderProfilePNG from './profile.png';
 import { calculateTimeAgo } from '../../utils/date-utils';
 import useColorSet from '../../hooks/useColorSet';
+import MinChatUIContext from '../../contexts/MinChatUIContext';
 
 export type Props = {
   title: string;
@@ -11,7 +12,6 @@ export type Props = {
   avatar?: string;
   onClick: () => void;
   selected?: boolean;
-  themeColor?: string;
   /**
    * the current user on the chat ui
    */
@@ -211,7 +211,6 @@ export default function Conversation({
   onClick,
   avatar,
   selected = false,
-  themeColor = '#6ea9d7',
   currentUserId,
 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
@@ -222,6 +221,8 @@ export default function Conversation({
 
   const [dateSent, setDateSent] = useState<string | undefined>()
   const [intervalId, setIntervalId] = useState<any>()
+
+  const { themeColor } = useContext(MinChatUIContext)
 
   useEffect(() => {
     function updateDateSent() {

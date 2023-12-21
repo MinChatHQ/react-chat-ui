@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import styled from 'styled-components'
 import useTypingListener from '../../hooks/useTypingListener'
 import useColorSet from '../../hooks/useColorSet'
+import MinChatUIContext from '../../contexts/MinChatUIContext'
 
 export type Props = {
     onSendMessage?: (text: string) => void
-    themeColor?: string
     mobileView?: boolean
     onStartTyping?: () => void
     onEndTyping?: () => void
@@ -169,7 +169,6 @@ const PlaceHolder = styled.span<{
 
 export default function MessageInput({
     onSendMessage,
-    themeColor = '#6ea9d7',
     mobileView,
     onStartTyping,
     onEndTyping,
@@ -180,6 +179,8 @@ export default function MessageInput({
     onKeyUp
 }: Props) {
 
+    const {themeColor} = useContext(MinChatUIContext)
+    
     const [text, setText] = useState("")
     const inputRef = useRef<any>(null);
 

@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
 export default createContext<{
-    colorSet: {}
+    colorSet?: {}
+    themeColor: string
 }>({
-    colorSet: {}
+    colorSet: {},
+    themeColor: '#6ea9d7'
 })

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, Background } from '../outgoing-message'
 import placeholderProfilePNG from './profile.webp'
@@ -8,6 +8,7 @@ import TextContent from '../text-content'
 import { Props } from '..'
 import Timestamp from '../timestamp'
 import useColorSet from '../../../hooks/useColorSet'
+import MinChatUIContext from '../../../contexts/MinChatUIContext'
 
 
 const MessageContainer = styled(MyMessageContainer)`
@@ -87,7 +88,9 @@ export default function IncomingMessage({
     last,
     single,
     created_at,
-    themeColor = '#6ea9d7' }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
+    }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
+
+    const {themeColor} = useContext(MinChatUIContext)
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 

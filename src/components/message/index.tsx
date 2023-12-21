@@ -11,7 +11,6 @@ export type Props = {
     text?: string,
     media?: MediaType,
     loading?: boolean
-    themeColor?: string
     type?: "incoming" | "outgoing"
     user?: User
     showAvatar?: boolean
@@ -31,7 +30,6 @@ export default function Message({
     media,
     created_at,
     seen,
-    themeColor,
     loading,
     type = "outgoing",
     user,
@@ -42,10 +40,10 @@ export default function Message({
     clusterFirstMessage,
     clusterLastMessage
 }: Props) {
+
     return (
         type === "outgoing" ?
             <OutgoingMessage
-                themeColor={themeColor}
                 loading={loading}
                 text={text}
                 created_at={created_at}
@@ -61,7 +59,6 @@ export default function Message({
 
             <IncomingMessage
                 showAvatar={showAvatar}
-                themeColor={themeColor}
                 text={text}
                 created_at={created_at}
                 media={media}
