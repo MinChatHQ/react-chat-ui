@@ -162,6 +162,7 @@ export default function ConversationList({
                       avatar={conversation.avatar}
                       selected={selectedConversationId === conversation.id}
                       currentUserId={currentUserId}
+                      unread={conversation.unread}
                     />
                 ))}
             </>

@@ -9,6 +9,7 @@ import MinChatUIContext from '../../contexts/MinChatUIContext';
 export type Props = {
   title: string;
   lastMessage?: MessageType;
+  unread?: boolean,
   avatar?: string;
   onClick: () => void;
   selected?: boolean;
@@ -64,7 +65,7 @@ background-color: ${({ themeColor, hoverColor }) => hoverColor || themeColor};
 `;
 
 const Name = styled.div<{
-  seen?: boolean,
+  unread?: boolean,
   titleTextColor?: string
 }>`
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -78,8 +79,8 @@ const Name = styled.div<{
   z-index: 1;
   color: ${({ titleTextColor }) => titleTextColor || '#000000'};
 
-  ${({ seen }) =>
-    !seen
+  ${({ unread }) =>
+    unread
       ? `
 font-weight: 700;
 `
@@ -93,7 +94,8 @@ justify-content: space-between;
 `
 
 const Timestamp = styled.div<{
-  color?: string
+  color?: string,
+  unread?: boolean
 }>`
 text-align:right;
 vertical-align:text-top;
@@ -103,8 +105,16 @@ margin-top:2px;
 margin-right:2px;
 align-self:flex-start;
 line-height:auto;
-color: ${({ color }) => color || 'rgb(75 85 99)'};
 font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+${({ unread, color }) =>
+    unread
+      ? `
+color: ${color || 'black'} ;
+font-weight: 600;
+` : `
+color: ${color || 'rgb(75 85 99)'};
+`}
 `
 
 // const LastMessageUser = styled.div<{ seen?: boolean }>`
@@ -126,7 +136,7 @@ font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe
 // `
 
 const MessageComponent = styled.div<{
-  seen?: boolean;
+  unread?: boolean;
   width: number;
   media?: boolean;
   color?: string
@@ -149,14 +159,13 @@ const MessageComponent = styled.div<{
   display: flex;
   margin-top: 4px;
 
-  ${({ seen, color }) =>
-    !seen
+  ${({ unread, color }) =>
+    unread
       ? `
-color: ${color || 'black'}  ;
-
+color: ${color || 'black'} ;
 font-weight: 600;
-`
-      : ''}
+` : ''}
+
 `;
 
 
@@ -212,6 +221,7 @@ export default function Conversation({
   avatar,
   selected = false,
   currentUserId,
+  unread
 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
 
@@ -376,16 +386,17 @@ export default function Conversation({
           <NameContainer>
             <Name
               titleTextColor={titleTextColor}
-              seen={lastMessage?.seen}>{title}</Name>
+              unread={unread}>{title}</Name>
 
             <Timestamp
+              unread={unread}
               color={contentTextColor}>{dateSent}</Timestamp>
           </NameContainer>
 
           <MessageComponent
             color={contentTextColor}
             width={containerWidth - 96}
-            seen={lastMessage?.seen}
+            unread={unread}
           >
             {lastMessage?.user.id === currentUserId
               ? 'You'

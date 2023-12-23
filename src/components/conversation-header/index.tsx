@@ -27,7 +27,7 @@ position:absolute;
 top: 0px;
 left: 0px;
 right: 0px;
-z-index: 1;
+z-index: 2;
 display: flex;
 align-items: center;
 
