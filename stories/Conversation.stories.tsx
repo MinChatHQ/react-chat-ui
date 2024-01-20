@@ -43,6 +43,22 @@ const UnseenTemplate: Story<Props> = args => <Conversation
   }}
   onClick={() => { }} />
 
+
+  const HtmlTemplate: Story<Props> = args => <Conversation
+  title='GroupChat'
+  avatar='https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+  lastMessage={{
+    seen: false,
+    text: "<b>Hello </b>everbody"
+    ,
+    user: {
+      id: "martha_stewart",
+      name: "Daniel",
+      avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    },
+  }}
+  onClick={() => { }} />
+
 const UnseenFileTemplate: Story<Props> = args => <Conversation
   title='GroupChat'
   avatar='https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
@@ -180,6 +196,7 @@ export const ImageMessage = ImageMessageTemplate.bind({});
 export const VideoMessage = VideoMessageTemplate.bind({});
 export const FileMessage = FileMessageTemplate.bind({});
 export const GifMessage = GifMessageTemplate.bind({});
+export const Html = HtmlTemplate.bind({});
 
 
 

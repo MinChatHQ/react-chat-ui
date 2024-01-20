@@ -410,7 +410,8 @@ export default function Conversation({
                 {getMediaText()}
               </MediaContainer>
             ) : (
-              lastMessage?.text
+              <div
+                dangerouslySetInnerHTML={{ __html: lastMessage?.text || "" }}></div>
             )}
           </MessageComponent>
         </TextContainer>
