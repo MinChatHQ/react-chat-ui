@@ -45,20 +45,9 @@ export default function TextContent({
     // Regular expression to match URLs
     const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-    // Check if the text contains a URL
-    const containsLink = urlRegex.test(children);
-
-    // If a link is found, replace the text with an anchor tag
-    const renderText = containsLink ? (
-        <Content
-            linkColor={linkColor}
-            color={color}
-            dangerouslySetInnerHTML={{ __html: children.replace(urlRegex, '<a href="$&" target="_blank">$&</a>') }} />
-    ) : (
-        <Content
-            color={color}
-        >{children}</Content>
-    );
-
-    return (renderText)
+    return (<Content
+        linkColor={linkColor}
+        color={color}
+        dangerouslySetInnerHTML={{ __html: children.replace(urlRegex, '<a href="$&" target="_blank">$&</a>') }} />
+    )
 }

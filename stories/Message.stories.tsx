@@ -33,7 +33,6 @@ const LeftTemplate: Story<Props> = args => <Message
     "name": "Daniel Georgetown",
     avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
   }}
-  themeColor='#6ea9d7'
   type="incoming"
   text="Hello World!"
   created_at={date}
@@ -49,6 +48,34 @@ const IncomingWithLinkTemplate: Story<Props> = args => <Message
   themeColor='#6ea9d7'
   type="incoming"
   text="Hello World! visit https://google.com to begin searching"
+  created_at={minutesAgoDate}
+
+/>
+
+const IncomingWithHTMLTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  text="<b>Hello World!</b> <br /> visit  to begin searching"
+  created_at={minutesAgoDate}
+
+/>
+
+const IncomingWithLinkAndHTMLTemplate: Story<Props> = args => <Message
+  {...args}
+  user={{
+    "id": "danny_1",
+    "name": "Daniel Georgetown",
+    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  }}
+  themeColor='#6ea9d7'
+  type="incoming"
+  text="<b>Hello World!</b>  visit https://google.com to begin searching"
   created_at={minutesAgoDate}
 
 />
@@ -337,6 +364,9 @@ const OutgoingGifContentTemplate: Story<Props> = args => <Message
 
 export const Incoming = LeftTemplate.bind({});
 export const IncomingWithLink = IncomingWithLinkTemplate.bind({});
+export const IncomingWithHTML = IncomingWithHTMLTemplate.bind({});
+export const IncomingWithLinkAndHTML = IncomingWithLinkAndHTMLTemplate.bind({});
+
 export const IncomingWithAvatar = WithAvatarTemplate.bind({});
 export const IncomingWithHeader = WithHeaderTemplate.bind({});
 export const SingleIncoming = SingleIncomingTemplate.bind({});
