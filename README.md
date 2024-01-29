@@ -57,7 +57,6 @@ import {
   MessageList,
   MessageHeader
 } from "@minchat/react-chat-ui";
-Pdash
 function App() {
   return (
     <MinChatUiProvider theme="#6ea9d7">
