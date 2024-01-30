@@ -12,6 +12,8 @@ export type Props = {
     showAttachButton?: boolean
     onAttachClick?: () => void
     placeholder?: string
+    disabled?: boolean
+    showSendButton: boolean
 
     onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined
     onKeyUp?: React.KeyboardEventHandler<HTMLInputElement> | undefined
@@ -119,14 +121,14 @@ const InputElement = styled.div<{
  `
 
 
-const ArrowContainer = styled.div<{ showCursor: boolean }>`
+const ArrowContainer = styled.div<{ showCursor: boolean, disabled: boolean }>`
     position: relative;
     padding-left:16px;
     padding-right:16px;
-    cursor: ${({ showCursor }) => showCursor ? 'pointer' : 'default'};
+    cursor: ${({ showCursor, disabled }) => showCursor && !disabled ? 'pointer' : 'default'};
     display: flex;
     align-items: end;
-    opacity: ${({ showCursor }) => showCursor ? '1' : '0.4'};
+    opacity: ${({ showCursor, disabled }) => showCursor && !disabled ? '1' : '0.4'};
     height: 100%;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -134,21 +136,31 @@ const ArrowContainer = styled.div<{ showCursor: boolean }>`
 
 `
 
-const AttachmentContainer = styled.div`
+const AttachmentContainer = styled.div<{ disabled: boolean }>`
     position: relative;
     padding-left:16px;
     padding-right:16px;
-    cursor: pointer;
     display: flex;
+
     align-items: end;
-    opacity:1;
     height: 100%;
     padding-top: 8px;
     padding-bottom: 8px;
+
+    ${({ disabled }) => !disabled ? `
+    cursor: pointer;
+    opacity: 1;
+    ` : `
+    opacity: 0.6;
+    `}
 
 `
 
 const AttachPlaceholder = styled.div`
+position: relative;
+padding:12px;
+`
+const SendPlaceholder = styled.div`
 position: relative;
 padding:12px;
 `
@@ -176,6 +188,8 @@ export default function MessageInput({
     onStartTyping,
     onEndTyping,
     showAttachButton = true,
+    showSendButton = true,
+    disabled = false,
     onAttachClick,
     placeholder = 'Send a message...',
     onKeyDown,
@@ -190,7 +204,7 @@ export default function MessageInput({
     const { setTyping, ...inputProps } = useTypingListener({ onStartTyping, onEndTyping })
 
     const handleSubmit = () => {
-        if (text.trim().length > 0) {
+        if (!disabled && text.trim().length > 0) {
             inputRef.current.innerText = ''
             setTyping(false)
             onSendMessage && onSendMessage(text.trim())
@@ -223,7 +237,7 @@ export default function MessageInput({
 
                 {showAttachButton ? (
                     <AttachmentContainer
-
+                        disabled={disabled}
                         onClick={onAttachClick}
                     >
 
@@ -261,7 +275,7 @@ export default function MessageInput({
                             ref={inputRef}
                             data-testid='message-input'
                             onInput={(event: any) => setText(event.target.innerText)}
-                            contentEditable="true"
+                            contentEditable={!disabled}
                             suppressContentEditableWarning={true}
                             onKeyDown={(event: any) => {
                                 if (event.key === 'Enter') {
@@ -285,22 +299,28 @@ export default function MessageInput({
                 </InputContainer>
 
 
+                {showSendButton ? (
 
-                <ArrowContainer
-                    showCursor={text.trim().length > 0}
-                    onClick={handleSubmit}
-                >
+                    <ArrowContainer
+                        disabled={disabled}
+                        showCursor={text.trim().length > 0}
+                        onClick={handleSubmit}
+                    >
 
-                    <svg
-                        fill={inputSendColor || themeColor}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 512 512" >
-                        <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
-                    </svg>
+                        <svg
+                            fill={inputSendColor || themeColor}
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 512 512" >
+                            <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+                        </svg>
 
-                </ArrowContainer>
+                    </ArrowContainer>
+                )
+                    :
+                    <SendPlaceholder />
+                }
             </Form >
         </Container>
 
