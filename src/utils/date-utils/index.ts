@@ -1,14 +1,22 @@
 function calculateDifferences(date: Date) {
-    const currentDate = new Date()
-    const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(date ? date.toUTCString() : "")).getTime();
-    const minutesAgo = Math.floor(timeDifference / (1000 * 60));
-    const hoursAgo = Math.floor(minutesAgo / 60);
-    const daysAgo = Math.floor(hoursAgo / 24);
+    try {
+        const currentDate = new Date()
+        const timeDifference = (new Date(currentDate.toUTCString())).getTime() - (new Date(date ? date.toUTCString() : "")).getTime();
+        const minutesAgo = Math.floor(timeDifference / (1000 * 60));
+        const hoursAgo = Math.floor(minutesAgo / 60);
+        const daysAgo = Math.floor(hoursAgo / 24);
 
-    return {
-        minutesAgo,
-        hoursAgo,
-        daysAgo
+        return {
+            minutesAgo,
+            hoursAgo,
+            daysAgo
+        }
+    } catch (e) {
+        return {
+            minutesAgo: 0,
+            hoursAgo: 0,
+            daysAgo: 0
+        }
     }
 }
 
