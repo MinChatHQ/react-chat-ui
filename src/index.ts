@@ -14,7 +14,9 @@ import useTypingListener from "./hooks/useTypingListener";
 
 import Sidebar from "./components/sidebar"
 import MinChatUiProvider from "./providers/MinChatUiProvider";
-
+import type { ConversationType } from "./types/ConversationType";
+import type { UserType } from "./types/UserType";
+import type { MessageType } from "./types/MessageType";
 
 
 
@@ -33,5 +35,9 @@ export {
   Sidebar,
   MessageListBackground,
   MessageContainer,
-  MinChatUiProvider
+  MinChatUiProvider,
+
+  type ConversationType,
+  type UserType,
+  type MessageType
 }
