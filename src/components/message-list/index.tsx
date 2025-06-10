@@ -3,7 +3,7 @@ import Message from '../message'
 import styled from 'styled-components'
 import Loading from '../loading'
 import useDetectScrollPosition from '../../hooks/useDetectScrollPosition'
-import MessageType from '../../types/MessageType'
+import type {MessageType} from '../../types/MessageType'
 import TypingIndicator from '../typing-indicator'
 import MessageListBackground from '../message-list-background'
 import useColorSet from '../../hooks/useColorSet'
@@ -104,10 +104,10 @@ export default function MessageList({
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
     const [messagesWasEmpty, setMessagesWasEmpty] = useState(true)
-    const containerRef = useRef<any>()
+    const containerRef = useRef<any>(undefined)
 
-    const bottomBufferRef = useRef<any>()
-    const scrollContainerRef = useRef<any>()
+    const bottomBufferRef = useRef<any>(undefined)
+    const scrollContainerRef = useRef<any>(undefined)
 
     const { detectBottom, detectTop } = useDetectScrollPosition(scrollContainerRef)
 

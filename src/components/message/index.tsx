@@ -1,8 +1,8 @@
 import React from 'react'
-import User from '../../types/UserType';
+import type { UserType } from '../../types/UserType';
 import OutgoingMessage from './outgoing-message'
 import IncomingMessage from './incoming-message'
-import { MediaType } from '../../types/MessageType';
+import { type MediaType } from '../../types/MessageType';
 
 
 export type Props = {
@@ -12,7 +12,7 @@ export type Props = {
     media?: MediaType,
     loading?: boolean
     type?: "incoming" | "outgoing"
-    user?: User
+    user?: UserType
     showAvatar?: boolean
     showHeader?: boolean
     // determines whether its the last message in the group of outgoing or incoming

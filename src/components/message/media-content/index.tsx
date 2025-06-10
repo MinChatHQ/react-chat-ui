@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MediaType } from '../../../types/MessageType'
+import { type MediaType } from '../../../types/MessageType'
 import { getBorderCss } from '../borderController'
 
 

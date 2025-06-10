@@ -1,4 +1,4 @@
-import UserType from "./UserType"
+import {type UserType} from "./UserType"
 
 export interface MediaType {
   type: "image" | "video" | "file" | "gif"
@@ -7,7 +7,7 @@ export interface MediaType {
   name?: string
 }
 
-type MessageType = {
+export  interface MessageType  {
   user: UserType
   id?: string
   text?: string
@@ -17,4 +17,3 @@ type MessageType = {
   loading?: boolean
 }
 
-export default MessageType

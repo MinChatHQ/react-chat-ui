@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import MessageType from '../../types/MessageType';
+import type {MessageType} from '../../types/MessageType';
 import placeholderProfilePNG from './profile.png';
 import { calculateTimeAgo } from '../../utils/date-utils';
 import useColorSet from '../../hooks/useColorSet';

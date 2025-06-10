@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Loading from '../loading';
-import ConversationType from '../../types/ConversationType';
+import type {ConversationType} from '../../types/ConversationType';
 import Conversation from '../conversation';
 import useColorSet from '../../hooks/useColorSet';
 import MinChatUIContext from '../../contexts/MinChatUIContext';
@@ -109,7 +109,7 @@ export default function ConversationList({
   customLoaderComponent,
   customEmptyConversationsComponent
 }: Props) {
-  const scrollContainerRef = useRef<any>();
+  const scrollContainerRef = useRef<any>(undefined);
 
   const backgroundColor = useColorSet("--chatlist-background-color")
   const noConversation = useColorSet("--no-conversation-text-color")

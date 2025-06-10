@@ -4,7 +4,7 @@ import MediaContent from '../media-content'
 import { getBorderCss } from '../borderController'
 import TextContent from '../text-content'
 import Timestamp from '../timestamp'
-import { Props } from '..'
+import { type Props } from '..'
 import useColorSet from '../../../hooks/useColorSet'
 import MinChatUIContext from '../../../contexts/MinChatUIContext'
 
