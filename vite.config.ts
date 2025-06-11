@@ -15,10 +15,13 @@ export default defineConfig({
             formats: ['es', 'umd'],
         },
         rollupOptions: {
-            external: [],
-            output: {
-                globals: {},
-            },
-        },
+          external: ['react', 'react-dom'],
+          output: {
+              globals: {
+                  react: 'React',
+                  'react-dom': 'ReactDOM',
+              },
+          },
+      },
     },
 }); 
