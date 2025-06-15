@@ -63,13 +63,12 @@ export default function MyMessage({
 
     const { themeColor } = useContext(MinChatUIContext)
 
-    const textColor = useColorSet("--outgoing-message-text-color")
+    const textColor = useColorSet("--outgoing-message-text-color") || '#ffffff'
     const backgroundColor = useColorSet("--outgoing-message-background-color")
-    const timestampColor = useColorSet("--outgoing-message-timestamp-color")
-    const checkmarkColor = useColorSet("--outgoing-message-checkmark-color")
+    const timestampColor = useColorSet("--outgoing-message-timestamp-color") || '#ffffff'
+    const checkmarkColor = useColorSet("--outgoing-message-checkmark-color") || '#ffffff'
     const loaderColor = useColorSet("--outgoing-message-loader-color")
     const linkColor = useColorSet("--outgoing-message-link-color")
-
 
 
 
