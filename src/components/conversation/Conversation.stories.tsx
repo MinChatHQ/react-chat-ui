@@ -201,6 +201,25 @@ export const GifMessage: Story = {
   },
 };
 
+// Story to demonstrate the isOnline prop
+export const OnlineIndicator: Story = {
+  args: {
+    title: 'Online User',
+    avatar: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    lastMessage: {
+      seen: true,
+      text: 'I am online!',
+      user: {
+        id: 'online_user',
+        name: 'OnlineUser',
+        avatar: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      },
+    },
+    isOnline: true,
+    onClick: () => {},
+  },
+};
+
 
 
 

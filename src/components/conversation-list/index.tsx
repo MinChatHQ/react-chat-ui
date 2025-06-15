@@ -160,6 +160,7 @@ export default function ConversationList({
                       title={conversation.title}
                       lastMessage={conversation.lastMessage}
                       avatar={conversation.avatar}
+                      isOnline={conversation.isOnline}
                       selected={selectedConversationId === conversation.id}
                       currentUserId={currentUserId}
                       unread={conversation.unread}

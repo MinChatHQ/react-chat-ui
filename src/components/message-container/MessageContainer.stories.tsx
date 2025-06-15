@@ -1,5 +1,5 @@
 import React from 'react';
-import {type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react';
 import styled from 'styled-components';
 import { chats, messages, fewMessages } from '../../constants/mock-data';
 import MessageHeader from '../message-header';
@@ -8,12 +8,12 @@ import MessageList from '../message-list';
 import MessageContainer from '.';
 
 const meta: Meta<typeof MessageContainer> = {
-    title: 'MessagesContainer',
-    component: MessageContainer,
-    argTypes: {},
-    parameters: {
-        controls: { expanded: true },
-    },
+  title: 'MessagesContainer',
+  component: MessageContainer,
+  argTypes: {},
+  parameters: {
+    controls: { expanded: true },
+  },
 };
 
 export default meta;
@@ -34,7 +34,10 @@ export const Mobile: Story = {
   render: args => (
     <div style={{ width: "500px" }}>
       <MessageContainer {...args}>
-        <MessageHeader mobileView={true}>Welcome</MessageHeader>
+        <MessageHeader
+          // showBack={false}
+          lastActive={new Date()}
+          mobileView={true}>Welcome</MessageHeader>
         <MessageList mobileView={true} currentUserId="danny_1" messages={messages} />
         <MessageInput mobileView={true} showSendButton={true} />
       </MessageContainer>

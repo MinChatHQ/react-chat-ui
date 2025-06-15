@@ -17,6 +17,10 @@ export type Props = {
    * the current user on the chat ui
    */
   currentUserId?: string;
+  /**
+   * Whether the user is online
+   */
+  isOnline?: boolean;
 };
 const Container = styled.div`
   width: 100%;
@@ -191,6 +195,7 @@ const DisplayPictureContainer = styled.div`
   height: 58px;
   margin-right: 12px;
   box-sizing: border-box;
+  position: relative;
 `;
 
 const DisplayPicture = styled.img`
@@ -221,6 +226,18 @@ const MediaContainer = styled.div`
   margin-left: 4px;
 `
 
+const OnlineIndicator = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  border: 2px solid #fff;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  z-index: 2;
+`;
+
 export default function Conversation({
   title,
   lastMessage,
@@ -228,7 +245,8 @@ export default function Conversation({
   avatar,
   selected = false,
   currentUserId,
-  unread
+  unread,
+  isOnline = false
 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
 
@@ -385,6 +403,7 @@ export default function Conversation({
               }}
               src={usedAvatar}
             />
+            {isOnline && <OnlineIndicator />}
           </DisplayPictureContainer>
         </div>
 
@@ -394,7 +413,6 @@ export default function Conversation({
             <Name
               titleTextColor={titleTextColor}
               unread={unread}>{title}</Name>
-
             <Timestamp
               unread={unread}
               color={contentTextColor}>{dateSent}</Timestamp>

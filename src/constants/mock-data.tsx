@@ -23,8 +23,8 @@ export const chats: ConversationType[] = [
   },
   {
     id: '2',
-
     title: 'Devops',
+    isOnline: true,
     lastMessage: {
       createdAt: date,
       seen: true,
