@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import type {MessageType} from '../../types/MessageType';
+import type { MessageType } from '../../types/MessageType';
 import placeholderProfilePNG from './profile.png';
 import { calculateTimeAgo } from '../../utils/date-utils';
 import useColorSet from '../../hooks/useColorSet';
@@ -27,15 +27,14 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   box-sizing: border-box;
-user-select: none;
-
+  user-select: none;
+  padding-left: 16px;
 `;
 const ContentContainer = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  padding-left: 8px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -49,13 +48,19 @@ const Background = styled.div<{
   selectedBackgroundColor?: string
 }>`
 position: absolute;
-width: 100%;
+left: 8px;
+right: 8px;
 height: 100%;
 background-color: ${({ themeColor, selected, backgroundColor, selectedBackgroundColor }) =>
     selected ? (selectedBackgroundColor || themeColor) : (backgroundColor || '#ffffff')};
 opacity: 0.2;
 z-index: 1;
 transition: all 0.3s ease-in-out;
+border-radius: 12px;
+
+margin-top: 4px;
+margin-bottom: 4px;
+
 
 &:hover{
 ${({ selected }) => (!selected ? 'opacity: 0.09;' : '')} 
@@ -150,7 +155,7 @@ const MessageComponent = styled.div<{
   align-self: flex-start;
   position: relative;
   color: ${({ color }) => color || '#7a7a7a'};
-
+  min-width: 0; 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -173,6 +178,7 @@ const TextContainer = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+    min-width: 0; 
   padding-right: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
@@ -197,6 +203,7 @@ const DisplayPicture = styled.img`
   object-fit: cover;
   z-index: 1;
   position: relative;
+  pointer-events: none;
 `;
 
 const MediaIconContainer = styled.div`
@@ -395,7 +402,7 @@ export default function Conversation({
 
           <MessageComponent
             color={contentTextColor}
-            width={containerWidth - 96}
+            width={containerWidth - 110}
             unread={unread}
           >
             {lastMessage?.user.id === currentUserId
@@ -410,8 +417,16 @@ export default function Conversation({
                 {getMediaText()}
               </MediaContainer>
             ) : (
-              <div
-                dangerouslySetInnerHTML={{ __html: lastMessage?.text || "" }}></div>
+              <span
+                style={{
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  display: 'block', // or 'inline-block'
+                  minWidth: 0,
+                  maxWidth: '100%',
+                }}
+                dangerouslySetInnerHTML={{ __html: lastMessage?.text || "" }}></span>
             )}
           </MessageComponent>
         </TextContainer>
