@@ -56,3 +56,54 @@ export const CustomNoConversation: Story = {
 export const CustomConversationItem: Story = {
   render: args => <ConversationList {...args} conversations={chats} themeColor="#6ea9d7" selectedConversationId="1" renderCustomConversationitem={conversation => <div>{conversation.lastMessage?.text}</div>} />,
 };
+
+export const HeaderWithSearchbarHidden: Story = {
+  render: args => (
+    <ConversationList
+      {...args}
+      conversations={chats}
+      themeColor="#6ea9d7"
+      selectedConversationId="1"
+      header={{
+        showHeader: true,
+        showSearchBar: false,
+        showAddButton: true,
+        title: 'Chats',
+      }}
+    />
+  ),
+};
+
+export const HeaderWithAddButtonHidden: Story = {
+  render: args => (
+    <ConversationList
+      {...args}
+      conversations={chats}
+      themeColor="#6ea9d7"
+      selectedConversationId="1"
+      header={{
+        showHeader: true,
+        showSearchBar: true,
+        showAddButton: false,
+        title: 'Chats',
+      }}
+    />
+  ),
+};
+
+export const HeaderHidden: Story = {
+  render: args => (
+    <ConversationList
+      {...args}
+      conversations={chats}
+      themeColor="#6ea9d7"
+      selectedConversationId="1"
+      header={{
+        showHeader: false,
+        showSearchBar: true, // value doesn't matter when showHeader is false
+        showAddButton: true, // value doesn't matter when showHeader is false
+        title: 'Chats',
+      }}
+    />
+  ),
+};

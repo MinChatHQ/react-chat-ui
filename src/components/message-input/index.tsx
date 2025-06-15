@@ -58,9 +58,6 @@ width: 100%;
 display: flex;
 align-items: end;
 box-sizing: border-box;
-
-// margin-left: 6px;
-// margin-right: 6px;
 `
 
 const InputContainer = styled.div`
@@ -88,7 +85,7 @@ border:1px solid #ecebeb;
 
 
 const InputElementContainer = styled.div`
-        padding: 8px;
+    padding: 8px;
     padding-left: 16px;
     padding-right: 16px;
     width:100%;

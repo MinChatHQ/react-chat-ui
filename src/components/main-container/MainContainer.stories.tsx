@@ -110,7 +110,6 @@ const CustomColorsTemplate: StoryFn<Props> = (args: Props) => {
             {...args}
             style={{ height: '100vh' }}>
             <Sidebar>
-                <ConversationHeader showHeader={false} />
 
                 <ConversationList
                     conversations={chats}
@@ -161,7 +160,6 @@ const MobileChatListCustomColorsTemplate: StoryFn<Props> = (args: Props) => {
         <MainContainer
             {...args}
             style={{ height: '100vh' }}>
-            <ConversationHeader />
 
             <ConversationList
 
@@ -236,8 +234,6 @@ const Template: StoryFn<Props> = (args: Props) => {
         {...args}
         style={{ height: '100vh' }}>
         <Sidebar>
-            <ConversationHeader showHeader={false} />
-
             <ConversationList
                 conversations={chats}
             />
@@ -255,13 +251,13 @@ const Template: StoryFn<Props> = (args: Props) => {
     </MinChatUiProvider>
 }
 
+
+
 const NoSelectedChatTemplate: StoryFn<Props> = () => {
 
 
     return <MainContainer style={{ height: '100vh' }}>
         <Sidebar>
-            <ConversationHeader />
-
             <ConversationList
                 conversations={chats}
             />
@@ -277,7 +273,6 @@ const MobileTemplate: StoryFn<Props> = () => {
     return <div style={{ width: "100%", height: "100%" }}>
         <div style={{ width: '300px', padding: "30px", backgroundColor: '#FF0000' }}>
             <MainContainer style={{ height: '100vh' }}>
-                <ConversationHeader />
 
                 <ConversationList
                     conversations={chats}
@@ -297,7 +292,6 @@ const MobileTemplate: StoryFn<Props> = () => {
 //         {...args}
 //         style={{ height: '100vh' }}>
 //         <Sidebar>
-//             <ConversationHeader showHeader={false} />
 
 //             <ConversationList
 //             loading

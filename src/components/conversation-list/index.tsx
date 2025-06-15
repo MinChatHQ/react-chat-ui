@@ -1,10 +1,11 @@
 import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import Loading from '../loading';
-import type {ConversationType} from '../../types/ConversationType';
+import type { ConversationType } from '../../types/ConversationType';
 import Conversation from '../conversation';
 import useColorSet from '../../hooks/useColorSet';
 import MinChatUIContext from '../../contexts/MinChatUIContext';
+import ConversationHeader from '../conversation-header';
 
 export interface Props {
   onConversationClick?: (index: number) => void;
@@ -22,6 +23,17 @@ export interface Props {
   customLoaderComponent?: React.ReactNode
   customEmptyConversationsComponent?: React.ReactNode
 
+  header?: {
+    showHeader?: boolean
+    customHeaderComponent?: React.ReactNode
+    title?: string
+    showAddButton?: boolean
+    onAddClicked?: () => void
+    showSearchBar?: boolean
+    searchValue?: string
+    onSearchChange?: (value: string) => void
+  }
+
 }
 
 const ScrollContainer = styled.div<{
@@ -31,7 +43,7 @@ const ScrollContainer = styled.div<{
 position: relative;
   height: 100%;
   width: 100%;
-padding-top: ${({ loading }) => loading ? '0px' : '56px'};
+padding-top: ${({ loading }) => loading ? '0px' : '0px'};
 box-sizing: border-box;
 overflow-y: auto;
 max-height: 100vh;
@@ -107,7 +119,8 @@ export default function ConversationList({
   currentUserId,
   renderCustomConversationitem,
   customLoaderComponent,
-  customEmptyConversationsComponent
+  customEmptyConversationsComponent,
+  header
 }: Props) {
   const scrollContainerRef = useRef<any>(undefined);
 
@@ -141,6 +154,17 @@ export default function ConversationList({
               <Loading themeColor={themeColor} />}
           </LoadingContainer> : (
             <>
+              {header?.customHeaderComponent ? header?.customHeaderComponent : <ConversationHeader
+                showHeader={header?.showHeader}
+                title={header?.title}
+                showAddButton={header?.showAddButton}
+                onAddClicked={header?.onAddClicked}
+                showSearchBar={header?.showSearchBar}
+                searchValue={header?.searchValue}
+                onSearchChange={header?.onSearchChange}
+                loading={loading}
+              />}
+
               {conversations && conversations.length <= 0 && (
                 customEmptyConversationsComponent ?
                   customEmptyConversationsComponent :

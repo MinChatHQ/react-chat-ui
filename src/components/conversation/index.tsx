@@ -26,7 +26,7 @@ const Container = styled.div`
   width: 100%;
   height: 88px;
   position: relative;
-  margin-top: 1px;
+  margin-top: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
