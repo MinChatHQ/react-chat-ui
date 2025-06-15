@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { calculateLastSeen } from '../../utils/date-utils'
 import useColorSet from '../../hooks/useColorSet'
+import placeholderProfilePNG from '../conversation/profile.png';
 
 export type Props = {
     onBack?: () => void
@@ -9,6 +10,7 @@ export type Props = {
     showBack?: boolean
     mobileView?: boolean
     lastActive?: Date
+    avatar?: string;
 }
 
 
@@ -49,7 +51,7 @@ border-top: 1px solid #e5e7eb;
 `
 
 const HeadingContainer = styled.div`
-position:absolute;
+position:relative;
 width: 100%;
 
 `
@@ -57,7 +59,7 @@ width: 100%;
 const ChatTitle = styled.div<{
     color?: string
 }>`
-    text-align:center;
+    text-align:left;
     vertical-align:text-top;
     font-size:16px;
     line-height:auto;
@@ -73,7 +75,7 @@ const ChatTitle = styled.div<{
 const LastSeenText = styled.div<{
     color?: string
 }>`
-    text-align:center;
+    text-align:left;
     vertical-align:text-top;
     font-size:10px;
     line-height:auto;
@@ -109,16 +111,50 @@ box-sizing: border-box;
 
 color: ${({ color }) => color ? ` ${color}` : 'black'};
 `
+
+
+const DisplayPictureContainer = styled.div`
+  width: 36px;
+  height: 36px;
+  margin-left: 12px;
+  margin-right: 12px;
+  box-sizing: border-box;
+  position: relative;
+`;
+
+const DisplayPicture = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-color: rgb(255 255 255);
+  object-fit: cover;
+  z-index: 1;
+  position: relative;
+  pointer-events: none;
+`;
+
+
 export default function MessageHeader({
     onBack,
     children,
     showBack = true,
     mobileView,
-    lastActive
+    lastActive,
+    avatar
 }: Props) {
 
     const [lastSeen, setLastSeen] = useState<string | undefined>()
     const [intervalId, setIntervalId] = useState<any>()
+
+    const [usedAvatar, setUsedAvatar] = React.useState<string>(placeholderProfilePNG);
+
+    useEffect(() => {
+        if (avatar && avatar.trim().length > 0) {
+            setUsedAvatar(avatar);
+        }
+    }, [avatar]);
 
     useEffect(() => {
         /**
@@ -178,6 +214,17 @@ export default function MessageHeader({
                     </BackIcon>
                 </BackContainer>
                 }
+
+                <div>
+                    <DisplayPictureContainer>
+                        <DisplayPicture
+                            onError={() => {
+                                setUsedAvatar(placeholderProfilePNG);
+                            }}
+                            src={usedAvatar}
+                        />
+                    </DisplayPictureContainer>
+                </div>
 
                 <HeadingContainer>
                     <ChatTitle

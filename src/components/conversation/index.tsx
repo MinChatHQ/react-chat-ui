@@ -250,9 +250,7 @@ export default function Conversation({
 }: Props) {
   const [containerWidth, setContainerWidth] = useState(0);
 
-  const [usedAvatar, setUsedAvatar] = React.useState<string>(
-    placeholderProfilePNG
-  );
+  const [usedAvatar, setUsedAvatar] = React.useState<string>(placeholderProfilePNG);
 
   const [dateSent, setDateSent] = useState<string | undefined>()
   const [intervalId, setIntervalId] = useState<any>()
