@@ -6,6 +6,7 @@ import { type MediaType } from '../../types/MessageType';
 
 
 export type Props = {
+    showTimestamp?: boolean
     created_at?: Date
     seen?: boolean
     text?: string,
@@ -38,7 +39,8 @@ export default function Message({
     last,
     single,
     clusterFirstMessage,
-    clusterLastMessage
+    clusterLastMessage,
+    showTimestamp
 }: Props) {
 
     return (
@@ -53,6 +55,7 @@ export default function Message({
                 single={single}
                 clusterFirstMessage={clusterFirstMessage}
                 clusterLastMessage={clusterLastMessage}
+                showTimestamp={showTimestamp}
             />
 
             :
@@ -66,6 +69,7 @@ export default function Message({
                 showHeader={showHeader}
                 last={last}
                 single={single}
+                showTimestamp={showTimestamp}
             />
 
     )

@@ -3,10 +3,11 @@ import Message from '../message'
 import styled from 'styled-components'
 import Loading from '../loading'
 import useDetectScrollPosition from '../../hooks/useDetectScrollPosition'
-import type {MessageType} from '../../types/MessageType'
+import type { MessageType } from '../../types/MessageType'
 import TypingIndicator from '../typing-indicator'
 import MessageListBackground from '../message-list-background'
 import useColorSet from '../../hooks/useColorSet'
+import { calculateTimeAgo } from '../../utils/date-utils'
 
 export type MessageListProps = {
     themeColor?: string
@@ -89,7 +90,7 @@ position: relative;
 `
 
 export default function MessageList({
-    messages,
+    messages: rawMessages,
     currentUserId,
     loading = false,
     onScrollToTop,
@@ -101,6 +102,9 @@ export default function MessageList({
     customLoaderComponent,
     customEmptyMessagesComponent
 }: MessageListProps) {
+
+    const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
+
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
     const [messagesWasEmpty, setMessagesWasEmpty] = useState(true)
@@ -119,6 +123,35 @@ export default function MessageList({
         }
 
     }, [messagesWasEmpty, bottomBufferRef.current, scrollContainerRef.current])
+
+
+    useEffect(() => {
+        if (rawMessages) {
+            const processedMessages = rawMessages.map((message, index, arr) => {
+                // If no createdAt, always false
+                if (!message.createdAt) {
+                    return { ...message, showTimestamp: false };
+                }
+                const timeAgo = calculateTimeAgo(message.createdAt);
+                const isLast = (() => {
+                    // If last message in array, always show timestamp
+                    if (index === arr.length - 1) return true;
+                    const next = arr[index + 1];
+                    // If next message is from different user or has different timeAgo, this is last in group
+                    if (
+                        !next.createdAt ||
+                        next.user.id !== message.user.id ||
+                        calculateTimeAgo(next.createdAt) !== timeAgo
+                    ) {
+                        return true;
+                    }
+                    return false;
+                })();
+                return { ...message, showTimestamp: isLast };
+            });
+            setMessages(processedMessages);
+        }
+    }, [rawMessages]);
 
 
     useEffect(() => {
@@ -215,7 +248,7 @@ export default function MessageList({
                                         <p>No messages yet...</p>
                                     </NoMessagesTextContainer>)
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, media, loading: messageLoading, seen, createdAt }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, media, loading: messageLoading, seen, createdAt, showTimestamp }, index) => {
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 
@@ -248,6 +281,7 @@ export default function MessageList({
                                         seen={seen}
                                         created_at={createdAt}
                                         media={media}
+                                        showTimestamp={showTimestamp}
                                         // the last message should show loading if sendMessage loading is true
                                         loading={messageLoading}
                                         clusterFirstMessage={firstClusterMessage}
@@ -269,6 +303,7 @@ export default function MessageList({
                                         last={single ? false : last}
                                         single={single}
                                         text={text}
+                                        showTimestamp={showTimestamp}
                                     />
                                 }
                             })}

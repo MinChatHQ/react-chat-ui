@@ -38,7 +38,8 @@ export const Background = styled.div<{
 }>`
     position: absolute;
     width: 100%;
-    height: 100%;
+    top: 0;
+    bottom: 0;
     background-color:${({ bgColor }) => bgColor};
 
     ${({ borderCss }) => borderCss};
@@ -58,20 +59,18 @@ export default function MyMessage({
     clusterFirstMessage,
     clusterLastMessage,
     created_at,
-    seen
+    seen,
+    showTimestamp
 }: Omit<Props, "showHeader" | "showAvatar" | "type">) {
 
     const { themeColor } = useContext(MinChatUIContext)
 
     const textColor = useColorSet("--outgoing-message-text-color") || '#ffffff'
     const backgroundColor = useColorSet("--outgoing-message-background-color")
-    const timestampColor = useColorSet("--outgoing-message-timestamp-color") || '#ffffff'
+    const timestampColor = useColorSet("--outgoing-message-timestamp-color") || '#f3f4f6'
     const checkmarkColor = useColorSet("--outgoing-message-checkmark-color") || '#ffffff'
     const loaderColor = useColorSet("--outgoing-message-loader-color")
     const linkColor = useColorSet("--outgoing-message-link-color")
-
-
-
 
 
     return (
@@ -104,15 +103,19 @@ export default function MyMessage({
                             color={textColor}
                         >{text}</TextContent>}
 
-                    <Timestamp
-                        showSeen
-                        color={timestampColor}
-                        loaderColor={loaderColor}
-                        checkmarkColor={checkmarkColor}
-                        date={created_at}
-                        seen={seen}
-                        loading={loading} />
+                    {showTimestamp && <div style={{ marginTop: '4px', paddingBottom: '4px' }}>
 
+                        <Timestamp
+                            showSeen
+                            color={timestampColor}
+                            loaderColor={loaderColor}
+                            checkmarkColor={checkmarkColor}
+                            date={created_at}
+                            seen={seen}
+                            loading={loading} />
+                    </div>
+
+                    }
                 </Container>
 
             </div>

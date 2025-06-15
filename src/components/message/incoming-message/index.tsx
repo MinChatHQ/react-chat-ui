@@ -5,7 +5,7 @@ import placeholderProfilePNG from './profile.webp'
 import MediaContent from '../media-content'
 import { getBorderCss } from '../borderController'
 import TextContent from '../text-content'
-import {type Props } from '..'
+import { type Props } from '..'
 import Timestamp from '../timestamp'
 import useColorSet from '../../../hooks/useColorSet'
 import MinChatUIContext from '../../../contexts/MinChatUIContext'
@@ -90,6 +90,7 @@ export default function IncomingMessage({
     last,
     single,
     created_at,
+    showTimestamp
 }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
     const { themeColor } = useContext(MinChatUIContext)
@@ -154,10 +155,14 @@ export default function IncomingMessage({
                                 linkColor={linkColor}
                                 color={textColor}>{text}</TextContent>}
 
-                        <Timestamp
-                            color={timestampColor}
-                            date={created_at}
-                        />
+                        {showTimestamp && <div style={{ marginTop: '4px', paddingBottom: '4px' }}>
+                            <Timestamp
+                                color={timestampColor}
+                                date={created_at}
+                            />
+                        </div>
+                        }
+                        
                     </MessageContainer>
                 </div>
 
