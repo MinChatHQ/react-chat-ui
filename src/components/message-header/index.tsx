@@ -20,13 +20,13 @@ const Container = styled.div<{ mobile?: boolean }>`
     box-sizing: border-box;
 
     ${({ mobile }) => !mobile ? `
-    padding-right: 12px;
+    padding-right: 10px;
     ` :
-        `
-    `}
+        ``}
 `
 const InnerContainer = styled.div<{
     backgroundColor?: string
+    mobileView?: boolean
 }>`
     background-color:${({ backgroundColor }) => backgroundColor || '#f3f4f6'};
     border-top-left-radius: 16px;
@@ -40,6 +40,12 @@ const InnerContainer = styled.div<{
     display: flex;
     align-items: center;
     box-sizing: border-box;
+
+    ${({ mobileView }) => !mobileView ? `
+border-left: 1px solid #e5e7eb;
+border-right: 1px solid #e5e7eb;
+border-top: 1px solid #e5e7eb;
+` : ""}
 `
 
 const HeadingContainer = styled.div`
@@ -154,6 +160,7 @@ export default function MessageHeader({
             mobile={mobileView}>
 
             <InnerContainer
+                mobileView={mobileView}
                 backgroundColor={backgroundColor}>
 
                 {showBack && <BackContainer

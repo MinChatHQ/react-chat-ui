@@ -47,6 +47,7 @@ overflow-y: auto;
 position: relative;
 height: 100%;
 width: 100%;
+margin-bottom: 52px;
 max-height: 100vh;
 box-sizing: border-box;
 display: flex;
@@ -60,7 +61,7 @@ scrollbar-width: none; /* Firefox */
 `
 
 const Buffer = styled.div`
-    height: 2px;
+    height: 52px;
     width: 100%;
     position: relative;
 `

@@ -25,9 +25,12 @@ const Container = styled.div<{
     mobile?: boolean,
 }>`
 box-sizing: border-box;
-position: relative;
-width: 100%;
+position: absolute;
 display: flex;
+bottom: 0;
+left: 0;
+right: 0;
+ z-index: 1;
 
 
 ${({ mobile }) => mobile ? `
@@ -35,24 +38,29 @@ ${({ mobile }) => mobile ? `
 
 `:
         ` 
-padding-right: 12px;
+padding-right: 10px;
  `}
 `
+
 const Form = styled.form<{
     backgroundColor?: string,
     borderColor?: string,
 }>`
-background-color:${({ backgroundColor }) => backgroundColor || "#f3f4f6"};
+
+background-color:${({ backgroundColor }) => backgroundColor || "#ffffff"};
 padding-top: 8px;
 padding-bottom: 8px;
-border-bottom-right-radius: 16px;
-border-bottom-left-radius: 16px;
-box-shadow:0px -1px 0px rgba(0, 0, 0, 0.07999999821186066);
+border-radius: 16px;
+border: 1px solid #e5e7eb;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08);
 position: relative;
 width: 100%;
 display: flex;
 align-items: end;
 box-sizing: border-box;
+
+// margin-left: 6px;
+// margin-right: 6px;
 `
 
 const InputContainer = styled.div`
