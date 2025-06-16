@@ -11,6 +11,12 @@ export type Props = {
     mobileView?: boolean
     lastActive?: Date
     avatar?: string;
+    colorSet?: {
+        backgroundColor?: string
+        textColor?: string
+        lastActiveColor?: string
+        backColor?: string
+    }
 }
 
 
@@ -142,7 +148,8 @@ export default function MessageHeader({
     showBack = true,
     mobileView,
     lastActive,
-    avatar
+    avatar,
+    colorSet
 }: Props) {
 
     const [lastSeen, setLastSeen] = useState<string | undefined>()
@@ -186,10 +193,10 @@ export default function MessageHeader({
         };
     }, [lastActive])
 
-    const backgroundColor = useColorSet("--message-header-background-color")
-    const textColor = useColorSet("--message-header-text-color")
-    const lastActiveColor = useColorSet("--message-header-last-active-color")
-    const backColor = useColorSet("--message-header-back-color")
+    const backgroundColor = colorSet?.backgroundColor || useColorSet("--message-header-background-color")
+    const textColor = colorSet?.textColor || useColorSet("--message-header-text-color")
+    const lastActiveColor = colorSet?.lastActiveColor || useColorSet("--message-header-last-active-color")
+    const backColor = colorSet?.backColor || useColorSet("--message-header-back-color")
 
     return (
         <Container
