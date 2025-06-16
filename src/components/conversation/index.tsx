@@ -86,6 +86,7 @@ const Name = styled.div<{
   line-height: auto;
   position: relative;
   z-index: 1;
+  pointer-events: none;
   color: ${({ titleTextColor }) => titleTextColor || '#000000'};
 
   ${({ unread }) =>
