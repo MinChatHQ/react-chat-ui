@@ -2,6 +2,8 @@ import type { ConversationType } from "../types/ConversationType";
 import type { MessageType } from "../types/MessageType";
 
 const date = new Date()
+const date2 = new Date(date.getTime() - 1000 * 60 * 60 * 24)
+
 
 export const chats: ConversationType[] = [
   {
@@ -260,7 +262,7 @@ export const messages: MessageType[] = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    createdAt: date,
+    createdAt: date2,
     text: 'determine',
   },
   {
@@ -268,7 +270,7 @@ export const messages: MessageType[] = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    createdAt: date,
+    createdAt: date2,
     text: 'resolve',
   },
   {
@@ -276,7 +278,7 @@ export const messages: MessageType[] = [
       id: 'danny_1',
       name: 'Daniel Georgetown',
     },
-    createdAt: date,
+    createdAt: date2,
     text: 'will',
   },
   {
