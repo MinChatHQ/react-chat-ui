@@ -61,7 +61,7 @@ scrollbar-width: none; /* Firefox */
 `
 
 const Buffer = styled.div`
-    height: 52px;
+    height: 72px;
     width: 100%;
     position: relative;
 `

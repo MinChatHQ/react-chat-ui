@@ -186,7 +186,7 @@ export const fewChats = [
 export const messages: MessageType[] = [
   {
     user: {
-      id: 'danny_1',
+      id: 'mark',
       name: 'Daniel Georgetown',
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
@@ -362,19 +362,6 @@ export const messages: MessageType[] = [
     text: 'is https://google.com ',
   },
   {
-    createdAt: date,
-    user: {
-      id: 'danny_2',
-      name: 'Dan',
-      avatar:
-        'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-    media: {
-      type: "image",
-      url: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-  },
-  {
     user: {
       id: 'danny_1',
       name: 'Daniel Georgetown',
@@ -420,6 +407,19 @@ export const messages: MessageType[] = [
     createdAt: date,
     seen: true,
     loading: true
+  },
+  {
+    createdAt: date,
+    user: {
+      id: 'danny_2',
+      name: 'Dan',
+      avatar:
+        'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    media: {
+      type: "image",
+      url: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
   },
 ];
 
