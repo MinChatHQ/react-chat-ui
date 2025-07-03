@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { calculateLastSeen } from '../../utils/date-utils'
 import useColorSet from '../../hooks/useColorSet'
-import placeholderProfilePNG from '../conversation/profile.png';
+import placeholderProfilePNG from '../../assets/profile.svg';
 
 export type Props = {
     onBack?: () => void

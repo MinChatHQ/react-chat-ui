@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import type { MessageType } from '../../types/MessageType';
-import placeholderProfilePNG from './profile.png';
+import placeholderProfilePNG from '../../assets/profile.svg';
 import { calculateTimeAgo } from '../../utils/date-utils';
 import useColorSet from '../../hooks/useColorSet';
 import MinChatUIContext from '../../contexts/MinChatUIContext';

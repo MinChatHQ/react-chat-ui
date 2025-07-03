@@ -2,14 +2,18 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
     plugins: [
         react(),
         dts({ tsconfigPath: './tsconfig.app.json' }),
-        cssInjectedByJsPlugin()
+        cssInjectedByJsPlugin(),
+        visualizer({ open: true })
     ],
     build: {
+        minify: true,
+        sourcemap: false,
         lib: {
             entry: 'src/index.ts',
             name: '@minchat/react',

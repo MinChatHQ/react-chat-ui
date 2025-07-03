@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, Background } from '../outgoing-message'
-import placeholderProfilePNG from './profile.webp'
+import placeholderProfilePNG from '../../../assets/profile.svg'
 import MediaContent from '../media-content'
 import { getBorderCss } from '../borderController'
 import TextContent from '../text-content'
