@@ -3,10 +3,18 @@ import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import { visualizer } from 'rollup-plugin-visualizer';
+import babel from 'vite-plugin-babel';
 
 export default defineConfig({
     plugins: [
         react(),
+        babel({
+            babelConfig: {
+                plugins: [
+                    ["babel-plugin-styled-components", { "pure": true, "ssr": false, "displayName": false }]
+                ],
+            },
+        }),
         dts({ tsconfigPath: './tsconfig.app.json' }),
         cssInjectedByJsPlugin(),
         visualizer({ open: true })
