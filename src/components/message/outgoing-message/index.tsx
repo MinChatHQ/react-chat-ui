@@ -23,14 +23,26 @@ export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolea
 
 
 export const Container = styled.div`
-max-width:272px;
-min-width:80px;
+max-width: 272px;
+min-width: 80px;
 margin-left: 10px;
-justify-content:flex-end;
-align-items:flex-end;
-gap:10px;
-position:relative;
+justify-content: flex-end;
+align-items: flex-end;
+gap: 10px;
+position: relative;
 box-sizing: border-box;
+
+@media (min-width: 480px) {
+  max-width: 360px;
+}
+
+@media (min-width: 768px) {
+  max-width: 480px;
+}
+
+@media (min-width: 1200px) {
+  max-width: 640px;
+}
 `
 export const Background = styled.div<{
     bgColor: string,

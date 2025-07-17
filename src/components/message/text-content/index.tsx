@@ -27,7 +27,7 @@ box-sizing: border-box;
 word-wrap: break-word;
 width: 100%;
 
-user-select: none;
+// user-select: none;
 
 a {
     color: ${({ linkColor }) => linkColor || 'blue'};
