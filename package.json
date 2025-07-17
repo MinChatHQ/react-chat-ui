@@ -1,6 +1,6 @@
 {
   "name": "@minchat/react-chat-ui",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "author": "MinChat",
   "description": "Minchat SDK for React",
   "main": "dist/minchat-sdk.umd.js",
