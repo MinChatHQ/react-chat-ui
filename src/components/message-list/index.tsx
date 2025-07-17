@@ -21,6 +21,11 @@ export type MessageListProps = {
     customTypingIndicatorComponent?: React.ReactNode
     customEmptyMessagesComponent?: React.ReactNode
     customLoaderComponent?: React.ReactNode
+    /**
+     * Optional function to determine the theme color for a specific message.
+     * If not provided, falls back to themeColor prop.
+     */
+    getMessageThemeColor?: (message: MessageType) => string | undefined
 }
 
 
@@ -101,7 +106,8 @@ export default function MessageList({
     showTypingIndicator,
     customTypingIndicatorComponent,
     customLoaderComponent,
-    customEmptyMessagesComponent
+    customEmptyMessagesComponent,
+    getMessageThemeColor,
 }: MessageListProps) {
 
     const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
@@ -249,7 +255,8 @@ export default function MessageList({
                                         <p>No messages yet...</p>
                                     </NoMessagesTextContainer>)
                             }
-                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map(({ user, text, media, loading: messageLoading, seen, createdAt, showTimestamp }, index) => {
+                            {messages && scrollContainerRef.current && bottomBufferRef.current && messages.map((message, index) => {
+                                const { user, text, media, loading: messageLoading, seen, createdAt, showTimestamp } = message
                                 //determining the type of message to render
                                 let lastClusterMessage, firstClusterMessage, last, single
 
@@ -270,6 +277,8 @@ export default function MessageList({
                                 //if the messages array contains only 1 message then single incoming is true
                                 if (messages.length === 1) { single = true }
 
+                                // Determine the theme color for this message
+                                const messageThemeColor = getMessageThemeColor?.(message)
 
                                 if (user.id == (currentUserId && currentUserId.toLowerCase())) {
 
@@ -287,6 +296,7 @@ export default function MessageList({
                                         loading={messageLoading}
                                         clusterFirstMessage={firstClusterMessage}
                                         clusterLastMessage={lastClusterMessage}
+                                        themeColor={messageThemeColor}
                                     />
 
                                 } else {
@@ -305,6 +315,7 @@ export default function MessageList({
                                         single={single}
                                         text={text}
                                         showTimestamp={showTimestamp}
+                                        themeColor={messageThemeColor}
                                     />
                                 }
                             })}

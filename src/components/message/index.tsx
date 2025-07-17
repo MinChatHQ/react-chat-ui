@@ -22,7 +22,7 @@ export type Props = {
     single?: boolean
     clusterFirstMessage?: boolean
     clusterLastMessage?: boolean
-
+    themeColor?: string
 };
 
 
@@ -40,7 +40,8 @@ export default function Message({
     single,
     clusterFirstMessage,
     clusterLastMessage,
-    showTimestamp
+    showTimestamp,
+    themeColor
 }: Props) {
 
     return (
@@ -56,6 +57,7 @@ export default function Message({
                 clusterFirstMessage={clusterFirstMessage}
                 clusterLastMessage={clusterLastMessage}
                 showTimestamp={showTimestamp}
+                themeColor={themeColor}
             />
 
             :
@@ -70,6 +72,7 @@ export default function Message({
                 last={last}
                 single={single}
                 showTimestamp={showTimestamp}
+                themeColor={themeColor}
             />
 
     )

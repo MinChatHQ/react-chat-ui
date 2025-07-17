@@ -50,7 +50,7 @@ export const Background = styled.div<{
 
 
 
-export default function MyMessage({
+export default function OutgoingMessage({
     text,
     media,
     loading,
@@ -60,10 +60,11 @@ export default function MyMessage({
     clusterLastMessage,
     created_at,
     seen,
-    showTimestamp
+    showTimestamp,
+    themeColor
 }: Omit<Props, "showHeader" | "showAvatar" | "type">) {
 
-    const { themeColor } = useContext(MinChatUIContext)
+    const { themeColor: contextThemeColor } = useContext(MinChatUIContext)
 
     const textColor = useColorSet("--outgoing-message-text-color") || '#ffffff'
     const backgroundColor = useColorSet("--outgoing-message-background-color")
@@ -90,7 +91,7 @@ export default function MyMessage({
                             last,
                             single
                         }))()}
-                        bgColor={backgroundColor || themeColor} />
+                        bgColor={themeColor || backgroundColor  || contextThemeColor} />
 
                     {media ? <MediaContent
                         last={last}

@@ -66,6 +66,23 @@ export const CustomTypingIndicator: Story = {
   render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" loading={false} customTypingIndicatorComponent={<div>Custom typing indicator working!</div>} themeColor="#6ea9d7" showTypingIndicator={true} typingIndicatorContent="Mark is typing" messages={[{ user: { id: "danny_1", name: "Daniel Georgetown", avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" }, text: "this message should have loading" }, ...messages]} /></div>,
 };
 
+export const CustomUserColors: Story = {
+  render: args => (
+    <div style={{ height: "100vh" }}>
+      <MessageList
+        {...args}
+        currentUserId="danny_1"
+        messages={messages}
+        getMessageThemeColor={msg => {
+          if (msg.user.id === 'danny_1') return '#6ea9d7'; // blue for danny_1
+          if (msg.user.id === 'mark') return '#e57373'; // red for mark
+          return undefined; // fallback to default
+        }}
+      />
+    </div>
+  ),
+};
+
 
 
 

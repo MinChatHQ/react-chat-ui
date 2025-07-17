@@ -90,10 +90,11 @@ export default function IncomingMessage({
     last,
     single,
     created_at,
-    showTimestamp
+    showTimestamp,
+    themeColor
 }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
-    const { themeColor } = useContext(MinChatUIContext)
+    const { themeColor: contextThemeColor } = useContext(MinChatUIContext)
 
     const [avatar, setAvatar] = React.useState<string>(placeholderProfilePNG)
 
@@ -143,7 +144,7 @@ export default function IncomingMessage({
                                 single
                             }))()}
                             backgroundColor={backgroundColor}
-                            bgColor={backgroundColor || themeColor} />
+                            bgColor={(themeColor || backgroundColor  || contextThemeColor) ?? ''} />
 
                         {media ? <MediaContent
                             last={last}
