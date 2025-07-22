@@ -99,7 +99,7 @@ const InputElement = styled.div<{
     max-height: 6.4em;
     /* Adjust this value to control the maximum number of lines */
     position:relative;
-    font-size:14px;
+    font-size:16px;
     overflow: scroll;
 
     color: ${({ color }) => color || "rgba(0,0,0,.87)"};
