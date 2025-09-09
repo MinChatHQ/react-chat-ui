@@ -1,6 +1,5 @@
 import React, { } from 'react'
 import styled from 'styled-components'
-import "../../index.css"
 import useColorSet from '../../hooks/useColorSet'
 
 
@@ -27,7 +26,7 @@ export default function MainContainer({
     style
 }: Props) {
 
-const backgroundColor = useColorSet("--container-background-color")
+    const backgroundColor = useColorSet("--container-background-color")
 
     return (
         <Container
