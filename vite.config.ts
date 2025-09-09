@@ -42,7 +42,8 @@ export default isStorybook
                     'react',
                     'react-dom',
                     'react/jsx-runtime',
-                    'react/jsx-dev-runtime'
+                    'react/jsx-dev-runtime',
+                    'styled-components'
                 ],
                 output: {
                     globals: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { type Meta, type StoryObj } from '@storybook/react';
 import type { StoryFn } from '@storybook/react';
 import MainContainer from '.';
@@ -15,6 +15,8 @@ import MessageListBackground from '../message-list-background';
 import MinChatUIProvider from '../../providers/MinChatUiProvider'
 import MinChatUiProvider from '../../providers/MinChatUiProvider';
 import type { Props } from './index';
+import { useEffect, useState } from 'react';
+import { StyleSheetManager } from 'styled-components';
 
 
 
@@ -91,7 +93,7 @@ const Provider = ({ children }: any) => <MinChatUIProvider
         "--incoming-message-background-color": "rgb(0, 128, 0)",
         "--incoming-message-timestamp-color": "rgb(255, 255, 255)",
         "--incoming-message-link-color": "#FF0000",
-        
+
         //outgoing message
         "--outgoing-message-text-color": "#FF0000",
         "--outgoing-message-background-color": "rgb(255, 255, 0)",
@@ -228,27 +230,49 @@ const NoConversationCustomColorsTemplate: StoryFn<Props> = (args: Props) => {
 
 
 const Template: StoryFn<Props> = (args: Props) => {
+    const styleTargetRef = useRef<HTMLDivElement | null>(null);
+    const [target, setTarget] = useState<any>()
 
+    console.log({ target })
 
-    return <MinChatUiProvider theme="#FF0000"><MainContainer
-        {...args}
-        style={{ height: '100vh' }}>
-        <Sidebar>
-            <ConversationList
-                conversations={chats}
-            />
-        </Sidebar>
+    useEffect(() => {
 
-        <MessageContainer>
-            <MessageHeader showBack={false}> Welcome</MessageHeader>
-            <MessageList
-                currentUserId="danny_1"
-                messages={messages}
-            />
-            <MessageInput showSendButton={true} />
-        </MessageContainer>
-    </MainContainer>
-    </MinChatUiProvider>
+        const t = document.getElementById("sc-style-target")
+
+        if (t) {
+            setTarget(t)
+        }
+
+    }, [styleTargetRef.current])
+
+    return <>
+        <div id="sc-style-target" ref={styleTargetRef} />
+        {target &&
+            <StyleSheetManager target={target || undefined}>
+                <div>
+                    <MinChatUiProvider theme="#FF0000"><MainContainer
+                        {...args}
+                        style={{ height: '100vh' }}>
+                        <Sidebar>
+                            <ConversationList
+                                conversations={chats}
+                            />
+                        </Sidebar>
+
+                        <MessageContainer>
+                            <MessageHeader showBack={false}> Welcome</MessageHeader>
+                            <MessageList
+                                currentUserId="danny_1"
+                                messages={messages}
+                            />
+                            <MessageInput showSendButton={true} />
+                        </MessageContainer>
+                    </MainContainer>
+                    </MinChatUiProvider>
+                </div>
+            </StyleSheetManager >
+        }
+    </>
 }
 
 

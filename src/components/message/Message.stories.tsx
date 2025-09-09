@@ -1,6 +1,8 @@
 import type { Meta, StoryFn } from '@storybook/react';
+import { useEffect, useRef, useState } from 'react';
 import Message from ".";
 import type { Props } from ".";
+import { StyleSheetManager } from 'styled-components';
 
 const meta: Meta = {
   title: 'Message',
@@ -25,17 +27,45 @@ hoursAgoDate.setHours(hoursAgoDate.getHours() - 3)
 daysAgoDate.setDate(daysAgoDate.getDate() - 10)
 monthsAgoDate.setMonth(monthsAgoDate.getMonth() - 2)
 
-const LeftTemplate: StoryFn<Props> = (args: Props) => <Message
-  {...args}
-  user={{
-    "id": "danny_1",
-    "name": "Daniel Georgetown",
-    avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  }}
-  type="incoming"
-  text="Hello World!"
-  created_at={date}
-/>
+const LeftTemplate: StoryFn<Props> = (args: Props) => {
+  const styleTargetRef = useRef<HTMLDivElement | null>(null);
+  const [target, setTarget] = useState<any>()
+
+  console.log({ target })
+
+  useEffect(() => {
+
+    const t = document.getElementById("sc-style-target")
+
+    if (t) {
+      setTarget(t)
+    }
+
+  }, [styleTargetRef.current])
+
+  return <>
+    <div id="sc-style-target" ref={styleTargetRef} />
+    {target &&
+      <StyleSheetManager target={target || undefined}>
+        <div>
+          <Message
+            {...args}
+            user={{
+              "id": "danny_1",
+              "name": "Daniel Georgetown",
+              avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+            }}
+            type="incoming"
+            text="Hello World! incoming"
+            created_at={date}
+          />
+        </div>
+      </StyleSheetManager >
+    }
+  </>
+}
+
+
 
 const IncomingWithLinkTemplate: StoryFn<Props> = (args: Props) => <Message
   {...args}
