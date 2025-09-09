@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { calculateLastSeen } from '../../utils/date-utils'
 import useColorSet from '../../hooks/useColorSet'
 import placeholderProfilePNG from '../../assets/profile.svg';
@@ -62,6 +62,15 @@ width: 100%;
 
 `
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const ChatTitle = styled.div<{
     color?: string
 }>`
@@ -76,6 +85,7 @@ const ChatTitle = styled.div<{
     font-weight: 500;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+    animation: ${fadeIn} 0.2s ease-in-out;
 `
 
 const LastSeenText = styled.div<{
@@ -108,12 +118,15 @@ box-sizing: border-box;
 
 `
 
+
+
 const BackIcon = styled.svg<{
     color?: string
 }>`
 padding:0px;
 cursor: pointer;
 box-sizing: border-box;
+animation: ${fadeIn} 0.2s ease-in-out;
 
 color: ${({ color }) => color ? ` ${color}` : 'black'};
 `
@@ -211,7 +224,7 @@ export default function MessageHeader({
                 >
                     <BackIcon
                         color={backColor}
-                        className='fade-animation'
+                        className=''
                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             fill="currentColor"
@@ -236,7 +249,7 @@ export default function MessageHeader({
                 <HeadingContainer>
                     <ChatTitle
                         color={textColor}
-                        className='fade-animation'>{children}</ChatTitle>
+                        className=''>{children}</ChatTitle>
 
                     {lastSeen &&
                         <LastSeenText

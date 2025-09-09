@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import MediaContent from '../media-content'
 import { getBorderCss } from '../borderController'
 import TextContent from '../text-content'
@@ -8,6 +8,15 @@ import { type Props } from '..'
 import useColorSet from '../../../hooks/useColorSet'
 import MinChatUIContext from '../../../contexts/MinChatUIContext'
 
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolean }>`
     display:flex;
@@ -18,6 +27,8 @@ export const Wrapper = styled.div<{ firstMessage?: boolean, lastMessage?: boolea
     box-sizing: border-box;
     margin-bottom: ${({ lastMessage }) => lastMessage ? "16px" : "2px"};
     z-index: 1;
+
+    animation: ${fadeIn} 0.2s ease-in-out;
 `
 
 
@@ -91,7 +102,7 @@ export default function OutgoingMessage({
             data-testid="outgoing-message"
             lastMessage={clusterLastMessage}
             firstMessage={clusterFirstMessage}
-            className='fade-animation'
+            className=''
         >
             <div>
 

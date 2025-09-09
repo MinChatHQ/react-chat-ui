@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import useTypingListener from '../../hooks/useTypingListener'
 import useColorSet from '../../hooks/useColorSet'
 import MinChatUIContext from '../../contexts/MinChatUIContext'
@@ -42,6 +42,17 @@ padding-right: 10px;
  `}
 `
 
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+
 const Form = styled.form<{
     backgroundColor?: string,
     borderColor?: string,
@@ -58,6 +69,8 @@ width: 100%;
 display: flex;
 align-items: end;
 box-sizing: border-box;
+
+animation: ${fadeIn} 0.2s ease-in-out;
 `
 
 const InputContainer = styled.div`
@@ -232,7 +245,7 @@ export default function MessageInput({
         >
             <Form
                 data-testid='message-form'
-                className='fade-animation'
+                className=''
                 backgroundColor={backgroundColor}
                 onSubmit={(e: any) => {
                     e.preventDefault()

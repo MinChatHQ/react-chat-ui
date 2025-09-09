@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import type { MessageType } from '../../types/MessageType';
 import placeholderProfilePNG from '../../assets/profile.svg';
 import { calculateTimeAgo } from '../../utils/date-utils';
@@ -22,6 +22,16 @@ export type Props = {
    */
   isOnline?: boolean;
 };
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
   height: 88px;
@@ -33,6 +43,7 @@ const Container = styled.div`
   box-sizing: border-box;
   user-select: none;
   padding-left: 16px;
+  animation: ${fadeIn} 0.2s ease-in-out;
 `;
 const ContentContainer = styled.div`
   display: flex;
@@ -386,7 +397,7 @@ export default function Conversation({
   }
 
   return (
-    <Container ref={containerRef} onClick={onClick} className="fade-animation">
+    <Container ref={containerRef} onClick={onClick} className="">
       <Background selected={selected}
         hoverColor={hoverColor}
         selectedBackgroundColor={selectedBackgroundColor}

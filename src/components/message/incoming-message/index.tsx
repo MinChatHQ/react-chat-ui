@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Container as MyMessageContainer, Wrapper as MyMessageWrapper, Background } from '../outgoing-message'
 import placeholderProfilePNG from '../../../assets/profile.svg'
 import MediaContent from '../media-content'
@@ -17,10 +17,19 @@ const MessageContainer = styled(MyMessageContainer)`
     margin-bottom: 0px;
 `
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const Wrapper = styled(MyMessageWrapper)`
 justify-content: start;
 align-items: flex-end;
+animation: ${fadeIn} 0.2s ease-in-out;
 `
 
 const DPContainer = styled.div`
@@ -115,7 +124,7 @@ export default function IncomingMessage({
     return (
         <Wrapper
             data-testid="incoming-message"
-            className='fade-animation'
+            className=''
         >
             <DPContainer>
                 {showAvatar &&
