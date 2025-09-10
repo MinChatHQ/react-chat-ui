@@ -186,21 +186,21 @@ export const fewChats = [
 export const messages: MessageType[] = [
   {
     user: {
-      id: 'mark',
+      id: 'mArk',
       name: 'Daniel Georgetown',
       avatar:
         'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
     createdAt: date,
-    text: 'first message',
+    text: 'first message updated',
   },
   {
     user: {
-      id: 'mark',
+      id: 'mArk',
       name: 'Markus',
     },
     createdAt: date,
-    text: 'hello',
+    text: 'hello updated',
   },
   {
     user: {

@@ -280,7 +280,7 @@ export default function MessageList({
                                 // Determine the theme color for this message
                                 const messageThemeColor = getMessageThemeColor?.(message)
 
-                                if (user.id == (currentUserId && currentUserId.toLowerCase())) {
+                                if (user.id?.trim() === currentUserId?.trim()) {
 
                                     // my message
                                     return <Message key={index}

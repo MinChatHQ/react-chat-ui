@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof MessageList>;
 
 export const Default: Story = {
-  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="mark" messages={messages} /></div>,
+  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="mArk" messages={messages} /></div>,
 };
 
 export const WithPadding: Story = {
