@@ -126,10 +126,13 @@ export default function MessageList({
 
     /** keeps track of whether messages was previously empty or whether it has already scrolled */
     const [messagesWasEmpty, setMessagesWasEmpty] = useState(true)
+    /** tracks when messages array length increases to trigger effects only on length increase */
+    const [messagesLengthIncreased, setMessagesLengthIncreased] = useState(0)
     const containerRef = useRef<any>(undefined)
 
     const bottomBufferRef = useRef<any>(undefined)
     const scrollContainerRef = useRef<any>(undefined)
+    const previousMessagesLengthRef = useRef<number>(0)
 
     const { detectBottom, detectTop } = useDetectScrollPosition(scrollContainerRef)
 
@@ -171,6 +174,17 @@ export default function MessageList({
         }
     }, [rawMessages]);
 
+    // Track when messages array length increases
+    useEffect(() => {
+        const currentLength = messages?.length || 0;
+        const previousLength = previousMessagesLengthRef.current;
+        
+        if (currentLength > previousLength) {
+            setMessagesLengthIncreased(prev => prev + 1);
+        }
+        
+        previousMessagesLengthRef.current = currentLength;
+    }, [messages]);
 
     useEffect(() => {
         if (!messages) {
@@ -202,7 +216,7 @@ export default function MessageList({
             }
 
         }
-    }, [messages])
+    }, [messagesLengthIncreased, messagesWasEmpty, forceScrollToBottomOnNewMessage, currentUserId, detectBottom])
 
 
     useEffect(() => {
