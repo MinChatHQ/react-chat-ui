@@ -133,6 +133,7 @@ export default function MessageList({
     const bottomBufferRef = useRef<any>(undefined)
     const scrollContainerRef = useRef<any>(undefined)
     const previousMessagesLengthRef = useRef<number>(0)
+    const lastMessageRef = useRef<string | null>(null)
 
     const { detectBottom, detectTop } = useDetectScrollPosition(scrollContainerRef)
 
@@ -174,23 +175,25 @@ export default function MessageList({
         }
     }, [rawMessages]);
 
-    // Track when messages array length increases
+    // Track when new messages are added to the end of the array
     useEffect(() => {
         const currentLength = messages?.length || 0;
         const previousLength = previousMessagesLengthRef.current;
+        const currentLastMessage = messages?.[messages.length - 1];
+        const currentLastMessageId = currentLastMessage?.id || currentLastMessage?.text || null;
 
-        if (currentLength > previousLength) {
+        // Only trigger if:
+        // 1. Length increased AND
+        // 2. The last message is different from the previous last message (new message at end)
+        if (currentLength > previousLength && currentLastMessageId !== lastMessageRef.current) {
             setMessagesLengthIncreased(prev => prev + 1);
         }
 
         previousMessagesLengthRef.current = currentLength;
+        lastMessageRef.current = currentLastMessageId;
     }, [messages]);
 
     useEffect(() => {
-        console.log("messagesLengthIncreased", messagesLengthIncreased)
-        console.log("messagesWasEmpty", messagesWasEmpty)
-        // console.log("forceScrollToBottomOnNewMessage", forceScrollToBottomOnNewMessage)
-        // console.log("currentUserId", currentUserId)
 
         if (!messages) {
             setMessagesWasEmpty(true)
@@ -212,7 +215,6 @@ export default function MessageList({
 
             //if the most recent message is from the current user then scroll to bottom
             if (messages?.length && messages[messages.length - 1]?.user?.id?.trim() === currentUserId?.trim()) {
-                console.log('my most recent message')
                 scrollToBottom()
             }
 
