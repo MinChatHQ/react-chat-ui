@@ -35,6 +35,11 @@ export type MessageListProps = {
      * Force scroll to bottom on new message
      */
     forceScrollToBottomOnNewMessage?: boolean
+
+    /**
+     * 
+     */
+    showIncomingMessageHeader?: boolean
 }
 
 
@@ -119,6 +124,7 @@ export default function MessageList({
     getMessageThemeColor,
     enableMarkdown = true,
     forceScrollToBottomOnNewMessage = false,
+    showIncomingMessageHeader = true
 }: MessageListProps) {
 
     const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
@@ -355,7 +361,7 @@ export default function MessageList({
                                         seen={seen}
                                         created_at={createdAt}
                                         showAvatar={lastClusterMessage}
-                                        showHeader={firstClusterMessage}
+                                        showHeader={firstClusterMessage && showIncomingMessageHeader}
                                         last={single ? false : last}
                                         single={single}
                                         text={text}
