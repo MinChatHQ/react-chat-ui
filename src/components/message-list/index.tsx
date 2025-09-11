@@ -30,6 +30,11 @@ export type MessageListProps = {
      * Enable markdown rendering for message content
      */
     enableMarkdown?: boolean
+
+    /**
+     * Force scroll to bottom on new message
+     */
+    forceScrollToBottomOnNewMessage?: boolean
 }
 
 
@@ -113,6 +118,7 @@ export default function MessageList({
     customEmptyMessagesComponent,
     getMessageThemeColor,
     enableMarkdown = true,
+    forceScrollToBottomOnNewMessage = false,
 }: MessageListProps) {
 
     const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
@@ -178,6 +184,10 @@ export default function MessageList({
                 //if a user has instead scrolled to the top and the next page of messages arrives then don't scroll to bottom
 
                 setMessagesWasEmpty(false)
+                scrollToBottom()
+            }
+
+            if (forceScrollToBottomOnNewMessage) {
                 scrollToBottom()
             }
 
