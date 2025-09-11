@@ -50,6 +50,10 @@ export const MessagesLoading: Story = {
   render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" loading={true} messages={messages} themeColor="#6ea9d7" /></div>,
 };
 
+export const WithMarkdown: Story = {
+  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="mArk" messages={messages} themeColor="#6ea9d7" enableMarkdown={true} /></div>,
+};
+
 export const CustomMessagesLoading: Story = {
   render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" loading={true} messages={messages} themeColor="#6ea9d7" customLoaderComponent={<div style={{backgroundColor: "red"}}>Custom Loading...</div>} /></div>,
 };

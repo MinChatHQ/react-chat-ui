@@ -84,7 +84,8 @@ export default function OutgoingMessage({
     created_at,
     seen,
     showTimestamp,
-    themeColor
+    themeColor,
+    enableMarkdown
 }: Omit<Props, "showHeader" | "showAvatar" | "type">) {
 
     const { themeColor: contextThemeColor } = useContext(MinChatUIContext)
@@ -125,6 +126,7 @@ export default function OutgoingMessage({
                         <TextContent
                             linkColor={linkColor}
                             color={textColor}
+                            enableMarkdown={enableMarkdown}
                         >{text}</TextContent>}
 
                     {showTimestamp && <div style={{ marginTop: '4px', paddingBottom: '4px' }}>

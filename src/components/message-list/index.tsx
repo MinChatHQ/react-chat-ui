@@ -26,6 +26,10 @@ export type MessageListProps = {
      * If not provided, falls back to themeColor prop.
      */
     getMessageThemeColor?: (message: MessageType) => string | undefined
+    /**
+     * Enable markdown rendering for message content
+     */
+    enableMarkdown?: boolean
 }
 
 
@@ -108,6 +112,7 @@ export default function MessageList({
     customLoaderComponent,
     customEmptyMessagesComponent,
     getMessageThemeColor,
+    enableMarkdown = false,
 }: MessageListProps) {
 
     const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
@@ -297,6 +302,7 @@ export default function MessageList({
                                         clusterFirstMessage={firstClusterMessage}
                                         clusterLastMessage={lastClusterMessage}
                                         themeColor={messageThemeColor}
+                                        enableMarkdown={enableMarkdown}
                                     />
 
                                 } else {
@@ -316,6 +322,7 @@ export default function MessageList({
                                         text={text}
                                         showTimestamp={showTimestamp}
                                         themeColor={messageThemeColor}
+                                        enableMarkdown={enableMarkdown}
                                     />
                                 }
                             })}

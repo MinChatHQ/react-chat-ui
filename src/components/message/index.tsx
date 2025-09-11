@@ -23,6 +23,7 @@ export type Props = {
     clusterFirstMessage?: boolean
     clusterLastMessage?: boolean
     themeColor?: string
+    enableMarkdown?: boolean
 };
 
 
@@ -41,7 +42,8 @@ export default function Message({
     clusterFirstMessage,
     clusterLastMessage,
     showTimestamp,
-    themeColor
+    themeColor,
+    enableMarkdown = true
 }: Props) {
 
     return (
@@ -58,6 +60,7 @@ export default function Message({
                 clusterLastMessage={clusterLastMessage}
                 showTimestamp={showTimestamp}
                 themeColor={themeColor}
+                enableMarkdown={enableMarkdown}
             />
 
             :
@@ -73,6 +76,7 @@ export default function Message({
                 single={single}
                 showTimestamp={showTimestamp}
                 themeColor={themeColor}
+                enableMarkdown={enableMarkdown}
             />
 
     )

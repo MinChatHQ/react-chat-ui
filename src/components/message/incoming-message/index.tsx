@@ -100,7 +100,8 @@ export default function IncomingMessage({
     single,
     created_at,
     showTimestamp,
-    themeColor
+    themeColor,
+    enableMarkdown
 }: Omit<Props, "type" | "clusterFirstMessage" | "clusterLastMessage" | "seen">) {
 
     const { themeColor: contextThemeColor } = useContext(MinChatUIContext)
@@ -163,7 +164,8 @@ export default function IncomingMessage({
                             :
                             <TextContent
                                 linkColor={linkColor}
-                                color={textColor}>{text}</TextContent>}
+                                color={textColor}
+                                enableMarkdown={enableMarkdown}>{text}</TextContent>}
 
                         {showTimestamp && <div style={{ marginTop: '4px', paddingBottom: '4px' }}>
                             <Timestamp
