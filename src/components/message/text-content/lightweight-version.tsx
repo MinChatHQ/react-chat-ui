@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { marked } from 'marked'
+import { parseMarkdown } from '../../../utils/lightweight-markdown'
 
 type Props = {
     children?: string
@@ -29,46 +29,22 @@ box-sizing: border-box;
 word-wrap: break-word;
 width: 100%;
 
-// user-select: none;
-
 a {
     color: ${({ linkColor }) => linkColor || 'blue'};
     text-decoration: underline;
 }
 
-/* Markdown element styles */
-h1, h2, h3, h4, h5, h6 {
-    margin: 0.5em 0;
+/* Basic markdown styles */
+strong {
     font-weight: bold;
-    line-height: 1.2;
 }
 
-h1 { font-size: 1.5em; }
-h2 { font-size: 1.3em; }
-h3 { font-size: 1.2em; }
-h4 { font-size: 1.1em; }
-h5 { font-size: 1.05em; }
-h6 { font-size: 1em; }
-
-p {
-    margin: 0.5em 0;
-    line-height: 1.4;
+em {
+    font-style: italic;
 }
 
-ul, ol {
-    margin: 0.5em 0;
-    padding-left: 1.5em;
-}
-
-li {
-    margin: 0.2em 0;
-}
-
-blockquote {
-    margin: 0.5em 0;
-    padding-left: 1em;
-    border-left: 3px solid #ccc;
-    color: #666;
+del {
+    text-decoration: line-through;
 }
 
 code {
@@ -92,69 +68,26 @@ pre code {
     padding: 0;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-}
-
-strong {
-    font-weight: bold;
-}
-
-em {
-    font-style: italic;
-}
-
-del {
-    text-decoration: line-through;
-}
-
-table {
-    border-collapse: collapse;
+ul, ol {
     margin: 0.5em 0;
-    width: 100%;
+    padding-left: 1.5em;
 }
 
-th, td {
-    border: 1px solid #ccc;
-    padding: 0.4em 0.6em;
-    text-align: left;
+li {
+    margin: 0.2em 0;
 }
-
-th {
-    background-color: rgba(0, 0, 0, 0.05);
-    font-weight: bold;
-}
-
 `
 
-
-export default function TextContent({
+export default function LightweightTextContent({
     linkColor,
     color,
     enableMarkdown = false,
     children = ""
 }: Props) {
 
-    // If markdown is enabled, use marked
     if (enableMarkdown) {
-        // Configure marked options
-        marked.setOptions({
-            breaks: true, // Convert \n to <br>
-            gfm: true,    // GitHub Flavored Markdown
-        });
-
-        // Custom renderer to apply link colors
-        const renderer = new marked.Renderer();
-        renderer.link = (href, title, text) => {
-            return `<a href="${href}" target="_blank" rel="noopener noreferrer" style="color: ${linkColor || 'blue'}; text-decoration: underline;" ${title ? `title="${title}"` : ''}>${text}</a>`;
-        };
-
-        marked.setOptions({ renderer });
-
-        const htmlContent = marked(children);
-
+        const htmlContent = parseMarkdown(children, { linkColor });
+        
         return (
             <Content
                 linkColor={linkColor}

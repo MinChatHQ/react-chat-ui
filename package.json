@@ -18,8 +18,7 @@
     "build-storybook": "STORYBOOK=true storybook build"
   },
   "dependencies": {
-    "react-markdown": "^9.0.1",
-    "remark-gfm": "^4.0.0"
+    "marked": "^12.0.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
