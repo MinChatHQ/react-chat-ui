@@ -178,15 +178,20 @@ export default function MessageList({
     useEffect(() => {
         const currentLength = messages?.length || 0;
         const previousLength = previousMessagesLengthRef.current;
-        
+
         if (currentLength > previousLength) {
             setMessagesLengthIncreased(prev => prev + 1);
         }
-        
+
         previousMessagesLengthRef.current = currentLength;
     }, [messages]);
 
     useEffect(() => {
+        console.log("messagesLengthIncreased", messagesLengthIncreased)
+        console.log("messagesWasEmpty", messagesWasEmpty)
+        console.log("forceScrollToBottomOnNewMessage", forceScrollToBottomOnNewMessage)
+        console.log("currentUserId", currentUserId)
+
         if (!messages) {
             setMessagesWasEmpty(true)
         }
@@ -207,6 +212,7 @@ export default function MessageList({
 
             //if the most recent message is from the current user then scroll to bottom
             if (messages?.length && messages[messages.length - 1]?.user?.id?.trim() === currentUserId?.trim()) {
+                console.log('my most recent message')
                 scrollToBottom()
             }
 
@@ -220,7 +226,6 @@ export default function MessageList({
 
 
     useEffect(() => {
-        //TODO when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
         if (detectBottom()) {
             scrollToBottom()
         }
@@ -229,7 +234,11 @@ export default function MessageList({
 
     const noMessageTextColor = useColorSet("--no-message-text-color")
 
+    /**
+     * 
+     */
     const scrollToBottom = async () => {
+        console.log("scroll to bottom")
         if (bottomBufferRef.current && scrollContainerRef.current) {
             const container = scrollContainerRef.current
             const scrollPoint = bottomBufferRef.current
