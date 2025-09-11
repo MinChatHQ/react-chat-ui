@@ -35,6 +35,9 @@ animation: ${fadeIn} 0.2s ease-in-out;
 const DPContainer = styled.div`
     width: 32px;
     height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    flex-shrink: 0;
     margin-left: 10px;
     box-sizing: border-box;
     user-select: none;
@@ -43,6 +46,9 @@ const DPContainer = styled.div`
 const DisplayPicture = styled.img`
     width: 32px;
     height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    flex-shrink: 0;
     border-radius: 9999px;
     box-sizing: border-box;
     border-width: 2px;

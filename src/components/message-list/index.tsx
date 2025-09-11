@@ -240,7 +240,6 @@ export default function MessageList({
      * 
      */
     const scrollToBottom = async () => {
-        console.log("scroll to bottom")
         if (bottomBufferRef.current && scrollContainerRef.current) {
             const container = scrollContainerRef.current
             const scrollPoint = bottomBufferRef.current
