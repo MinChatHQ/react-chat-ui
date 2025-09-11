@@ -192,7 +192,7 @@ export default function MessageList({
             }
 
             //if the most recent message is from the current user then scroll to bottom
-            if (messages[messages.length - 1].user.id?.trim() === currentUserId?.trim()) {
+            if (messages?.length && messages[messages.length - 1].user.id?.trim() === currentUserId?.trim()) {
                 scrollToBottom()
             }
 
