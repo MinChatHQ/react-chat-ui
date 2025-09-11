@@ -189,8 +189,8 @@ export default function MessageList({
     useEffect(() => {
         console.log("messagesLengthIncreased", messagesLengthIncreased)
         console.log("messagesWasEmpty", messagesWasEmpty)
-        console.log("forceScrollToBottomOnNewMessage", forceScrollToBottomOnNewMessage)
-        console.log("currentUserId", currentUserId)
+        // console.log("forceScrollToBottomOnNewMessage", forceScrollToBottomOnNewMessage)
+        // console.log("currentUserId", currentUserId)
 
         if (!messages) {
             setMessagesWasEmpty(true)
@@ -222,7 +222,7 @@ export default function MessageList({
             }
 
         }
-    }, [messagesLengthIncreased, messagesWasEmpty, forceScrollToBottomOnNewMessage, currentUserId, detectBottom])
+    }, [messagesLengthIncreased, messagesWasEmpty])
 
 
     useEffect(() => {
