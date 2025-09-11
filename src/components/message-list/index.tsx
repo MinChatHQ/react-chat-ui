@@ -112,7 +112,7 @@ export default function MessageList({
     customLoaderComponent,
     customEmptyMessagesComponent,
     getMessageThemeColor,
-    enableMarkdown = false,
+    enableMarkdown = true,
 }: MessageListProps) {
 
     const [messages, setMessages] = useState<(MessageType & { showTimestamp?: boolean })[]>([])
