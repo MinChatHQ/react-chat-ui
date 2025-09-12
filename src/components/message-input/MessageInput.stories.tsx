@@ -47,6 +47,65 @@ export const Disabled: Story = {
   ),
 };
 
+export const TopRoundedOnly: Story = {
+  render: args => (
+    <MinChatUIProvider theme='#6ea9d7'>
+      <MessageInput 
+        {...args} 
+        onAttachClick={() => console.log("onAttachClick")} 
+        borderTopLeftRounded={true}
+        borderTopRightRounded={true}
+        borderBottomLeftRounded={false}
+        borderBottomRightRounded={false}
+      />
+    </MinChatUIProvider>
+  ),
+};
+
+export const BottomRoundedOnly: Story = {
+  render: args => (
+    <MinChatUIProvider theme='#6ea9d7'>
+      <MessageInput 
+        {...args} 
+        onAttachClick={() => console.log("onAttachClick")} 
+        borderTopLeftRounded={false}
+        borderTopRightRounded={false}
+        borderBottomLeftRounded={true}
+        borderBottomRightRounded={true}
+      />
+    </MinChatUIProvider>
+  ),
+};
+
+export const CustomBorderRadius: Story = {
+  render: args => (
+    <MinChatUIProvider theme='#6ea9d7'>
+      <MessageInput 
+        {...args} 
+        onAttachClick={() => console.log("onAttachClick")} 
+        borderRadius="8px 24px 8px 24px"
+      />
+    </MinChatUIProvider>
+  ),
+};
+
+export const NoRoundedCorners: Story = {
+  render: args => (
+    <MinChatUIProvider theme='#6ea9d7'>
+      <MessageInput 
+        {...args} 
+        onAttachClick={() => console.log("onAttachClick")} 
+        borderTopLeftRounded={false}
+        borderTopRightRounded={false}
+        borderBottomLeftRounded={false}
+        borderBottomRightRounded={false}
+      />
+    </MinChatUIProvider>
+  ),
+};
+
+
+
 
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test

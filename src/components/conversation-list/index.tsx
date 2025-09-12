@@ -46,7 +46,7 @@ position: relative;
 padding-top: ${({ loading }) => loading ? '0px' : '0px'};
 box-sizing: border-box;
 overflow-y: auto;
-max-height: 100vh;
+max-height: 100dvh;
 overflow-x: hidden;
 background-color: ${({ backgroundColor }) => backgroundColor || '#ffffff'};
 scrollbar-width: none; /* Firefox */
@@ -60,7 +60,7 @@ scrollbar-width: none; /* Firefox */
 const Container = styled.div`
   height: 100%;
   position: relative;
-  max-height: 100vh;
+  max-height: 100dvh;
   overflow: hidden;
 `;
 

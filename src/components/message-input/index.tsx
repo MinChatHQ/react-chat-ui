@@ -18,6 +18,12 @@ export type Props = {
     onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined
     onKeyUp?: React.KeyboardEventHandler<HTMLInputElement> | undefined
 
+    // Border radius control props
+    borderTopLeftRounded?: boolean
+    borderTopRightRounded?: boolean
+    borderBottomLeftRounded?: boolean
+    borderBottomRightRounded?: boolean
+    borderRadius?: string
 
 }
 
@@ -56,12 +62,29 @@ const fadeIn = keyframes`
 const Form = styled.form<{
     backgroundColor?: string,
     borderColor?: string,
+    borderTopLeftRounded?: boolean,
+    borderTopRightRounded?: boolean,
+    borderBottomLeftRounded?: boolean,
+    borderBottomRightRounded?: boolean,
+    borderRadius?: string,
 }>`
 
 background-color:${({ backgroundColor }) => backgroundColor || "#ffffff"};
 padding-top: 8px;
 padding-bottom: 8px;
-border-radius: 16px;
+border-radius: ${({ borderTopLeftRounded, borderTopRightRounded, borderBottomLeftRounded, borderBottomRightRounded, borderRadius }) => {
+    if (borderRadius) {
+        return borderRadius;
+    }
+    
+    const radius = '16px';
+    const topLeft = borderTopLeftRounded !== false ? radius : '0';
+    const topRight = borderTopRightRounded !== false ? radius : '0';
+    const bottomLeft = borderBottomLeftRounded !== false ? radius : '0';
+    const bottomRight = borderBottomRightRounded !== false ? radius : '0';
+    
+    return `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`;
+}};
 border: 1px solid #e5e7eb;
 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08);
 position: relative;
@@ -211,7 +234,12 @@ export default function MessageInput({
     onAttachClick,
     placeholder = 'Send a message...',
     onKeyDown,
-    onKeyUp
+    onKeyUp,
+    borderTopLeftRounded = true,
+    borderTopRightRounded = true,
+    borderBottomLeftRounded = true,
+    borderBottomRightRounded = true,
+    borderRadius
 }: Props) {
 
     const { themeColor } = useContext(MinChatUIContext)
@@ -247,6 +275,11 @@ export default function MessageInput({
                 data-testid='message-form'
                 className=''
                 backgroundColor={backgroundColor}
+                borderTopLeftRounded={borderTopLeftRounded}
+                borderTopRightRounded={borderTopRightRounded}
+                borderBottomLeftRounded={borderBottomLeftRounded}
+                borderBottomRightRounded={borderBottomRightRounded}
+                borderRadius={borderRadius}
                 onSubmit={(e: any) => {
                     e.preventDefault()
                     handleSubmit()

@@ -3,6 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react';
 import ConversationList from '.';
 import styled from 'styled-components';
 import { chats, fewChats } from '../../constants/mock-data';
+import MessageHeader from '../message-header';
 
 const meta: Meta<typeof ConversationList> = {
   title: 'ConversationList',
@@ -107,3 +108,46 @@ export const HeaderHidden: Story = {
     />
   ),
 };
+
+
+export const CustomHeader: Story = {
+  render: args => {
+    const WithPaddingContainer = styled.div`
+    height: 400px;
+    padding: 20px;
+    position: relative;
+    width: 500px;
+    background-color: red;
+    border: 3px solid black;
+  `;
+
+    const Container = styled.div`
+
+    background-color: blue;
+    margin-top: 20px;
+    padding:top:16px;
+    `;
+
+    return <WithPaddingContainer>
+      <ConversationList
+        {...args}
+        conversations={chats}
+        themeColor="#6ea9d7"
+        selectedConversationId="1"
+        header={{
+
+          customHeaderComponent: <Container>
+            <MessageHeader
+              mobileView={true}
+              showBack={false}
+
+            >Hello World</MessageHeader>
+          </Container>
+        }}
+      />
+    </WithPaddingContainer>
+  },
+};
+
+
+
