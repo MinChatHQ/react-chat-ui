@@ -17,6 +17,8 @@ import MinChatUiProvider from "./providers/MinChatUiProvider";
 import type { ConversationType } from "./types/ConversationType";
 import type { UserType } from "./types/UserType";
 import type { MessageType } from "./types/MessageType";
+import Conversation from "./components/conversation";
+
 
 
 
@@ -27,6 +29,7 @@ export {
   MessageHeader,
   MessageList,
   ConversationList,
+  Conversation,
   MainContainer,
   ConversationHeader,
   TypingIndicator,
