@@ -145,11 +145,11 @@ export default function IncomingMessage({
             </DPContainer>
 
             <TextWrapper>
-                {showHeader &&
-                    <HeaderContainer>
+                <HeaderContainer>
+                    {showHeader &&
                         <Name color={nameTextColor}>{user?.name}</Name>
-                    </HeaderContainer>
-                }
+                    }
+                </HeaderContainer>
 
                 <div style={{ display: "flex" }}>
                     <MessageContainer>
@@ -160,7 +160,7 @@ export default function IncomingMessage({
                                 single
                             }))()}
                             backgroundColor={backgroundColor}
-                            bgColor={(themeColor || backgroundColor  || contextThemeColor) ?? ''} />
+                            bgColor={(themeColor || backgroundColor || contextThemeColor) ?? ''} />
 
                         {media ? <MediaContent
                             last={last}
@@ -180,7 +180,7 @@ export default function IncomingMessage({
                             />
                         </div>
                         }
-                        
+
                     </MessageContainer>
                 </div>
 

@@ -35,7 +35,7 @@ export const WithPadding: Story = {
 };
 
 export const FewMessages: Story = {
-  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" themeColor="#6ea9d7" messages={fewMessages} /></div>,
+  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" themeColor="#6ea9d7" messages={fewMessages} showIncomingMessageHeader={false} /></div>,
 };
 
 export const NoMessages: Story = {
@@ -55,7 +55,7 @@ export const WithMarkdown: Story = {
 };
 
 export const CustomMessagesLoading: Story = {
-  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" loading={true} messages={messages} themeColor="#6ea9d7" customLoaderComponent={<div style={{backgroundColor: "red"}}>Custom Loading...</div>} /></div>,
+  render: args => <div style={{ height: "100vh" }}><MessageList {...args} currentUserId="danny_1" loading={true} messages={messages} themeColor="#6ea9d7" customLoaderComponent={<div style={{ backgroundColor: "red" }}>Custom Loading...</div>} /></div>,
 };
 
 export const SendMessageLoading: Story = {
