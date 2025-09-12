@@ -5,7 +5,7 @@ import placeholderProfilePNG from '../../assets/profile.svg';
 import { calculateTimeAgo } from '../../utils/date-utils';
 import useColorSet from '../../hooks/useColorSet';
 import MinChatUIContext from '../../contexts/MinChatUIContext';
-import { parseMarkdown } from '../../utils/lightweight-markdown';
+import { marked } from 'marked';
 
 export type Props = {
   title: string;
@@ -455,7 +455,7 @@ export default function Conversation({
                   minWidth: 0,
                   maxWidth: '100%',
                 }}
-                dangerouslySetInnerHTML={{ __html: parseMarkdown(lastMessage?.text || "") }}></span>
+                dangerouslySetInnerHTML={{ __html: marked(lastMessage?.text || "") }}></span>
             )}
           </MessageComponent>
         </TextContainer>
