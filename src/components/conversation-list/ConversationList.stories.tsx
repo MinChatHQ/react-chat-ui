@@ -149,5 +149,50 @@ export const CustomHeader: Story = {
   },
 };
 
+export const MarkdownSupport: Story = {
+  render: args => (
+    <div style={{ height: "100vh" }}>
+      <ConversationList
+        {...args}
+        conversations={chats}
+        themeColor="#6ea9d7"
+        selectedConversationId="10"
+        header={{
+          showHeader: true,
+          title: 'Markdown Test Conversations',
+          showSearchBar: false,
+          showAddButton: false,
+        }}
+      />
+    </div>
+  ),
+};
+
+export const MarkdownOnly: Story = {
+  render: args => {
+    // Filter only markdown test conversations
+    const markdownChats = chats.filter(chat => 
+      chat.id === '10' || chat.id === '11' || chat.id === '12' || chat.id === '13'
+    );
+    
+    return (
+      <div style={{ height: "100vh" }}>
+        <ConversationList
+          {...args}
+          conversations={markdownChats}
+          themeColor="#6ea9d7"
+          selectedConversationId="10"
+          header={{
+            showHeader: true,
+            title: 'Markdown Examples Only',
+            showSearchBar: false,
+            showAddButton: false,
+          }}
+        />
+      </div>
+    );
+  },
+};
+
 
 

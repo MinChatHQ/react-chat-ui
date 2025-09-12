@@ -139,6 +139,63 @@ export const chats: ConversationType[] = [
       },
     },
   },
+  {
+    id: '10',
+    title: 'Markdown Testers',
+    avatar: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    unread: true,
+    lastMessage: {
+      seen: false,
+      createdAt: date,
+      text: 'Check out this **bold text** and *italic text* with `inline code`',
+      user: {
+        id: 'markdown_user',
+        name: 'Markdown User',
+        avatar: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      },
+    },
+  },
+  {
+    id: '11',
+    title: 'Code Sharing',
+    avatar: 'https://cdn.pixabay.com/photo/2015/03/03/08/55/portrait-657116_1280.jpg',
+    lastMessage: {
+      seen: true,
+      createdAt: date,
+      text: 'Here is some code: ```javascript\nconst greeting = "Hello World!";\nconsole.log(greeting);\n```',
+      user: {
+        id: 'code_user',
+        name: 'Code Master',
+        avatar: 'https://cdn.pixabay.com/photo/2015/03/03/08/55/portrait-657116_1280.jpg',
+      },
+    },
+  },
+  {
+    id: '12',
+    title: 'Link Sharing',
+    lastMessage: {
+      seen: true,
+      createdAt: date,
+      text: 'Check out this [awesome link](https://github.com) and this URL: https://example.com',
+      user: {
+        id: 'link_user',
+        name: 'Link Sharer',
+      },
+    },
+  },
+  {
+    id: '13',
+    title: 'Mixed Formatting',
+    lastMessage: {
+      seen: false,
+      createdAt: date,
+      text: '**Bold** and *italic* with ~~strikethrough~~ and `code` plus [links](https://example.com)',
+      user: {
+        id: 'format_user',
+        name: 'Format Master',
+      },
+    },
+  },
 ];
 
 export const fewChats = [
